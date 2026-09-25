@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b1f3b">
+<title>认知偏差研究所｜一本正经的胡说八道·研究性学习成果</title>
+<meta name="description" content="用漫画分镜讲清 6 个真实存在的认知偏差，含 3 个可现场玩的心理学小实验与一份自评问卷。所有结论均标注研究出处。">
+<style>
+/* ==========================================================================
+   认知偏差研究所 · 样式表
+   设计取向：日系漫画分镜 + 网点纸 + 强烈的黑描边与硬阴影（非素材堆砌，纯手写 CSS）
+   配色致敬：青绿 #39C5BB 主色 / 樱花粉 / 深夜蓝 / 警示黄
+   ========================================================================== */
+:root{
+  --ink:#14161f;
+  --ink-soft:#3a3f52;
+  --paper:#f7f3ea;
+  --paper-2:#fffdf8;
+  --teal:#39c5bb;
+  --teal-deep:#178a82;
+  --teal-pale:#c9f4f0;
+  --pink:#ff7bac;
+  --sun:#ffd23f;
+  --night:#1b1f3b;
+  --dot:rgba(20,22,31,.16);
+  --bw:3px;
+  --shadow:8px 8px 0 var(--ink);
+  --shadow-sm:4px 4px 0 var(--ink);
+  --radius:14px;
+  --font:"Hiragino Sans GB","PingFang SC","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-jp:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP","Hiragino Sans","Meiryo",var(--font);
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;padding:0;
+  font-family:var(--font);
+  color:var(--ink);
+  background-color:var(--paper);
+  /* 网点纸：漫画分镜的底纹 */
+  background-image:radial-gradient(var(--dot) 1.1px,transparent 1.2px);
+  background-size:13px 13px;
+  line-height:1.75;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%}
+a{color:var(--teal-deep)}
+h1,h2,h3,h4{line-height:1.25;margin:0}
+p{margin:0 0 .85em}
+ul,ol{margin:0 0 .9em;padding-left:1.35em}
+li{margin:.3em 0}
+code,kbd{font-family:var(--mono);font-size:.9em;background:#eceff5;border:1px solid #ccd2e0;border-radius:5px;padding:.1em .4em}
+::selection{background:var(--sun);color:var(--ink)}
+
+/* ---------- 通用容器 ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+.narrow{max-width:760px;margin:0 auto}
+.section{padding:44px 0 12px}
+.section-head{position:relative;margin:0 0 26px}
+.section-head h2{
+  font-size:clamp(22px,4.6vw,32px);letter-spacing:.5px;
+  display:inline-block;background:var(--paper-2);
+  border:var(--bw) solid var(--ink);box-shadow:var(--shadow-sm);
+  padding:8px 16px;border-radius:10px;
+}
+.section-head .kicker{
+  display:block;font-family:var(--font-jp);font-size:13px;letter-spacing:.35em;
+  color:var(--teal-deep);font-weight:700;margin:0 0 6px;text-transform:uppercase;
+}
+.section-head .lead{color:var(--ink-soft);margin:.7em 0 0;font-size:15px}
+
+/* ---------- 漫画面板 / 卡片 ---------- */
+.panel{
+  background:var(--paper-2);
+  border:var(--bw) solid var(--ink);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px 20px 18px;
+  position:relative;
+}
+.panel + .panel{margin-top:22px}
+.panel h3{font-size:19px;margin:0 0 .5em}
+.panel .meta{font-size:12.5px;color:var(--ink-soft);font-family:var(--mono)}
+.tag{
+  display:inline-block;font-size:12px;font-weight:700;line-height:1.6;
+  padding:1px 9px;border:2px solid var(--ink);border-radius:999px;
+  background:var(--teal-pale);margin:0 6px 6px 0;white-space:nowrap;
+}
+.tag.pink{background:#ffe1ec}
+.tag.sun{background:#fff3c9}
+.tag.ink{background:var(--night);color:#fff;border-color:var(--night)}
+.badge-real{background:#d8f2e6;border-color:#1d7a58}
+.badge-rumor{background:#ffe0e0;border-color:#c02b2b;color:#8c1111}
+
+/* ---------- 按钮 ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:46px;padding:10px 20px;font-size:15px;font-weight:700;
+  font-family:inherit;color:var(--ink);background:var(--sun);
+  border:var(--bw) solid var(--ink);border-radius:12px;
+  box-shadow:var(--shadow-sm);cursor:pointer;text-decoration:none;
+  transition:transform .08s ease,box-shadow .08s ease,background .15s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:hover{background:#ffdc6b}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.btn-primary{background:var(--teal);color:var(--ink)}
+.btn-primary:hover{background:#4fd6cc}
+.btn-ghost{background:var(--paper-2)}
+.btn-ghost:hover{background:#f0ece2}
+.btn-sm{min-height:40px;padding:6px 14px;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;box-shadow:var(--shadow-sm)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+
+/* ---------- 拟声词 / 装饰字 ---------- */
+.sfx{
+  display:inline-block;font-family:var(--font-jp);font-weight:900;
+  color:var(--pink);-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;
+  text-shadow:3px 3px 0 var(--ink);transform:rotate(-7deg);
+  font-size:clamp(20px,4vw,30px);line-height:1;user-select:none;pointer-events:none;
+}
+.sfx.teal{color:var(--teal)}
+.sfx.sun{color:var(--sun)}
+.sfx.bob{animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:rotate(-7deg) translateY(0)}50%{transform:rotate(-4deg) translateY(-6px)}}
+ruby rt{font-size:.52em;color:var(--teal-deep);font-family:var(--font-jp);letter-spacing:.05em}
+
+/* ---------- 说话气泡 ---------- */
+.speech{
+  position:relative;background:var(--paper-2);border:var(--bw) solid var(--ink);
+  border-radius:16px;padding:12px 16px;box-shadow:var(--shadow-sm);font-size:15px;
+}
+.speech::after{
+  content:"";position:absolute;left:34px;bottom:-15px;width:0;height:0;
+  border:8px solid transparent;border-top-color:var(--ink);border-bottom:0;
+}
+.speech::before{
+  content:"";position:absolute;left:36px;bottom:-10px;width:0;height:0;z-index:1;
+  border:6px solid transparent;border-top-color:var(--paper-2);border-bottom:0;
+}
+.speech.right::after{left:auto;right:34px}
+.speech.right::before{left:auto;right:36px}
+.speech.dark{background:var(--night);color:#fff;border-color:var(--ink)}
+.speech.dark::before{border-top-color:var(--night)}
+
+/* ---------- 顶部滚动条 ---------- */
+.ticker{
+  background:var(--night);color:#fff;overflow:hidden;white-space:nowrap;
+  border-bottom:var(--bw) solid var(--ink);font-size:13.5px;letter-spacing:.04em;
+}
+.ticker span{display:inline-block;padding:7px 0;animation:slide 34s linear infinite}
+.ticker b{color:var(--sun)}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- 头图 ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(150deg,var(--night) 0%,#242a52 55%,#123f45 100%);
+  color:#fff;border-bottom:var(--bw) solid var(--ink);padding:34px 0 26px;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.16) 1.1px,transparent 1.2px);
+  background-size:12px 12px;opacity:.55;pointer-events:none;
+}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.35fr .9fr;gap:22px;align-items:center}
+.hero h1{
+  font-size:clamp(30px,7.4vw,58px);letter-spacing:1px;
+  -webkit-text-stroke:2px var(--ink);paint-order:stroke fill;color:#fff;
+  text-shadow:5px 5px 0 rgba(0,0,0,.35);
+}
+.hero .sub{
+  display:inline-block;margin:12px 0 0;background:var(--sun);color:var(--ink);
+  border:var(--bw) solid var(--ink);box-shadow:var(--shadow-sm);
+  padding:6px 14px;border-radius:10px;font-weight:800;font-size:clamp(14px,2.6vw,17px);
+}
+.hero .desc{margin:16px 0 0;color:#e7ecff;font-size:15px;max-width:52ch}
+.hero .fine{margin:14px 0 0;font-size:12.5px;color:#aab6e6;font-style:italic}
+.hero-art{position:relative;display:flex;justify-content:center;align-items:flex-end}
+.mascot{width:100%;max-width:290px;height:auto;filter:drop-shadow(6px 8px 0 rgba(0,0,0,.28))}
+.deco-speed{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none;color:var(--teal)}
+.deco-halftone{position:absolute;right:-30px;bottom:-30px;width:220px;height:220px;opacity:.5;pointer-events:none;color:var(--teal)}
+
+/* ---------- 导航 ---------- */
+.nav{background:var(--paper-2);border-bottom:var(--bw) solid var(--ink);position:sticky;top:0;z-index:40}
+.nav .wrap{display:flex;gap:8px;overflow-x:auto;padding:9px 18px;scrollbar-width:none}
+.nav .wrap::-webkit-scrollbar{display:none}
+.nav a{
+  flex:0 0 auto;font-size:14px;font-weight:700;text-decoration:none;color:var(--ink);
+  border:2px solid var(--ink);border-radius:999px;padding:5px 13px;background:#fff;
+  box-shadow:2px 2px 0 var(--ink);transition:background .15s
+}
+.nav a:hover{background:var(--teal-pale)}
+</style>
+<style>
+/* ---------- 偏差画廊：分镜格 ---------- */
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
+.bias{
+  background:var(--paper-2);border:var(--bw) solid var(--ink);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:0;overflow:hidden;display:flex;flex-direction:column;
+  opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;
+}
+.bias.in{opacity:1;transform:none}
+.bias-top{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--night);color:#fff;border-bottom:var(--bw) solid var(--ink);padding:8px 14px;
+}
+.bias-num{font-family:var(--font-jp);font-weight:900;font-size:15px;letter-spacing:.1em;color:var(--sun)}
+.bias-en{font-family:var(--mono);font-size:11.5px;color:#b9c2e8;text-align:right;line-height:1.3}
+.bias-body{padding:16px 16px 14px;flex:1}
+.bias-body h3{font-size:19px;margin:0 0 10px}
+.bias-body h3 small{display:block;font-size:12px;color:var(--ink-soft);font-weight:600;font-family:var(--mono);margin-top:3px}
+.row-line{display:grid;grid-template-columns:64px 1fr;gap:10px;margin:0 0 10px;align-items:start}
+.row-line .lab{
+  font-size:12px;font-weight:800;text-align:center;padding:2px 0;border:2px solid var(--ink);
+  border-radius:7px;background:var(--teal-pale);
+}
+.row-line .lab.gray{background:#e9ecf3}
+.row-line .lab.pink{background:#ffe1ec}
+.row-line .lab.sun{background:#fff3c9}
+.row-line p{margin:0;font-size:14.5px}
+.bias-foot{
+  border-top:2px dashed #c9cfdd;padding:11px 16px 14px;background:#fcfaf4;
+  font-size:12.5px;color:var(--ink-soft);
+}
+.bias-foot b{color:var(--ink)}
+.said{color:var(--pink);font-weight:800}
+
+/* ---------- 实验区 ---------- */
+.exp{background:var(--paper-2);border:var(--bw) solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-top:26px;position:relative}
+.exp-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 6px}
+.exp-head h3{font-size:20px;margin:0}
+.exp .why{margin-top:14px;border-top:2px dashed #c9cfdd;padding-top:12px;font-size:14px;color:var(--ink-soft)}
+.exp .why b{color:var(--ink)}
+.stage{
+  margin:16px 0 0;background:var(--paper);border:2px solid var(--ink);border-radius:12px;
+  padding:18px;min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
+.stage .big{font-size:clamp(44px,13vw,76px);font-weight:900;line-height:1.1;letter-spacing:.06em}
+.stage .hint{font-size:14px;color:var(--ink-soft);margin-top:10px}
+.color-btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;max-width:420px;margin:16px auto 0}
+.color-btns .btn{width:100%}
+.progress{width:100%;max-width:420px;height:12px;border:2px solid var(--ink);border-radius:999px;background:#fff;overflow:hidden;margin:14px auto 0}
+.progress i{display:block;height:100%;background:var(--teal);width:0;transition:width .2s}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:14px 0 0;width:100%}
+.stat{background:#fff;border:2px solid var(--ink);border-radius:10px;padding:10px 12px;text-align:center}
+.stat .v{font-family:var(--mono);font-size:20px;font-weight:800;display:block}
+.stat .k{font-size:12px;color:var(--ink-soft)}
+.anchor-slider{width:100%;max-width:430px;margin:10px auto 0;display:flex;flex-direction:column;gap:8px;align-items:center}
+.anchor-slider input[type=range]{width:100%;accent-color:var(--teal-deep);height:34px}
+.anchor-slider .val{font-family:var(--mono);font-size:22px;font-weight:800}
+.ml-svg{width:100%;max-width:460px;height:auto;margin:6px auto 0}
+.ml-svg line{stroke:var(--ink);stroke-width:4;stroke-linecap:round}
+.ml-svg .reveal{stroke:var(--pink);stroke-width:3;stroke-dasharray:7 6}
+
+/* ---------- 辟谣栏 ---------- */
+.rumor{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.r-card{background:#fff;border:var(--bw) solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:16px}
+.r-card .claim{
+  font-size:16px;font-weight:800;background:#ffe0e0;border:2px solid #c02b2b;border-radius:10px;
+  padding:8px 12px;color:#8c1111;margin:0 0 10px;
+}
+.r-card .truth{font-size:14.5px;margin:0}
+.r-card .truth b{color:#0d6b4d}
+.r-card .src{font-size:12px;color:var(--ink-soft);font-family:var(--mono);margin-top:8px;display:block}
+
+/* ---------- 问卷 ---------- */
+#quiz-root{margin-top:22px}
+.q-sec{background:var(--paper-2);border:var(--bw) solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+.q-sec h3{font-size:20px;margin:0 0 4px}
+.q-lead{font-size:14.5px;color:var(--ink-soft);margin:0 0 14px}
+.q-notice{background:#fff9e0;border:2px dashed #d8a800;border-radius:10px;padding:10px 12px;font-size:13.5px;margin:0 0 16px}
+.q-item{border-top:2px dashed #d6dbe6;padding:14px 0 6px}
+.q-item:first-of-type{border-top:0}
+.q-title{font-weight:700;font-size:15.5px;margin:0 0 10px}
+.q-title .idx{display:inline-block;min-width:26px;font-family:var(--mono);color:var(--teal-deep)}
+.likert{display:flex;flex-wrap:wrap;gap:8px}
+.likert label{
+  flex:1 1 88px;min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;border:2px solid var(--ink);border-radius:10px;background:#fff;cursor:pointer;font-size:13px;
+  padding:6px 4px;transition:background .15s;text-align:center
+}
+.likert label:hover{background:var(--teal-pale)}
+.likert input{position:absolute;opacity:0;width:0;height:0}
+.likert label .n{font-weight:800;font-family:var(--mono);font-size:15px}
+.likert label:has(input:checked){background:var(--teal);box-shadow:inset 0 0 0 2px var(--ink)}
+.likert label.err{border-color:#c02b2b;background:#ffecec}
+.q-field{margin:0 0 14px}
+.q-field label{display:block;font-weight:700;font-size:14.5px;margin:0 0 6px}
+.input,textarea,select{
+  width:100%;font-family:inherit;font-size:15px;color:var(--ink);background:#fff;
+  border:2px solid var(--ink);border-radius:10px;padding:10px 12px;min-height:46px
+}
+textarea{min-height:96px;resize:vertical}
+.q-inline{display:flex;gap:10px;flex-wrap:wrap}
+.q-inline > *{flex:1 1 220px}
+.counter{font-size:12px;color:var(--ink-soft);font-family:var(--mono);text-align:right}
+.q-errors{background:#ffecec;border:2px solid #c02b2b;color:#8c1111;border-radius:10px;padding:10px 12px;font-size:14px;margin:0 0 12px}
+.q-ok{background:#e2f7ec;border:2px solid #1d7a58;color:#0d6b4d;border-radius:10px;padding:10px 12px;font-size:14px;margin:0 0 12px}
+.q-bad{background:#fff3e0;border:2px solid #c96a00;color:#8a4a00;border-radius:10px;padding:10px 12px;font-size:14px;margin:0 0 12px}
+.q-frame{border:2px dashed var(--ink);border-radius:12px;background:#fff;margin:14px 0}
+.q-frame iframe{width:100%;height:640px;border:0;border-radius:10px;display:block}
+.q-embed-tip{font-size:13px;color:var(--ink-soft);padding:8px 12px;margin:0}
+.export-row{border-top:2px dashed #d6dbe6;margin-top:18px;padding-top:14px}
+.export-row .mono-out{
+  font-family:var(--mono);font-size:12px;background:#f2f4f9;border:1px solid #ccd2e0;
+  border-radius:8px;padding:10px;margin-top:10px;max-height:180px;overflow:auto;white-space:pre-wrap;word-break:break-all
+}
+
+/* ---------- 页脚 ---------- */
+.foot{margin-top:46px;background:var(--night);color:#dfe5ff;border-top:var(--bw) solid var(--ink);padding:30px 0 40px}
+.foot h3{color:#fff;font-size:18px;margin:0 0 10px}
+.foot ol{padding-left:1.4em}
+.foot li{font-size:13.5px;line-height:1.7;color:#c3cbf0}
+.foot li b{color:#fff}
+.foot .mono{font-family:var(--mono);font-size:12.5px}
+.foot .disclaimer{border:2px dashed #6f7bb5;border-radius:12px;padding:12px 14px;font-size:13px;color:#d7dcff;margin:18px 0 0}
+.to-top{position:fixed;right:14px;bottom:16px;z-index:50;border-radius:999px;padding:12px 15px;font-size:14px;display:none}
+.to-top.show{display:inline-flex}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:820px){
+  .hero-grid{grid-template-columns:1fr;text-align:left}
+  .hero-art{order:-1;justify-content:center;margin-bottom:6px}
+  .mascot{max-width:210px}
+  .deco-speed{opacity:.28}
+}
+@media (max-width:520px){
+  .wrap{padding:0 14px}
+  .panel,.exp,.q-sec{padding:15px 14px}
+  .row-line{grid-template-columns:1fr;gap:4px}
+  .row-line .lab{justify-self:start;padding:1px 10px;text-align:left}
+  .section{padding:32px 0 8px}
+  .q-frame iframe{height:560px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= 顶部滚动条 ======================= -->
+<div class="ticker" aria-hidden="true"><span>
+　<b>认知偏差研究所</b> 出品　｜　本页面已通过「看起来很像科学」认证（认证方：本页面自己）　｜　文中所有心理学结论均标注研究出处，胡说八道部分仅为包装，<b>请勿引用包装</b>　｜　警告：读完本页你可能会开始怀疑自己的每一个念头，这是正常的　｜　
+　<b>认知偏差研究所</b> 出品　｜　本页面已通过「看起来很像科学」认证（认证方：本页面自己）　｜　文中所有心理学结论均标注研究出处，胡说八道部分仅为包装，<b>请勿引用包装</b>　｜　警告：读完本页你可能会开始怀疑自己的每一个念头，这是正常的　｜　
+</span></div>
+
+<!-- ======================= 头图 ======================= -->
+<header class="hero">
+  <svg class="deco-speed" viewBox="0 0 240 240" preserveAspectRatio="none" aria-hidden="true">
+    <g stroke="currentColor" stroke-width="1.4" opacity=".75">
+      <line x1="244" y1="120" x2="0" y2="-10"/><line x1="244" y1="120" x2="0" y2="25"/>
+      <line x1="244" y1="120" x2="0" y2="60"/><line x1="244" y1="120" x2="0" y2="95"/>
+      <line x1="244" y1="120" x2="0" y2="130"/><line x1="244" y1="120" x2="0" y2="165"/>
+      <line x1="244" y1="120" x2="0" y2="200"/><line x1="244" y1="120" x2="0" y2="235"/>
+    </g>
+  </svg>
+  <svg class="deco-halftone" viewBox="0 0 240 240" aria-hidden="true">
+    <defs>
+      <pattern id="mHalftone" width="9" height="9" patternUnits="userSpaceOnUse">
+        <circle cx="2.4" cy="2.4" r="1.5" fill="currentColor"/>
+      </pattern>
+    </defs>
+    <circle cx="120" cy="120" r="118" fill="url(#mHalftone)"/>
+  </svg>
+
+  <div class="wrap hero-grid">
+    <div>
+      <span class="sfx bob" aria-hidden="true">ピコン！</span>
+      <h1>认知偏差<br>研究所</h1>
+      <span class="sub">你的大脑，一台每天骗你两百次的机器</span>
+      <p class="desc">
+        本页是一份<strong>研究性学习成果</strong>。它用漫画分镜的写法，把 6 个真实存在、有实验支撑的认知偏差讲清楚；
+        但作者坚持在每一格里塞进大量的胡说八道，因为<strong>把知识讲得好笑，比讲得正确更难，也更值得做</strong>。
+        页内还有 3 个可以立刻玩的心理实验，以及一份自评问卷。
+      </p>
+      <p class="fine">
+        ※ 幽默是外壳，数据是内核。所有研究出处均列于页脚，欢迎查证——如果你只记住了段子，那是我们包装得很成功；如果你顺便记住了实验，那就是我们真正的目的。
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#gallery">① 逛偏差画廊</a>
+        <a class="btn" href="#lab">② 玩 3 个实验</a>
+        <a class="btn btn-ghost" href="#survey">③ 填问卷</a>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <!-- ===== MASCOT:HERO 原创角色「小枢」全身挥手像（纯手绘 SVG，非 AI 图片、非任何现有版权角色） ===== -->
+      <svg class="mascot" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="原创Q版角色小枢：青绿色双马尾、头顶呆毛、白色实验袍配青绿领结，正在挥手打招呼">
+        <defs>
+          <linearGradient id="mHairA" x1="0" y1="0" x2="0.2" y2="1">
+            <stop offset="0" stop-color="#4fd8cd"/><stop offset="0.65" stop-color="#39c5bb"/><stop offset="1" stop-color="#b9f2ed"/>
+          </linearGradient>
+          <linearGradient id="mHairB" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#5fded4"/><stop offset="1" stop-color="#cdf6f2"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 双马尾（后层） -->
+        <path d="M64 92 C 34 98, 20 134, 30 170 C 34 188, 53 194, 61 181 C 71 164, 57 148, 66 126 C 70 112, 68 100, 64 92 Z"
+              fill="url(#mHairA)" stroke="#14161f" stroke-width="3"/>
+        <path d="M176 92 C 206 98, 220 134, 210 170 C 206 188, 187 194, 179 181 C 169 164, 183 148, 174 126 C 170 112, 172 100, 176 92 Z"
+              fill="url(#mHairA)" stroke="#14161f" stroke-width="3"/>
+        <!-- 发梢高光 -->
+        <path d="M36 150 C 32 164, 36 178, 46 184" fill="none" stroke="#e8fffd" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+        <path d="M204 150 C 208 164, 204 178, 194 184" fill="none" stroke="#e8fffd" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+
+        <!-- 后发 -->
+        <ellipse cx="120" cy="94" rx="55" ry="55" fill="url(#mHairB)" stroke="#14161f" stroke-width="3"/>
+
+        <!-- 双腿 -->
+        <rect x="103" y="196" width="13" height="22" rx="6" fill="#ffdcc6" stroke="#14161f" stroke-width="3"/>
+        <rect x="124" y="196" width="13" height="22" rx="6" fill="#ffdcc6" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="109" cy="221" rx="13" ry="7" fill="#14161f"/>
+        <ellipse cx="131" cy="221" rx="13" ry="7" fill="#14161f"/>
+
+        <!-- 实验袍 -->
+        <path d="M92 142 C 92 137, 148 137, 148 142 L 157 197 C 157 204, 83 204, 83 197 Z"
+              fill="#fffdf8" stroke="#14161f" stroke-width="3"/>
+        <path d="M118 142 L 118 200" stroke="#d9dee8" stroke-width="2.5"/>
+        <!-- 口袋与笔 -->
+        <path d="M137 168 h 15 v 17 h -15 Z" fill="#f1f3f8" stroke="#14161f" stroke-width="2.5"/>
+        <rect x="141" y="161" width="5" height="12" rx="2" fill="#39c5bb" stroke="#14161f" stroke-width="2"/>
+        <!-- 领结 -->
+        <path d="M104 141 L 120 152 L 104 160 Z" fill="#39c5bb" stroke="#14161f" stroke-width="3"/>
+        <path d="M136 141 L 120 152 L 136 160 Z" fill="#39c5bb" stroke="#14161f" stroke-width="3"/>
+        <circle cx="120" cy="152" r="5.5" fill="#178a82" stroke="#14161f" stroke-width="3"/>
+
+        <!-- 左臂（挥手） -->
+        <path d="M99 153 C 84 146, 67 128, 59 107" fill="none" stroke="#14161f" stroke-width="14" stroke-linecap="round"/>
+        <path d="M99 153 C 84 146, 67 128, 59 107" fill="none" stroke="#fffdf8" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="57" cy="99" r="10" fill="#ffdcc6" stroke="#14161f" stroke-width="3"/>
+        <path d="M52 92 l -3 -7 M 57 90 l 0 -8 M 62 93 l 4 -6" stroke="#14161f" stroke-width="2.6" stroke-linecap="round"/>
+
+        <!-- 右臂 -->
+        <path d="M141 153 C 157 151, 171 158, 179 168" fill="none" stroke="#14161f" stroke-width="14" stroke-linecap="round"/>
+        <path d="M141 153 C 157 151, 171 158, 179 168" fill="none" stroke="#fffdf8" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="184" cy="172" r="10" fill="#ffdcc6" stroke="#14161f" stroke-width="3"/>
+
+        <!-- 脸 -->
+        <ellipse cx="120" cy="96" rx="50" ry="53" fill="#ffe7d6" stroke="#14161f" stroke-width="3"/>
+        <!-- 左眼 -->
+        <ellipse cx="101" cy="104" rx="13" ry="15" fill="#fff" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="101" cy="105" rx="9.5" ry="12" fill="#178a82"/>
+        <ellipse cx="101" cy="110" rx="6" ry="7" fill="#39c5bb" opacity=".85"/>
+        <ellipse cx="101" cy="105" rx="4.2" ry="6" fill="#14161f"/>
+        <circle cx="96.5" cy="97.5" r="3.6" fill="#fff"/>
+        <circle cx="105.5" cy="111" r="2" fill="#fff" opacity=".85"/>
+        <path d="M86 91 Q 101 83 116 91" fill="none" stroke="#14161f" stroke-width="5" stroke-linecap="round"/>
+        <path d="M88 78 Q 101 72 114 78" fill="none" stroke="#14161f" stroke-width="3" stroke-linecap="round"/>
+        <!-- 右眼 -->
+        <ellipse cx="139" cy="104" rx="13" ry="15" fill="#fff" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="139" cy="105" rx="9.5" ry="12" fill="#178a82"/>
+        <ellipse cx="139" cy="110" rx="6" ry="7" fill="#39c5bb" opacity=".85"/>
+        <ellipse cx="139" cy="105" rx="4.2" ry="6" fill="#14161f"/>
+        <circle cx="134.5" cy="97.5" r="3.6" fill="#fff"/>
+        <circle cx="143.5" cy="111" r="2" fill="#fff" opacity=".85"/>
+        <path d="M124 91 Q 139 83 154 91" fill="none" stroke="#14161f" stroke-width="5" stroke-linecap="round"/>
+        <path d="M126 78 Q 139 72 152 78" fill="none" stroke="#14161f" stroke-width="3" stroke-linecap="round"/>
+        <!-- 腮红 / 嘴 -->
+        <ellipse cx="84" cy="118" rx="10" ry="5" fill="#ff7bac" opacity=".5"/>
+        <ellipse cx="156" cy="118" rx="10" ry="5" fill="#ff7bac" opacity=".5"/>
+        <path d="M112 125 Q 120 137 128 125 Z" fill="#ff7bac" stroke="#14161f" stroke-width="3" stroke-linejoin="round"/>
+        <!-- 刘海 -->
+        <path d="M70 96 C 65 53, 92 35, 120 35 C 148 35, 175 53, 170 96
+                 C 165 80, 157 68, 146 75 C 138 60, 122 58, 112 73 C 101 62, 84 68, 70 96 Z"
+              fill="url(#mHairA)" stroke="#14161f" stroke-width="3"/>
+        <path d="M86 60 C 96 50, 112 46, 126 49" fill="none" stroke="#eafffc" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+        <!-- 呆毛 -->
+        <path d="M117 40 C 104 22, 122 6, 134 13 C 145 19, 141 33, 130 32 C 124 31, 124 24, 128 21"
+              fill="none" stroke="#14161f" stroke-width="7" stroke-linecap="round"/>
+        <path d="M117 40 C 104 22, 122 6, 134 13 C 145 19, 141 33, 130 32 C 124 31, 124 24, 128 21"
+              fill="none" stroke="url(#mHairA)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= 导航 ======================= -->
+<nav class="nav" aria-label="页面导航">
+  <div class="wrap">
+    <a href="#gallery">① 偏差画廊</a>
+    <a href="#lab">② 实验台</a>
+    <a href="#rumor">③ 辟谣科</a>
+    <a href="#survey">④ 问卷</a>
+    <a href="#method">⑤ 方法说明</a>
+  </div>
+</nav>
+
+<main id="page">
+<!-- ======================= ① 偏差画廊 ======================= -->
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">File 01 — 6 Cognitive Biases</span>
+      <h2>① 偏差画廊：6 个代代相传的大脑 Bug</h2>
+      <p class="lead">
+        下面 6 个偏差，全都不是"你笨"，而是大脑为了<strong>省电</strong>而写进默认设置里的快捷方式。
+        快捷方式在草原上救过你祖先的命，在考场上会把你坑得很惨。
+      </p>
+    </div>
+
+    <div class="panel" style="margin-bottom:26px;display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center">
+      <!-- ===== MASCOT:TALKING 半身讲解像 ===== -->
+      <svg viewBox="34 22 180 152" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto"
+           aria-label="原创角色小枢的半身像，抬手做出讲解的手势">
+        <defs>
+          <linearGradient id="mHairC" x1="0" y1="0" x2="0.2" y2="1">
+            <stop offset="0" stop-color="#4fd8cd"/><stop offset="0.65" stop-color="#39c5bb"/><stop offset="1" stop-color="#b9f2ed"/>
+          </linearGradient>
+        </defs>
+        <path d="M56 174 C 60 150, 180 150, 184 174 Z" fill="#fffdf8" stroke="#14161f" stroke-width="3"/>
+        <path d="M92 160 L 112 168 L 92 176 Z" fill="#39c5bb" stroke="#14161f" stroke-width="3"/>
+        <path d="M148 160 L 128 168 L 148 176 Z" fill="#39c5bb" stroke="#14161f" stroke-width="3"/>
+        <circle cx="120" cy="168" r="5" fill="#178a82" stroke="#14161f" stroke-width="3"/>
+        <path d="M152 166 C 165 156, 172 142, 176 126" fill="none" stroke="#14161f" stroke-width="14" stroke-linecap="round"/>
+        <path d="M152 166 C 165 156, 172 142, 176 126" fill="none" stroke="#fffdf8" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="178" cy="119" r="10" fill="#ffdcc6" stroke="#14161f" stroke-width="3"/>
+        <path d="M180 111 l 3 -10" stroke="#14161f" stroke-width="6" stroke-linecap="round"/>
+        <path d="M64 92 C 34 98, 20 134, 30 170 C 34 188, 53 194, 61 181 C 71 164, 57 148, 66 126 C 70 112, 68 100, 64 92 Z"
+              fill="url(#mHairC)" stroke="#14161f" stroke-width="3"/>
+        <path d="M176 92 C 206 98, 220 134, 210 170 C 206 188, 187 194, 179 181 C 169 164, 183 148, 174 126 C 170 112, 172 100, 176 92 Z"
+              fill="url(#mHairC)" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="120" cy="94" rx="55" ry="55" fill="url(#mHairC)" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="120" cy="96" rx="50" ry="53" fill="#ffe7d6" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="101" cy="104" rx="13" ry="15" fill="#fff" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="101" cy="105" rx="9.5" ry="12" fill="#178a82"/>
+        <ellipse cx="101" cy="110" rx="6" ry="7" fill="#39c5bb" opacity=".85"/>
+        <ellipse cx="101" cy="105" rx="4.2" ry="6" fill="#14161f"/>
+        <circle cx="96.5" cy="97.5" r="3.6" fill="#fff"/>
+        <circle cx="105.5" cy="111" r="2" fill="#fff" opacity=".85"/>
+        <path d="M86 91 Q 101 83 116 91" fill="none" stroke="#14161f" stroke-width="5" stroke-linecap="round"/>
+        <path d="M88 78 Q 101 72 114 78" fill="none" stroke="#14161f" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="139" cy="104" rx="13" ry="15" fill="#fff" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="139" cy="105" rx="9.5" ry="12" fill="#178a82"/>
+        <ellipse cx="139" cy="110" rx="6" ry="7" fill="#39c5bb" opacity=".85"/>
+        <ellipse cx="139" cy="105" rx="4.2" ry="6" fill="#14161f"/>
+        <circle cx="134.5" cy="97.5" r="3.6" fill="#fff"/>
+        <circle cx="143.5" cy="111" r="2" fill="#fff" opacity=".85"/>
+        <path d="M124 91 Q 139 83 154 91" fill="none" stroke="#14161f" stroke-width="5" stroke-linecap="round"/>
+        <path d="M126 78 Q 139 72 152 78" fill="none" stroke="#14161f" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="84" cy="118" rx="10" ry="5" fill="#ff7bac" opacity=".5"/>
+        <ellipse cx="156" cy="118" rx="10" ry="5" fill="#ff7bac" opacity=".5"/>
+        <path d="M111 124 Q 120 133 129 124" fill="none" stroke="#14161f" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M70 96 C 65 53, 92 35, 120 35 C 148 35, 175 53, 170 96
+                 C 165 80, 157 68, 146 75 C 138 60, 122 58, 112 73 C 101 62, 84 68, 70 96 Z"
+              fill="url(#mHairC)" stroke="#14161f" stroke-width="3"/>
+        <path d="M86 60 C 96 50, 112 46, 126 49" fill="none" stroke="#eafffc" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+        <path d="M117 40 C 104 22, 122 6, 134 13 C 145 19, 141 33, 130 32 C 124 31, 124 24, 128 21"
+              fill="none" stroke="#14161f" stroke-width="7" stroke-linecap="round"/>
+        <path d="M117 40 C 104 22, 122 6, 134 13 C 145 19, 141 33, 130 32 C 124 31, 124 24, 128 21"
+              fill="none" stroke="url(#mHairC)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <div class="speech">
+        <strong>小枢（本所唯一研究员，也是唯一研究对象）</strong><br>
+        这 6 个偏差我全都有。而且我刚做完一份「我有没有确认偏误」的自测——结果完美印证了我的假设，所以这题不用改了。
+        <br><span class="tag pink">这就是确认偏误本人</span>
+      </div>
+    </div>
+
+    <div class="grid-cards">
+
+      <article class="bias" data-reveal>
+        <div class="bias-top"><span class="bias-num">FILE 01</span><span class="bias-en">confirmation bias</span></div>
+        <div class="bias-body">
+          <h3>确认偏误<small>Confirmation Bias · Wason (1960)</small></h3>
+          <div class="row-line"><span class="lab">正经</span><p>人倾向于<strong>搜集支持自己已有想法</strong>的信息，而回避、忽略能推翻它的证据。Wason 的「2-4-6 任务」里，被试大多只提出符合自己假设的数列（如 4-6-8）去验证，几乎没人试着<strong>去证伪</strong>。</p></div>
+          <div class="row-line"><span class="lab sun">现场</span><p>你搜「咖啡对身体好」和「咖啡对身体不好」，会得到两个都很有道理的世界。搜索引擎没变，变的是你输入的字。</p></div>
+          <div class="row-line"><span class="lab pink">胡说</span><p class="said">「我不是固执，我只是在我的证据库里做了很严格的关键词筛选。」</p></div>
+        </div>
+        <div class="bias-foot"><b>可用之处</b>：写完任何观点，强制自己找 3 条反例；辩论前先复述对方最强的论点，而不是最弱的那个。</div>
+      </article>
+
+      <article class="bias" data-reveal>
+        <div class="bias-top"><span class="bias-num">FILE 02</span><span class="bias-en">anchoring effect</span></div>
+        <div class="bias-body">
+          <h3>锚定效应<small>Anchoring · Tversky &amp; Kahneman (1974)</small></h3>
+          <div class="row-line"><span class="lab">正经</span><p>先出现的数字会像<strong>锚</strong>一样拉住你的判断。实验里被试先看转盘随机停在 10 或 65，再估计「非洲国家在联合国中的占比」——两组估计中位数约为 <strong>25% 与 45%</strong>。一个明知无关的随机数，就拉动了答案。</p></div>
+          <div class="row-line"><span class="lab sun">现场</span><p>「原价 ¥999，现价 ¥399」——999 不是价格，是锚。它存在的唯一目的，就是让 399 显得像白捡。</p></div>
+          <div class="row-line"><span class="lab pink">胡说</span><p class="said">「我没被锚定，我只是恰好觉得那个随机数很有道理。」</p></div>
+        </div>
+        <div class="bias-foot"><b>可用之处</b>：谈价、面试薪资、任何谈判——<strong>先开口的人定锚</strong>；买东西前先写下你独立估的价，再去看标价。</div>
+      </article>
+
+      <article class="bias" data-reveal>
+        <div class="bias-top"><span class="bias-num">FILE 03</span><span class="bias-en">survivorship bias</span></div>
+        <div class="bias-body">
+          <h3>幸存者偏差<small>Survivorship Bias · 二战统计研究小组 / Wald</small></h3>
+          <div class="row-line"><span class="lab">正经</span><p>二战时统计返航飞机的弹孔，发现机翼中弹多、发动机中弹少。Abraham Wald 指出：该加固的恰恰是<strong>没弹孔的地方</strong>——因为发动机被打中的飞机根本飞不回来，压根没进统计表。</p></div>
+          <div class="row-line"><span class="lab sun">现场</span><p>「某某大佬每天只睡 4 小时」——你听到的是活下来的那一个。同样只睡 4 小时、后来进医院的人，没有接受采访的机会。</p></div>
+          <div class="row-line"><span class="lab pink">胡说</span><p class="said">「我采访了 100 个成功人士，他们全都坚持努力。所以努力等于成功。」（样本里 0 个失败者，因为失败者不给采访）</p></div>
+        </div>
+        <div class="bias-foot"><b>可用之处</b>：看到「成功经验」时，先问一句——<strong>失败的那批人去哪了</strong>？他们做了同样的事吗？</div>
+      </article>
+
+      <article class="bias" data-reveal>
+        <div class="bias-top"><span class="bias-num">FILE 04</span><span class="bias-en">barnum / forer effect</span></div>
+        <div class="bias-body">
+          <h3>巴纳姆效应<small>Barnum / Forer Effect · Forer (1949)</small></h3>
+          <div class="row-line"><span class="lab">正经</span><p>含糊、普适、正反都沾的人格描述，会被大多数人认为「特别像我」。Forer 给全班发<strong>同一份</strong>性格分析，学生评分平均约 <strong>4.26 / 5</strong>，认为准确度极高。</p></div>
+          <div class="row-line"><span class="lab sun">现场</span><p>「你外表随和，内心其实很在意别人的看法，偶尔会怀疑自己。」——这句对 90% 的人类都成立，包括正在点头的你。</p></div>
+          <div class="row-line"><span class="lab pink">胡说</span><p class="said">「星座说我这周会遇到一个改变我人生的人。」（这周你确实遇到了很多人，其中一个是食堂阿姨）</p></div>
+        </div>
+        <div class="bias-foot"><b>可用之处</b>：判断一份测评靠不靠谱，看它敢不敢说<strong>能被证伪</strong>的话；全是「既…又…」的描述 ≈ 没有信息量。</div>
+      </article>
+
+      <article class="bias" data-reveal>
+        <div class="bias-top"><span class="bias-num">FILE 05</span><span class="bias-en">zeigarnik effect</span></div>
+        <div class="bias-body">
+          <h3>蔡格尼克效应<small>Zeigarnik Effect · Zeigarnik (1927)</small></h3>
+          <div class="row-line"><span class="lab">正经</span><p>蔡格尼克发现，服务员对<strong>尚未结账</strong>的订单记得特别清楚，结完账就忘。在实验中，被中断的未完成任务，回忆率高于已完成任务。</p></div>
+          <div class="row-line"><span class="lab sun">诚实</span><p><strong>先说清楚</strong>：这个效应的后续复现并不稳定，受「被打断的方式、是否有奖励、任务类型」影响，不能当成「没做完就一定记得更牢」。它常被用来自我管理，但请当<strong>启发式技巧</strong>，不是铁律。</p></div>
+          <div class="row-line"><span class="lab pink">胡说</span><p class="said">「我不是拖延，我是故意把作业留到一半——这是基于 1927 年实验的高效记忆法。」</p></div>
+        </div>
+        <div class="bias-foot"><b>可用之处</b>：写不下去时<strong>故意停在句子中间</strong>收工，第二天开头会顺得多。但真正影响完成的，还是任务价值和你的习惯。</div>
+      </article>
+
+      <article class="bias" data-reveal>
+        <div class="bias-top"><span class="bias-num">FILE 06</span><span class="bias-en">foot-in-the-door</span></div>
+        <div class="bias-body">
+          <h3>登门槛效应<small>Foot-in-the-door · Freedman &amp; Fraser (1966)</small></h3>
+          <div class="row-line"><span class="lab">正经</span><p>先答应一个<strong>小请求</strong>，之后更难拒绝<strong>大请求</strong>。实验中，先被请求签署一份安全驾驶请愿书的人，后来同意在自家院子立起巨大告示牌的比例，比直接提大请求的对照组高得多（常被引用的数字约为 <strong>17% → 76%</strong>）。</p></div>
+          <div class="row-line"><span class="lab sun">现场</span><p>「帮我点个赞就行」→「帮我转发一下」→「帮我写个作业」→「帮我把这门课也修了」。请求是一级一级长出来的。</p></div>
+          <div class="row-line"><span class="lab pink">胡说</span><p class="said">「我不是不好意思拒绝，我是在维护第一次答应之后的人格一致性。」</p></div>
+        </div>
+        <div class="bias-foot"><b>可用之处</b>：培养习惯就用它——把目标切到「<strong>两分钟能做完</strong>」的版本先启动；反过来，别人想用这招时你能认出来。</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ② 实验台 ======================= -->
+<section class="section" id="lab">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">File 02 — Playable Experiments</span>
+      <h2>② 实验台：当场被自己的大脑坑一次</h2>
+      <p class="lead">
+        光看结论不会让任何人真的相信。下面三个实验都用经典范式改造，<strong>你亲手点，数据当场出</strong>。
+        样本量 = 1（也就是你），结论仅供体验，不能当研究数据——这句话很重要。
+      </p>
+    </div>
+
+    <!-- ---------- 实验 1：Stroop ---------- -->
+    <div class="exp" id="exp-stroop">
+      <div class="exp-head">
+        <h3>实验一 · 色词干扰</h3>
+        <span class="tag">Stroop, 1935</span>
+        <span class="tag sun">20 试次 · 约 60 秒</span>
+      </div>
+      <p style="margin:0;font-size:14.5px">
+        屏幕上会出现一个表示颜色的字。<strong>请点「字所显示的颜色」，不要点「字的意思」。</strong>
+        比如屏幕上是绿色的「红」字，你该点「绿」。
+      </p>
+
+      <div class="stage">
+        <div class="big" id="stroop-word">准备好了吗？</div>
+        <p class="hint" id="stroop-hint">点下方「开始实验」，共 20 题，越快越准越好</p>
+      </div>
+      <div class="progress" aria-hidden="true"><i id="stroop-bar"></i></div>
+      <div class="color-btns" id="stroop-btns" hidden>
+        <button class="btn" data-color="红" style="color:#c02b2b">红</button>
+        <button class="btn" data-color="蓝" style="color:#1a52c0">蓝</button>
+        <button class="btn" data-color="绿" style="color:#0d7a3f">绿</button>
+        <button class="btn" data-color="黄" style="color:#b8860b">黄</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="stroop-start">开始实验</button>
+        <button class="btn btn-ghost" id="stroop-reset">重玩</button>
+      </div>
+
+      <div class="stat-grid" id="stroop-stats" hidden>
+        <div class="stat"><span class="v" id="s-cong">—</span><span class="k">一致条件平均(ms)</span></div>
+        <div class="stat"><span class="v" id="s-incong">—</span><span class="k">不一致平均(ms)</span></div>
+        <div class="stat"><span class="v" id="s-cost">—</span><span class="k">干扰量(ms)</span></div>
+        <div class="stat"><span class="v" id="s-acc">—</span><span class="k">正确率</span></div>
+      </div>
+      <p class="hint" id="stroop-verdict" style="text-align:center;max-width:520px;margin:12px auto 0"></p>
+
+      <div class="why">
+        <b>为什么会慢？</b>读字是你练了十几年的<strong>自动化</strong>过程，几乎不耗注意力；而给颜色命名要慢一步。
+        当两者冲突，自动化过程会抢答，你必须在最后关头把它按下去——这零点几秒的延迟，就是「干扰量」。
+        <br><b>要诚实说</b>：这是经典范式（Stroop, 1935），但单次 20 题、样本=1，个位数毫秒的差异纯属噪声，不要解读为「我的注意力有问题」。
+        它更不适合用来诊断任何东西。
+      </div>
+    </div>
+
+    <!-- ---------- 实验 2：锚定 ---------- -->
+    <div class="exp" id="exp-anchoring">
+      <div class="exp-head">
+        <h3>实验二 · 一个随机数字能拖动你多少</h3>
+        <span class="tag">Tversky &amp; Kahneman, 1974</span>
+        <span class="tag sun">2 轮 · 约 40 秒</span>
+      </div>
+
+      <div class="stage">
+        <div id="anchor-mid" style="display:none">
+          <p class="hint" style="margin:0 0 6px">转盘正在旋转……结果：</p>
+          <div class="big" id="anchor-num">—</div>
+          <p class="hint">这个数字和接下来的问题<strong>毫无关系</strong>。真的。</p>
+        </div>
+        <div id="anchor-q" style="display:none">
+          <p style="font-weight:700;margin:0 0 6px">非洲国家在联合国成员国中所占的百分比大约是多少？</p>
+          <p class="hint" style="margin:0">拖动滑杆给出你的估计（0–100）</p>
+        </div>
+        <div class="anchor-slider" id="anchor-slider-wrap" hidden>
+          <input type="range" id="anchor-range" min="0" max="100" step="1" value="50" aria-label="你的估计百分比">
+          <div class="val"><span id="anchor-val">50</span>%</div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="anchor-start">转动转盘</button>
+        <button class="btn" id="anchor-submit" hidden>提交我的估计</button>
+        <button class="btn btn-ghost" id="anchor-reset">重玩（两轮都试一遍）</button>
+      </div>
+
+      <div class="stat-grid" id="anchor-stats" hidden>
+        <div class="stat"><span class="v" id="a-anchor">—</span><span class="k">本次看到的锚</span></div>
+        <div class="stat"><span class="v" id="a-mine">—</span><span class="k">你的估计</span></div>
+        <div class="stat"><span class="v" id="a-gap">—</span><span class="k">两种锚下的差值</span></div>
+      </div>
+      <p class="hint" id="anchor-verdict" style="text-align:center;max-width:560px;margin:12px auto 0"></p>
+
+      <div class="why">
+        <b>原始实验怎么说</b>：Tversky 与 Kahneman（1974）先让被试看一个<strong>随机转动</strong>的转盘，
+        转盘停在 10 或 65，然后问同一个问题——「非洲国家在联合国中的占比」。结果：看到 10 的那组估计中位数约 <strong>25%</strong>，
+        看到 65 的那组约 <strong>45%</strong>。一个被试自己都知道无关的数字，把答案整体拉动了约 20 个百分点。
+        <br><b>机制</b>：锚定与调整（anchoring and adjustment）——人从一个起点开始调整，但往往<strong>调整得不够</strong>就停手了。
+        <br><b>要诚实说</b>：本页只保留该实验这两个中位数结论，不给其他数字；你玩到的两次差值样本量为 2，别当结论。
+      </div>
+    </div>
+
+    <!-- ---------- 实验 3：Müller-Lyer ---------- -->
+    <div class="exp" id="exp-muller-lyer">
+      <div class="exp-head">
+        <h3>实验三 · 哪条线更长？</h3>
+        <span class="tag">Müller-Lyer, 1889</span>
+        <span class="tag sun">约 10 秒</span>
+      </div>
+      <p style="margin:0;font-size:14.5px">看下面两条线段，凭直觉判断：哪一条更长？</p>
+
+      <div class="stage">
+        <svg class="ml-svg" viewBox="0 0 460 200" role="img" aria-label="两条水平线段，上端两端为向外的箭头，下端两端为向内的箭头">
+          <!-- 上：向外箭头 -->
+          <line x1="70" y1="60" x2="390" y2="60"/>
+          <line x1="70" y1="60" x2="44" y2="36"/><line x1="70" y1="60" x2="44" y2="84"/>
+          <line x1="390" y1="60" x2="416" y2="36"/><line x1="390" y1="60" x2="416" y2="84"/>
+          <!-- 下：向内箭头 -->
+          <line x1="70" y1="140" x2="390" y2="140"/>
+          <line x1="70" y1="140" x2="96" y2="116"/><line x1="70" y1="140" x2="96" y2="164"/>
+          <line x1="390" y1="140" x2="364" y2="116"/><line x1="390" y1="140" x2="364" y2="164"/>
+          <!-- 揭晓：基准虚线 -->
+          <line class="reveal" id="ml-reveal-a" x1="44" y1="182" x2="70" y2="182" opacity="0"/>
+          <line class="reveal" id="ml-reveal-b" x1="44" y1="172" x2="70" y2="172" opacity="0"/>
+          <g id="ml-reveal-mark" opacity="0">
+            <line class="reveal" x1="70" y1="30" x2="70" y2="170"/>
+            <line class="reveal" x1="390" y1="30" x2="390" y2="170"/>
+          </g>
+        </svg>
+        <p class="hint" id="ml-hint">你的直觉选哪条？</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="ml-a">上面那条更长</button>
+        <button class="btn" id="ml-b">下面那条更长</button>
+        <button class="btn" id="ml-c">一样长</button>
+        <button class="btn btn-ghost" id="ml-reset">重玩</button>
+      </div>
+      <p class="hint" id="ml-verdict" style="text-align:center;max-width:560px;margin:12px auto 0"></p>
+
+      <div class="why">
+        <b>真相</b>：两条线<strong>实际长度完全相同</strong>（各 280 像素）。箭头方向改变了你的知觉，而不是线本身。
+        <br><b>机制</b>：一种解释是「深度线索」——向外的箭头像是房间的墙角（远端），大脑自动把远处的物体「放大」补偿，
+        于是它看起来更长。这至今仍有争论，别把它当定论。
+        <br><b>有意思的补充</b>：Segall、Campbell 与 Herskovits（1966）发现，来自不同视觉环境（如是否生活在开阔平原）的人群，
+        错觉强度并不相同。也就是说，「眼睛看到什么」也会被<strong>成长经验</strong>影响。
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================= ③ 辟谣科 ======================= -->
+<section class="section" id="rumor">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">File 03 — Fact Check</span>
+      <h2>③ 辟谣科：那些被玩坏的心理学家</h2>
+      <p class="lead">
+        这一节是本页<strong>最正经</strong>的部分，也是最重要的一节。
+        心理学是被"科普段子"毁得最惨的学科之一——很多流行说法要么被夸大，要么被完全说反。
+        所以本节<strong>不开玩笑</strong>：只讲研究实际发现了什么、以及它不意味着什么。
+      </p>
+    </div>
+
+    <div class="panel" style="margin-bottom:24px;display:grid;grid-template-columns:1fr 120px;gap:16px;align-items:center">
+      <div class="speech dark right">
+        下面 6 条如果你全信过——放心，我也是。<br>
+        但今天之后，请至少记住一句：<strong>「某个效应存在」不等于「它能解释你的人生」。</strong>
+        <br><span class="tag sun" style="margin-top:6px">本节严肃程度：100%</span>
+      </div>
+      <!-- ===== MASCOT:THINKING 半身思考像 ===== -->
+      <svg viewBox="30 4 190 176" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto"
+           aria-label="原创角色小枢托腮思考的表情，头顶有问号气泡">
+        <defs>
+          <linearGradient id="mHairD" x1="0" y1="0" x2="0.2" y2="1">
+            <stop offset="0" stop-color="#4fd8cd"/><stop offset="0.65" stop-color="#39c5bb"/><stop offset="1" stop-color="#b9f2ed"/>
+          </linearGradient>
+        </defs>
+        <!-- 问号气泡 -->
+        <path d="M186 30 a20 20 0 1 0 -8 16 l 8 8 l -2 -12 a20 20 0 0 0 2 -12 Z"
+              fill="#fffdf8" stroke="#14161f" stroke-width="3"/>
+        <path d="M180 24 c 0 -5 7 -6 7 -1 c 0 4 -5 4 -5 8" fill="none" stroke="#14161f" stroke-width="3.4" stroke-linecap="round"/>
+        <circle cx="182" cy="36" r="2.4" fill="#14161f"/>
+        <circle cx="158" cy="20" r="4" fill="#39c5bb" stroke="#14161f" stroke-width="2.4"/>
+        <circle cx="146" cy="8" r="2.6" fill="#39c5bb" stroke="#14161f" stroke-width="2"/>
+        <!-- 肩 -->
+        <path d="M56 178 C 60 152, 180 152, 184 178 Z" fill="#fffdf8" stroke="#14161f" stroke-width="3"/>
+        <path d="M92 162 L 112 170 L 92 178 Z" fill="#39c5bb" stroke="#14161f" stroke-width="3"/>
+        <path d="M148 162 L 128 170 L 148 178 Z" fill="#39c5bb" stroke="#14161f" stroke-width="3"/>
+        <circle cx="120" cy="170" r="5" fill="#178a82" stroke="#14161f" stroke-width="3"/>
+        <!-- 托腮手臂 -->
+        <path d="M142 172 C 156 164, 154 142, 140 130" fill="none" stroke="#14161f" stroke-width="14" stroke-linecap="round"/>
+        <path d="M142 172 C 156 164, 154 142, 140 130" fill="none" stroke="#fffdf8" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="138" cy="126" r="10" fill="#ffdcc6" stroke="#14161f" stroke-width="3"/>
+        <!-- 双马尾 -->
+        <path d="M64 92 C 34 98, 20 134, 30 170 C 34 188, 53 194, 61 181 C 71 164, 57 148, 66 126 C 70 112, 68 100, 64 92 Z"
+              fill="url(#mHairD)" stroke="#14161f" stroke-width="3"/>
+        <path d="M176 92 C 206 98, 220 134, 210 170 C 206 188, 187 194, 179 181 C 169 164, 183 148, 174 126 C 170 112, 172 100, 176 92 Z"
+              fill="url(#mHairD)" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="120" cy="94" rx="55" ry="55" fill="url(#mHairD)" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="120" cy="96" rx="50" ry="53" fill="#ffe7d6" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="101" cy="104" rx="13" ry="15" fill="#fff" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="101" cy="106" rx="9.5" ry="12" fill="#178a82"/>
+        <ellipse cx="101" cy="111" rx="6" ry="7" fill="#39c5bb" opacity=".85"/>
+        <ellipse cx="101" cy="106" rx="4.2" ry="6" fill="#14161f"/>
+        <circle cx="96.5" cy="98.5" r="3.6" fill="#fff"/>
+        <path d="M86 90 Q 101 84 116 92" fill="none" stroke="#14161f" stroke-width="5" stroke-linecap="round"/>
+        <path d="M88 77 Q 101 73 112 79" fill="none" stroke="#14161f" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="139" cy="104" rx="13" ry="15" fill="#fff" stroke="#14161f" stroke-width="3"/>
+        <ellipse cx="139" cy="106" rx="9.5" ry="12" fill="#178a82"/>
+        <ellipse cx="139" cy="111" rx="6" ry="7" fill="#39c5bb" opacity=".85"/>
+        <ellipse cx="139" cy="106" rx="4.2" ry="6" fill="#14161f"/>
+        <circle cx="134.5" cy="98.5" r="3.6" fill="#fff"/>
+        <path d="M124 92 Q 139 84 154 90" fill="none" stroke="#14161f" stroke-width="5" stroke-linecap="round"/>
+        <path d="M128 79 Q 139 73 152 77" fill="none" stroke="#14161f" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="84" cy="119" rx="10" ry="5" fill="#ff7bac" opacity=".5"/>
+        <ellipse cx="156" cy="119" rx="10" ry="5" fill="#ff7bac" opacity=".5"/>
+        <path d="M112 128 Q 120 122 128 128" fill="none" stroke="#14161f" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M70 96 C 65 53, 92 35, 120 35 C 148 35, 175 53, 170 96
+                 C 165 80, 157 68, 146 75 C 138 60, 122 58, 112 73 C 101 62, 84 68, 70 96 Z"
+              fill="url(#mHairD)" stroke="#14161f" stroke-width="3"/>
+        <path d="M86 60 C 96 50, 112 46, 126 49" fill="none" stroke="#eafffc" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+        <path d="M117 40 C 106 24, 122 8, 134 14 C 144 19, 141 32, 130 32 C 124 32, 124 25, 128 22"
+              fill="none" stroke="#14161f" stroke-width="7" stroke-linecap="round"/>
+        <path d="M117 40 C 106 24, 122 8, 134 14 C 144 19, 141 32, 130 32 C 124 32, 124 25, 128 22"
+              fill="none" stroke="url(#mHairD)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="rumor">
+      <div class="r-card">
+        <p class="claim">「普通人的大脑只用了 10%。」</p>
+        <p class="truth"><b>事实</b>：没有证据支持。功能成像研究显示，人在一整天中<strong>几乎所有脑区都会被用到</strong>，包括睡眠时。这个说法更像是早期对「神经可塑性」等概念的通俗化误传，而不是任何研究结论。</p>
+        <span class="src">结论依据：现代神经影像学的普遍共识；该说法无原始研究出处</span>
+      </div>
+
+      <div class="r-card">
+        <p class="claim">「达克效应 = 越蠢越自信，低能力者都盲目自信。」</p>
+        <p class="truth"><b>事实</b>：Kruger &amp; Dunning（1999）发现的是——<strong>在特定任务上表现较差的人，倾向于高估自己的相对水平</strong>，部分原因是他们缺少判断「什么算做得好」的元认知能力；同时，高水平者也会略微低估自己。它不是智力等级的判决书，更不是用来嘲笑他人的工具——把它当成「嘲笑工具」，恰恰是它最被滥用的方式。</p>
+        <span class="src">Kruger &amp; Dunning (1999), JPSP</span>
+      </div>
+
+      <div class="r-card">
+        <p class="claim">「棉花糖实验证明：童年的自控力决定你的一生。」</p>
+        <p class="truth"><b>事实</b>：Mischel 等（1972）的原始研究样本<strong>很小</strong>（斯坦福幼儿园的孩子，几十人规模）。后来 Watts、Duncan 与 Quan（2018）用近千人的大样本复现，发现一旦<strong>控制家庭社会经济背景</strong>，延迟满足与后来学业成绩的关联<strong>大幅减弱</strong>。它仍然是个有趣的实验，但不足以「预言人生」。</p>
+        <span class="src">Mischel, Ebbesen &amp; Zeiss (1972)；Watts, Duncan &amp; Quan (2018), Psych. Science</span>
+      </div>
+
+      <div class="r-card">
+        <p class="claim">「多巴胺就是快乐分子，刷手机是在疯狂分泌快乐。」</p>
+        <p class="truth"><b>事实</b>：多巴胺更接近「<strong>想要</strong>」（wanting）而不是「<strong>喜欢</strong>」（liking）。它在动机与追求系统里作用突出，而主观的愉悦体验还牵涉其他系统（如μ-阿片等）。这正好解释了一个常见现象：<strong>你一直想刷，但刷完并不觉得快乐</strong>。</p>
+        <span class="src">Berridge &amp; Robinson (1998) 等关于 wanting / liking 的研究</span>
+      </div>
+
+      <div class="r-card">
+        <p class="claim">「你是左脑型 or 右脑型？理性 or 创意。」</p>
+        <p class="truth"><b>事实</b>：对静息态功能连接的分析并未发现「左脑更发达或右脑更发达」的个体差异模式。左右半球在功能上确实有<strong>偏侧化</strong>（如语言更多依赖左半球），但这是<strong>功能分工</strong>，不是「左脑型人格」。你两个半球都在用，而且靠胼胝体一直在交换信息。</p>
+        <span class="src">Nielsen et al. (2013), PLoS ONE</span>
+      </div>
+
+      <div class="r-card">
+        <p class="claim">「我是视觉型学习者，用图画学才有效，你听录音是白听。」</p>
+        <p class="truth"><b>事实</b>：Pashler 等（2008）系统审查了「学习风格匹配教学」的证据，结论是：<strong>几乎没有证据表明</strong>按学生自诉的学习风格匹配教学方式能提高成绩。绝大多数人其实同时受多种方式影响；真正影响学习效果的，更多是<strong>练习方式</strong>（如提取练习、间隔复习）而非「风格匹配」。</p>
+        <span class="src">Pashler, McDaniel, Rohrer &amp; Bjork (2008), Psychological Science in the Public Interest</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ④ 问卷 ======================= -->
+<section class="section" id="survey">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">File 04 — Questionnaire</span>
+      <h2>④ 问卷：让我收集一点真实数据</h2>
+      <p class="lead">
+        前面所有内容都是"我讲给你听"。这一节反过来——<strong>请你把数据给我</strong>。
+        这份问卷用于研究性学习的统计分析（例如：不同年级在哪个偏差上得分最高）。
+        填空题内带 <span class="tag pink">必答</span> 的是必填，其余可跳过。
+      </p>
+    </div>
+
+    <div id="quiz-root">
+      <div class="q-sec">
+        <h3 id="quiz-title">认知偏差自评小问卷</h3>
+        <p class="q-lead" id="quiz-desc">共 11 题，约 2 分钟。没有对错，请按第一反应作答。</p>
+
+        <div class="q-notice" id="quiz-config-note"></div>
+        <div id="quiz-platform"></div>
+
+        <div class="q-frame" id="quiz-frame-wrap" hidden>
+          <iframe id="quiz-iframe" title="第三方问卷表单" referrerpolicy="no-referrer" loading="lazy"></iframe>
+          <p class="q-embed-tip">
+            如果这里是空白，说明该平台禁止被别的网页内嵌（常见的 <code>X-Frame-Options</code> 限制），
+            请点上方的按钮在新窗口里打开，效果一样。
+          </p>
+        </div>
+      </div>
+
+      <div class="q-sec" style="margin-top:22px">
+        <h3>页面内自评版 <span class="tag">题目与平台表单一致</span></h3>
+        <p class="q-lead">
+          填完可以：① 若已配置提交地址，直接提交到后台；② 也可以导出 <code>JSON / CSV</code> 交给统计工具。
+          你的作答会同时存在本机浏览器里（<code>localStorage</code>），不会自动上传到任何第三方。
+        </p>
+
+        <form id="quiz-form" novalidate>
+          <div id="quiz-errors" class="q-errors" hidden></div>
+          <div id="quiz-status" hidden></div>
+
+          <div class="q-inline">
+            <div class="q-field">
+              <label for="q-nickname">昵称（选填）</label>
+              <input id="q-nickname" class="input" type="text" maxlength="24" placeholder="留空也可以，例如：不具名的大脑">
+            </div>
+            <div class="q-field">
+              <label for="q-grade">年级（选填）</label>
+              <select id="q-grade">
+                <option value="">不填</option>
+                <option>初一</option><option>初二</option><option>初三</option>
+                <option>高一</option><option>高二</option><option>高三</option>
+                <option>其他</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="q-field">
+            <label>是否同意将这份作答用于研究性学习的匿名统计？<span class="tag pink">必答</span></label>
+            <div class="likert">
+              <label><span class="n">✓</span>同意<input type="radio" name="consent" value="同意"></label>
+              <label><span class="n">✕</span>不同意<input type="radio" name="consent" value="不同意"></label>
+            </div>
+          </div>
+
+          <p class="q-lead" style="margin-top:20px">
+            下面 8 题：<strong>1 = 完全不像我，5 = 非常像我</strong>。别想太久，第一反应更准。
+          </p>
+
+          <div class="q-item" data-q="q1">
+            <p class="q-title"><span class="idx">Q1</span>我更容易注意到支持我已有想法的证据。</p>
+            <div class="likert">
+              <label><span class="n">1</span>完全不像我<input type="radio" name="q1" value="1"></label>
+              <label><span class="n">2</span>不太像<input type="radio" name="q1" value="2"></label>
+              <label><span class="n">3</span>说不清<input type="radio" name="q1" value="3"></label>
+              <label><span class="n">4</span>挺像<input type="radio" name="q1" value="4"></label>
+              <label><span class="n">5</span>非常像我<input type="radio" name="q1" value="5"></label>
+            </div>
+          </div>
+
+          <div class="q-item" data-q="q2">
+            <p class="q-title"><span class="idx">Q2</span>看到原价后，我会觉得打折价特别划算。</p>
+            <div class="likert">
+              <label><span class="n">1</span>完全不像我<input type="radio" name="q2" value="1"></label>
+              <label><span class="n">2</span>不太像<input type="radio" name="q2" value="2"></label>
+              <label><span class="n">3</span>说不清<input type="radio" name="q2" value="3"></label>
+              <label><span class="n">4</span>挺像<input type="radio" name="q2" value="4"></label>
+              <label><span class="n">5</span>非常像我<input type="radio" name="q2" value="5"></label>
+            </div>
+          </div>
+
+          <div class="q-item" data-q="q3">
+            <p class="q-title"><span class="idx">Q3</span>别人成功时，我常觉得「他就是运气好」。</p>
+            <div class="likert">
+              <label><span class="n">1</span>完全不像我<input type="radio" name="q3" value="1"></label>
+              <label><span class="n">2</span>不太像<input type="radio" name="q3" value="2"></label>
+              <label><span class="n">3</span>说不清<input type="radio" name="q3" value="3"></label>
+              <label><span class="n">4</span>挺像<input type="radio" name="q3" value="4"></label>
+              <label><span class="n">5</span>非常像我<input type="radio" name="q3" value="5"></label>
+            </div>
+          </div>
+
+          <div class="q-item" data-q="q4">
+            <p class="q-title"><span class="idx">Q4</span>我拖延没做的事，脑子里反而一直惦记着。</p>
+            <div class="likert">
+              <label><span class="n">1</span>完全不像我<input type="radio" name="q4" value="1"></label>
+              <label><span class="n">2</span>不太像<input type="radio" name="q4" value="2"></label>
+              <label><span class="n">3</span>说不清<input type="radio" name="q4" value="3"></label>
+              <label><span class="n">4</span>挺像<input type="radio" name="q4" value="4"></label>
+              <label><span class="n">5</span>非常像我<input type="radio" name="q4" value="5"></label>
+            </div>
+          </div>
+
+          <div class="q-item" data-q="q5">
+            <p class="q-title"><span class="idx">Q5</span>星座或性格描述说得挺像我。</p>
+            <div class="likert">
+              <label><span class="n">1</span>完全不像我<input type="radio" name="q5" value="1"></label>
+              <label><span class="n">2</span>不太像<input type="radio" name="q5" value="2"></label>
+              <label><span class="n">3</span>说不清<input type="radio" name="q5" value="3"></label>
+              <label><span class="n">4</span>挺像<input type="radio" name="q5" value="4"></label>
+              <label><span class="n">5</span>非常像我<input type="radio" name="q5" value="5"></label>
+            </div>
+          </div>
+
+          <div class="q-item" data-q="q6">
+            <p class="q-title"><span class="idx">Q6</span>我经常觉得自己比「平均同学」更懂某件事。</p>
+            <div class="likert">
+              <label><span class="n">1</span>完全不像我<input type="radio" name="q6" value="1"></label>
+              <label><span class="n">2</span>不太像<input type="radio" name="q6" value="2"></label>
+              <label><span class="n">3</span>说不清<input type="radio" name="q6" value="3"></label>
+              <label><span class="n">4</span>挺像<input type="radio" name="q6" value="4"></label>
+              <label><span class="n">5</span>非常像我<input type="radio" name="q6" value="5"></label>
+            </div>
+          </div>
+
+          <div class="q-item" data-q="q7">
+            <p class="q-title"><span class="idx">Q7</span>先答应了小请求后，我更难拒绝随后的较大请求。</p>
+            <div class="likert">
+              <label><span class="n">1</span>完全不像我<input type="radio" name="q7" value="1"></label>
+              <label><span class="n">2</span>不太像<input type="radio" name="q7" value="2"></label>
+              <label><span class="n">3</span>说不清<input type="radio" name="q7" value="3"></label>
+              <label><span class="n">4</span>挺像<input type="radio" name="q7" value="4"></label>
+              <label><span class="n">5</span>非常像我<input type="radio" name="q7" value="5"></label>
+            </div>
+          </div>
+
+          <div class="q-item" data-q="q8">
+            <p class="q-title"><span class="idx">Q8</span>我刷到过「人只用了大脑的 10%」这类说法，并且曾相信过。</p>
+            <div class="likert">
+              <label><span class="n">1</span>完全不像我<input type="radio" name="q8" value="1"></label>
+              <label><span class="n">2</span>不太像<input type="radio" name="q8" value="2"></label>
+              <label><span class="n">3</span>说不清<input type="radio" name="q8" value="3"></label>
+              <label><span class="n">4</span>挺像<input type="radio" name="q8" value="4"></label>
+              <label><span class="n">5</span>非常像我<input type="radio" name="q8" value="5"></label>
+            </div>
+          </div>
+
+          <div class="q-item" data-q="q9">
+            <p class="q-title"><span class="idx">Q9</span>开放题：你在生活中抓到过自己哪个「大脑骗人」的瞬间？（选填）</p>
+            <textarea id="q9" maxlength="300" placeholder="例如：我明明想查一个知识点，两小时后在看完全不相关的东西……"></textarea>
+            <div class="counter"><span id="q9-count">0</span> / 300</div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" type="submit" id="quiz-submit">提交问卷</button>
+            <button class="btn btn-ghost" type="button" id="quiz-clear">清空重填</button>
+          </div>
+        </form>
+
+        <div class="export-row">
+          <p class="q-lead" style="margin-bottom:8px">
+            <strong>数据出口</strong>：随时可以把已填（或历史填过）的作答导出，交给 Excel / Python 做统计。
+          </p>
+          <div class="btn-row" style="margin-top:0">
+            <button class="btn btn-sm" type="button" id="quiz-export-json">导出 JSON</button>
+            <button class="btn btn-sm" type="button" id="quiz-export-csv">导出 CSV（Excel 可直接打开）</button>
+            <button class="btn btn-sm" type="button" id="quiz-copy">复制 JSON 到剪贴板</button>
+            <button class="btn btn-sm btn-ghost" type="button" id="quiz-view-local">查看本机已存记录</button>
+          </div>
+          <div class="mono-out" id="quiz-local-out" hidden></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ⑤ 方法说明 ======================= -->
+<section class="section" id="method">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">File 05 — Method &amp; Sources</span>
+      <h2>⑤ 方法说明与参考资料</h2>
+      <p class="lead">这一节写给老师和评委看：这份成果是怎么做的、数据怎么用、以及它在哪些地方<strong>不严谨</strong>。</p>
+    </div>
+
+    <div class="grid-cards">
+      <div class="panel" style="margin-top:0">
+        <h3>本页做了什么</h3>
+        <ul>
+          <li><strong>选题</strong>：认知偏差与社会心理学中可验证的经典效应，共 6 项。</li>
+          <li><strong>呈现</strong>：为降低阅读门槛，对每个效应做「正经解释 / 现场案例 / 一句话吐槽」三段式拆解；吐槽仅作记忆锚点，不作为结论。</li>
+          <li><strong>互动</strong>：将 3 个经典实验范式改造为可现场操作的网页实验，让读者亲自观察到效应。</li>
+          <li><strong>数据</strong>：通过页面问卷收集匿名自评数据，用于分析「不同年级/不同偏差倾向之间是否存在关联」。</li>
+          <li><strong>技术</strong>：单文件 HTML，无外部依赖、无第三方追踪脚本，可离线打开。</li>
+        </ul>
+      </div>
+
+      <div class="panel" style="margin-top:0">
+        <h3>这份成果的局限（必须说清）</h3>
+        <ul>
+          <li><strong>样本偏差</strong>：问卷主要通过同学/社群传播，属于<strong>便利抽样</strong>，不能代表任何总体。</li>
+          <li><strong>自评量表的通病</strong>：8 道题是<strong>课后自编</strong>的倾向性题目，用于体验与讨论，<strong>不是标准化心理量表</strong>，未做信效度检验，不具诊断功能。</li>
+          <li><strong>相关≠因果</strong>：即便发现「高一学生 Q2 得分更高」，也无法推断是年级造成的。</li>
+          <li><strong>页内实验样本量 = 1</strong>：实验区仅用于让读者亲身体验效应，其输出<strong>不是研究数据</strong>，不纳入统计。</li>
+          <li><strong>已知争议</strong>：蔡格尼克效应等的复现稳定性存在争议，本页已逐处标注，未把争议结论写成定论。</li>
+        </ul>
+      </div>
+
+      <div class="panel" style="margin-top:0">
+        <h3>关于数据与隐私</h3>
+        <ul>
+          <li>问卷<strong>不收集</strong>姓名、手机号、位置等可识别信息；昵称与年级均为选填。</li>
+          <li>页面内的自评版作答默认只保存在<strong>你自己的浏览器</strong>（localStorage），除非你主动点「提交」。</li>
+          <li>提交目标（第三方表单平台或自建接口）由页面顶部的配置区决定，可随时改成你自己的地址。</li>
+          <li>所有数据仅用于本次研究性学习的统计分析，不做其他用途。</li>
+        </ul>
+      </div>
+
+      <div class="panel" style="margin-top:0">
+        <h3>关于画风与素材</h3>
+        <ul>
+          <li>本页所有角色（「小枢」及全部装饰）均为<strong>手写的 SVG 矢量图形</strong>，不是 AI 生成图片，也未使用任何现有动漫角色的图像素材。</li>
+          <li>所谓「动漫感」来自<strong>排版语言</strong>：分镜格、网点纸、速度线、拟声词、气泡对话框、注音假名（ruby）。</li>
+          <li>配色采用青绿主色（#39C5BB）等常见二次元配色作为<strong>致敬</strong>——颜色本身不构成版权对象，也不代表与任何作品有关联。</li>
+          <li>页面不含任何外链字体与图片，断网也能正常显示。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:26px">
+      <h3>参考资料（均为可查证的原始文献）</h3>
+      <ol>
+        <li>Wason, P. C. (1960). <em>On the failure to eliminate hypotheses in a conceptual task.</em> Quarterly Journal of Experimental Psychology, 12(3), 129–140. —— 确认偏误的「2-4-6 任务」。</li>
+        <li>Tversky, A., &amp; Kahneman, D. (1974). <em>Judgment under Uncertainty: Heuristics and Biases.</em> Science, 185(4157), 1124–1131. —— 锚定效应（转盘实验，估计中位数 25% / 45%）。</li>
+        <li>Wald, A. (1943). <em>A Method of Estimating Plane Vulnerability Based on Damage of Survivors.</em> 二战统计研究小组备忘录。 —— 幸存者偏差的经典案例。</li>
+        <li>Forer, B. R. (1949). <em>The fallacy of personal validation: A classroom demonstration of gullibility.</em> Journal of Abnormal and Social Psychology, 44(1), 118–123. —— 巴纳姆效应（平均评分约 4.26/5）。</li>
+        <li>Zeigarnik, B. (1927). <em>Über das Behalten von erledigten und unerledigten Handlungen.</em> Psychologische Forschung, 9, 1–85. —— 蔡格尼克效应（后续复现存在争议）。</li>
+        <li>Freedman, J. L., &amp; Fraser, S. C. (1966). <em>Compliance without pressure: The foot-in-the-door technique.</em> Journal of Personality and Social Psychology, 4(2), 195–202. —— 登门槛效应。</li>
+        <li>Stroop, J. R. (1935). <em>Studies of interference in serial verbal reactions.</em> Journal of Experimental Psychology, 18(6), 643–662. —— 色词干扰范式。</li>
+        <li>Müller-Lyer, F. C. (1889). <em>Optische Urteilstäuschungen.</em> —— 长度错觉。</li>
+        <li>Segall, M. H., Campbell, D. T., &amp; Herskovits, M. J. (1966). <em>The Influence of Culture on Visual Perception.</em> —— 错觉强度的跨文化差异。</li>
+        <li>Kruger, J., &amp; Dunning, D. (1999). <em>Unskilled and unaware of it.</em> Journal of Personality and Social Psychology, 77(6), 1121–1134. —— 达克效应（常被误读）。</li>
+        <li>Mischel, W., Ebbesen, E. B., &amp; Zeiss, A. R. (1972). <em>Cognitive and attentional mechanisms in delay of gratification.</em> JPSP, 21(2), 204–218. —— 棉花糖实验原始研究（小样本）。</li>
+        <li>Watts, T. W., Duncan, G. J., &amp; Quan, H. (2018). <em>Revisiting the Marshmallow Test.</em> Psychological Science, 29(7), 1159–1177. —— 大样本复现，控制家庭背景后关联大幅减弱。</li>
+        <li>Berridge, K. C., &amp; Robinson, T. E. (1998). <em>What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience?</em> Brain Research Reviews, 28(3), 309–369. —— 多巴胺的「想要 vs 喜欢」。</li>
+        <li>Nielsen, J. A., Zielinski, B. A., Ferguson, M. A., Lainhart, J. E., &amp; Anderson, J. S. (2013). <em>An evaluation of the left-brain vs. right-brain hypothesis with resting state functional connectivity MRI.</em> PLoS ONE, 8(8), e71275. —— 左右脑型人格缺乏证据。</li>
+        <li>Pashler, H., McDaniel, M., Rohrer, D., &amp; Bjork, R. (2008). <em>Learning Styles: Concepts and Evidence.</em> Psychological Science in the Public Interest, 9(3), 105–119. —— 学习风格匹配教学缺乏证据。</li>
+      </ol>
+      <p class="meta" style="margin-top:14px">
+        注：以上文献信息供查证使用。若用于正式论文，请以原文为准并规范引用格式。
+      </p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ======================= 页脚 ======================= -->
+<footer class="foot">
+  <div class="wrap">
+    <h3>认知偏差研究所 · 制作说明</h3>
+    <p style="font-size:14px;color:#c3cbf0;margin-bottom:10px">
+      研究性学习成果 · 单文件网页 · 全部插画为手写 SVG 原创 · 无外部依赖
+    </p>
+    <div class="disclaimer">
+      <strong>免责声明</strong>：本页为科普与学习成果展示，<strong>不构成心理诊断、治疗或任何专业建议</strong>。
+      页面中的自编问卷并非标准化量表，不能用于评估自己或他人的心理健康状况。
+      如果你正在经历持续的情绪困扰，请寻求学校心理老师或专业医疗机构的帮助——那不是「想开点」能解决的事，也不是你的错。
+    </div>
+    <p class="mono" style="margin-top:16px">
+      © 认知偏差研究所 · 本文中提到的所有研究者都做过真正辛苦的实验，吐槽归吐槽，功劳归他们。
+    </p>
+  </div>
+</footer>
+<button class="btn to-top" id="to-top" type="button" aria-label="回到顶部">↑ 回顶</button>
+
+<script>
+/* =====================================================================
+   【只改这里】问卷提交配置区 —— 站长需要修改的全部内容都在这一段
+   ---------------------------------------------------------------------
+   formUrl   : 你在第三方表单平台上建好的问卷链接。留空 = 显示「未配置」提示。
+               例：'https://wj.qq.com/s2/xxxxxxxx/xxxx/' 或 'https://f.wps.cn/g/xxxxxx/'
+   mode      : 'button' → 点击按钮在新窗口打开表单（所有平台都支持，最稳）
+               'iframe' → 尝试把表单直接嵌进本页面内
+               ※ 腾讯问卷、多数问卷平台会发 X-Frame-Options 禁止被内嵌，
+                 这时 iframe 会显示空白，页面会自动提示「请点按钮新窗口打开」。
+   submitUrl : 可选。若你的表单平台提供 API/Webhook，或你自己有服务器接收 JSON，
+               把它填在这里，页面就会在提交时把这个 JSON POST 过去：
+               { nickname, grade, consent, q1..q8, q9, total, avg, submittedAt }
+               留空则只保存在浏览器本地 + 支持手动导出。
+   ===================================================================== */
+window.TAIXU_QUIZ_CONFIG = {
+  formUrl:   'https://wj.qq.com/s2/27865770/oevk/',            /* ← 把你的问卷链接粘进这两个单引号之间 */
+  mode:      'button',      /* 'button' 或 'iframe' */
+  submitUrl: '',            /* ← 可选：接收 JSON 的接口地址 */
+  title:     '认知偏差自评小问卷',
+  description: '共 11 题，约 2 分钟。没有对错，请按第一反应作答。全部数据仅用于研究性学习的匿名统计。',
+  thanksHint: '感谢填写！你的数据已记录。'
+};
+</script>
+
+<script>
+/* =====================================================================
+   基础工具与全局交互
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  window.TX = {
+    $: function (id) { return document.getElementById(id); },
+    on: function (el, type, fn) { if (el) el.addEventListener(type, fn); },
+    txt: function (el, s) { if (el) el.textContent = s; },
+    show: function (el, yes) { if (el) el.hidden = !yes; },
+    /* 数字格式化 */
+    ms: function (n) { return Math.round(n) + ' ms'; }
+  };
+
+  /* ---------- 滚动出现动画 ---------- */
+  var revealables = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    revealables.forEach(function (el) { io.observe(el); });
+  } else {
+    revealables.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------- 回顶按钮 ---------- */
+  var toTop = TX.$('to-top');
+  TX.on(toTop, 'click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  window.addEventListener('scroll', function () {
+    if (toTop) toTop.classList.toggle('show', window.scrollY > 700);
+  }, { passive: true });
+})();
+</script>
+
+<script>
+/* =====================================================================
+   实验一 · Stroop 色词干扰（Stroop, 1935）
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var root = TX.$('exp-stroop');
+  if (!root) return;
+
+  var INK = { '红': '#c02b2b', '蓝': '#1a52c0', '绿': '#0d7a3f', '黄': '#b8860b' };
+  var NAMES = ['红', '蓝', '绿', '黄'];
+  var TOTAL = 20;
+  var MIN_RT = 180;      /* 低于此值视为误触/预判，剔除 */
+  var LOCK_MS = 120;     /* 防止连点 */
+
+  var wordEl = TX.$('stroop-word'), hintEl = TX.$('stroop-hint'),
+      btnsEl = TX.$('stroop-btns'), barEl = TX.$('stroop-bar'),
+      statsEl = TX.$('stroop-stats'), verdictEl = TX.$('stroop-verdict');
+
+  var S = { trials: [], idx: 0, t0: 0, running: false, lastClick: 0 };
+
+  function buildTrials() {
+    var arr = [];
+    for (var i = 0; i < TOTAL; i++) {
+      var congruent = (i % 2 === 0);
+      var word = NAMES[Math.floor(Math.random() * NAMES.length)];
+      var ink = word;
+      if (!congruent) {
+        do { ink = NAMES[Math.floor(Math.random() * NAMES.length)]; } while (ink === word);
+      }
+      arr.push({ word: word, ink: ink, congruent: congruent });
+    }
+    for (var j = arr.length - 1; j > 0; j--) {
+      var k = Math.floor(Math.random() * (j + 1)), t = arr[j]; arr[j] = arr[k]; arr[k] = t;
+    }
+    return arr;
+  }
+
+  function render() {
+    var tr = S.trials[S.idx];
+    wordEl.textContent = tr.word;
+    wordEl.style.color = INK[tr.ink];
+    S.t0 = performance.now();
+  }
+
+  function start() {
+    S.trials = buildTrials();
+    S.idx = 0; S.running = true;
+    TX.show(btnsEl, true);
+    TX.show(statsEl, false);
+    TX.txt(verdictEl, '');
+    render();
+    TX.txt(hintEl, '点「文字显示的颜色」，不是文字的意思。第 1 / ' + TOTAL + ' 题');
+  }
+
+  function finish() {
+    S.running = false;
+    TX.show(btnsEl, false);
+    TX.txt(wordEl, '完成！');
+    wordEl.style.color = '';
+    TX.txt(hintEl, '成绩见下方统计');
+
+    var valid = S.trials.filter(function (t) { return t.rt !== null && t.rt >= MIN_RT; });
+    var bothConditions = function (arr) {
+      return arr.some(function (t) { return t.congruent; }) &&
+             arr.some(function (t) { return !t.congruent; });
+    };
+    var usedFallback = false;
+    if (!bothConditions(valid)) {
+      /* 全部作答都快于预判阈值（设备响应极快/无渲染延迟）时退回全部试次，
+         避免出现「统计栏一片 —，却不说为什么」的静默失败 */
+      valid = S.trials.filter(function (t) { return t.rt !== null; });
+      usedFallback = true;
+    }
+    var cong = valid.filter(function (t) { return t.congruent; });
+    var inco = valid.filter(function (t) { return !t.congruent; });
+    var mean = function (a) {
+      return a.length ? a.reduce(function (s, t) { return s + t.rt; }, 0) / a.length : NaN;
+    };
+    var mc = mean(cong), mi = mean(inco);
+    var acc = S.trials.filter(function (t) { return t.correct; }).length / S.trials.length;
+
+    TX.txt(TX.$('s-cong'), isNaN(mc) ? '—' : TX.ms(mc));
+    TX.txt(TX.$('s-incong'), isNaN(mi) ? '—' : TX.ms(mi));
+    TX.txt(TX.$('s-cost'), (isNaN(mc) || isNaN(mi)) ? '—' : TX.ms(mi - mc));
+    TX.txt(TX.$('s-acc'), Math.round(acc * 100) + '%');
+    TX.show(statsEl, true);
+
+    var msg;
+    if (!isNaN(mc) && !isNaN(mi) && (mi - mc) > 30) {
+      msg = '干扰量约 ' + Math.round(mi - mc) + ' ms：不一致条件明显更慢，你被自己「读字的本能」拖住了。';
+    } else if (!isNaN(mc) && !isNaN(mi)) {
+      msg = '干扰量约 ' + Math.round(mi - mc) + ' ms：这次差异很小。样本只有 20 题，属正常波动，别过度解读。';
+    } else {
+      msg = '有效试次太少，无法计算。再玩一次试试（尽量别连点）。';
+    }
+    TX.txt(verdictEl, msg + (usedFallback ? ' 注：本次有试次快于 180 毫秒（通常计为预判），已改用全部试次计算。' : '') +
+      ' 提醒：本实验样本量 = 1，仅用于体验，不是心理测量。');
+  }
+
+  function answer(name, btn) {
+    if (!S.running) return;
+    var now = performance.now();
+    if (now - S.lastClick < LOCK_MS) return;
+    S.lastClick = now;
+
+    var tr = S.trials[S.idx];
+    tr.rt = now - S.t0;
+    tr.correct = (name === tr.ink);
+
+    if (tr.rt < MIN_RT) {
+      btn.style.outline = '3px solid #c02b2b';
+      setTimeout(function () { btn.style.outline = ''; }, 180);
+    }
+
+    S.idx++;
+    barEl.style.width = Math.round((S.idx / TOTAL) * 100) + '%';
+
+    if (S.idx >= TOTAL) { finish(); return; }
+    TX.txt(hintEl, '第 ' + (S.idx + 1) + ' / ' + TOTAL + ' 题');
+    render();
+  }
+
+  TX.on(btnsEl, 'click', function (e) {
+    var b = e.target.closest ? e.target.closest('button[data-color]') : null;
+    if (b) answer(b.getAttribute('data-color'), b);
+  });
+
+  TX.on(TX.$('stroop-start'), 'click', start);
+
+  TX.on(TX.$('stroop-reset'), 'click', function () {
+    S.running = false; S.idx = 0; S.trials = [];
+    barEl.style.width = '0%';
+    TX.show(btnsEl, false); TX.show(statsEl, false);
+    TX.txt(wordEl, '准备好了吗？');
+    wordEl.style.color = '';
+    TX.txt(hintEl, '点下方「开始实验」，共 20 题，越快越准越好');
+    TX.txt(verdictEl, '');
+  });
+})();
+</script>
+<script>
+/* =====================================================================
+   实验二 · 锚定效应（Tversky & Kahneman, 1974）
+   仅引用原文两个结论：看到锚 10 的组估计中位数约 25%，看到锚 65 的组约 45%
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var root = TX.$('exp-anchoring');
+  if (!root) return;
+
+  var STORE = 'taixu-anchor-runs';
+  var midEl = TX.$('anchor-mid'), numEl = TX.$('anchor-num'),
+      qEl = TX.$('anchor-q'), sliderWrap = TX.$('anchor-slider-wrap'),
+      rangeEl = TX.$('anchor-range'), valEl = TX.$('anchor-val'),
+      startBtn = TX.$('anchor-start'), submitBtn = TX.$('anchor-submit'),
+      statsEl = TX.$('anchor-stats'), verdictEl = TX.$('anchor-verdict');
+
+  var cur = { anchor: null, est: null, spinning: false };
+
+  function loadHistory() {
+    try { return JSON.parse(localStorage.getItem(STORE) || '[]') || []; }
+    catch (e) { return []; }
+  }
+  function saveHistory(arr) {
+    try { localStorage.setItem(STORE, JSON.stringify(arr.slice(-40))); } catch (e) { /* 隐私模式等，忽略 */ }
+  }
+
+  function spin() {
+    if (cur.spinning) return;
+    cur.spinning = true;
+    startBtn.disabled = true;
+    TX.show(midEl, true); midEl.style.display = 'block';
+    TX.show(qEl, false); TX.show(sliderWrap, false);
+    submitBtn.hidden = true;
+    TX.show(statsEl, false);
+    TX.txt(verdictEl, '');
+    TX.txt(TX.$('a-gap'), '—');
+
+    var target = Math.random() < 0.5 ? 10 : 65;
+    var ticks = 0;
+    var timer = setInterval(function () {
+      TX.txt(numEl, String(Math.floor(Math.random() * 101)));
+      ticks++;
+      if (ticks > 16) {
+        clearInterval(timer);
+        cur.anchor = target;
+        TX.txt(numEl, String(target));
+        cur.spinning = false;
+        startBtn.disabled = false;
+        TX.txt(startBtn, '重新转盘');
+        midEl.style.display = 'block';
+        qEl.style.display = 'block';
+        sliderWrap.hidden = false;
+        submitBtn.hidden = false;
+      }
+    }, 70);
+  }
+
+  function submit() {
+    cur.est = Number(rangeEl.value);
+    var hist = loadHistory();
+    hist.push({ anchor: cur.anchor, estimate: cur.est, at: new Date().toISOString() });
+    saveHistory(hist);
+
+    TX.txt(TX.$('a-anchor'), String(cur.anchor));
+    TX.txt(TX.$('a-mine'), cur.est + '%');
+
+    var low = hist.filter(function (r) { return r.anchor === 10; });
+    var high = hist.filter(function (r) { return r.anchor === 65; });
+    var gapTxt = '—';
+    if (low.length && high.length) {
+      var a = low[low.length - 1].estimate, b = high[high.length - 1].estimate;
+      gapTxt = Math.abs(b - a) + ' 个百分点';
+    }
+    TX.txt(TX.$('a-gap'), gapTxt);
+    TX.show(statsEl, true);
+
+    var msg = '本次锚点是 ' + cur.anchor + '，你给了 ' + cur.est + '%。';
+    msg += ' 原始研究里，锚 10 的组估计中位数约 25%，锚 65 的组约 45%——同样的题，答案被一个随机数字拉动了约 20 个百分点。';
+    if (gapTxt !== '—') {
+      msg += ' 你两轮之间的差值是 ' + gapTxt + '。（样本量 2，纯属体验，不具备任何统计意义）';
+    } else {
+      msg += ' 想看得更清楚，可以点「重玩」，把另一种锚点也试一遍，页面会算出你自己的差值。';
+    }
+    TX.txt(verdictEl, msg);
+  }
+
+  TX.on(startBtn, 'click', spin);
+  TX.on(submitBtn, 'click', submit);
+  TX.on(rangeEl, 'input', function () { TX.txt(valEl, rangeEl.value); });
+
+  TX.on(TX.$('anchor-reset'), 'click', function () {
+    cur.anchor = null; cur.est = null;
+    TX.show(midEl, false); TX.show(qEl, false); TX.show(sliderWrap, false);
+    submitBtn.hidden = true;
+    TX.show(statsEl, false);
+    TX.txt(verdictEl, '');
+    TX.txt(startBtn, '转动转盘');
+    startBtn.disabled = false;
+    if (midEl) midEl.style.display = 'none';
+    if (qEl) qEl.style.display = 'none';
+  });
+})();
+</script>
+
+<script>
+/* =====================================================================
+   实验三 · Müller-Lyer 长度错觉（Müller-Lyer, 1889）
+   两条线实际长度相同，均为 280 像素
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var root = TX.$('exp-muller-lyer');
+  if (!root) return;
+
+  var LEN = 280;                       /* 两条线真实长度（像素） */
+  var revealEls = [TX.$('ml-reveal-mark'), TX.$('ml-reveal-a'), TX.$('ml-reveal-b')];
+  var hintEl = TX.$('ml-hint'), verdictEl = TX.$('ml-verdict');
+  var done = false;
+
+  function reveal(choice) {
+    if (done) return;
+    done = true;
+    revealEls.forEach(function (el) { if (el) el.setAttribute('opacity', '1'); });
+
+    var base = '正确答案：两条线一样长，都是 ' + LEN + ' 像素。箭头方向改变了你的知觉，不是线的长度。';
+    if (choice === 'same') {
+      TX.txt(verdictEl, '✅ ' + base + ' 你看穿了它——或者你见过这张图。两种都不算作弊。');
+    } else {
+      TX.txt(verdictEl, '❌ ' + base + ' 你选了「' + (choice === 'a' ? '上面那条' : '下面那条') +
+        '」，这正是绝大多数人的选择：向外的箭头会让人误以为线更长。');
+    }
+    TX.txt(hintEl, '已揭晓：两条线实际等长（粉色虚线为真实端点）');
+  }
+
+  TX.on(TX.$('ml-a'), 'click', function () { reveal('a'); });
+  TX.on(TX.$('ml-b'), 'click', function () { reveal('b'); });
+  TX.on(TX.$('ml-c'), 'click', function () { reveal('same'); });
+
+  TX.on(TX.$('ml-reset'), 'click', function () {
+    done = false;
+    revealEls.forEach(function (el) { if (el) el.setAttribute('opacity', '0'); });
+    TX.txt(hintEl, '你的直觉选哪条？');
+    TX.txt(verdictEl, '');
+  });
+})();
+</script>
+<script>
+/* =====================================================================
+   问卷模块
+   通道优先级：submitUrl(直接POST) → formUrl(第三方平台跳转/内嵌) → 仅本地保存+导出
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var root = TX.$('quiz-root');
+  if (!root) return;
+
+  var cfg = window.TAIXU_QUIZ_CONFIG || {};
+  var STORE = 'taixu-quiz-records';
+  var LABELS = {
+    q1: '确认偏误', q2: '锚定效应', q3: '归因 / 幸存者偏差', q4: '蔡格尼克（惦记未完事）',
+    q5: '巴纳姆效应', q6: '达克效应倾向', q7: '登门槛效应', q8: '谣言易感度'
+  };
+  var QKEYS = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'];
+
+  /* ---------- 记忆存储（失败降级为内存） ---------- */
+  var memoryStore = [];
+  function loadRecords() {
+    try { return JSON.parse(localStorage.getItem(STORE) || '[]') || []; }
+    catch (e) { return memoryStore.slice(); }
+  }
+  function saveRecord(rec) {
+    memoryStore.push(rec);
+    try {
+      var arr = loadRecords(); arr.push(rec);
+      localStorage.setItem(STORE, JSON.stringify(arr.slice(-200)));
+    } catch (e) { /* 隐私模式 / 配额满，忽略 */ }
+  }
+
+  /* ---------- 文案注入 ---------- */
+  if (cfg.title) TX.txt(TX.$('quiz-title'), cfg.title);
+  if (cfg.description) TX.txt(TX.$('quiz-desc'), cfg.description);
+
+  /* ---------- 平台接入区 ---------- */
+  (function renderPlatform() {
+    var noteEl = TX.$('quiz-config-note');
+    var hostEl = TX.$('quiz-platform');
+    var wrap = TX.$('quiz-frame-wrap');
+    var frame = TX.$('quiz-iframe');
+
+    var hasForm = !!(cfg.formUrl && String(cfg.formUrl).trim());
+    var hasApi = !!(cfg.submitUrl && String(cfg.submitUrl).trim());
+
+    if (!noteEl || !hostEl) return;
+
+    if (!hasForm && !hasApi) {
+      TX.txt(noteEl, '⚠ 尚未配置提交入口：请把第三方表单链接填到页面源码里的 TAIXU_QUIZ_CONFIG.formUrl（位置见文件开头的「只改这里」注释）。配置前，仍可使用下方页面内自评版，并导出 JSON / CSV。');
+      return;
+    }
+
+    var bits = [];
+    if (hasForm) bits.push('第三方表单：已配置');
+    if (hasApi) bits.push('接口提交：已配置');
+    TX.txt(noteEl, '✔ ' + bits.join('　|　') + '　（如需更换，修改源码中 TAIXU_QUIZ_CONFIG 即可）');
+
+    if (hasForm) {
+      var url = String(cfg.formUrl).trim();
+      var a = document.createElement('a');
+      a.className = 'btn btn-primary';
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.textContent = '在新窗口打开问卷表单 →';
+      hostEl.appendChild(a);
+
+      if (cfg.mode === 'iframe' && wrap && frame) {
+        frame.src = url;
+        wrap.hidden = false;
+        var tip = document.createElement('p');
+        tip.className = 'q-lead';
+        tip.style.marginTop = '10px';
+        tip.textContent = '如果上方区域空白，说明该平台禁止被其它网页内嵌，请用上面的按钮新窗口打开。';
+        hostEl.appendChild(tip);
+      }
+    }
+  })();
+
+  /* ---------- 单选选中态（不依赖 :has() 支持） ---------- */
+  function syncLikert(e) {
+    var input = e.target;
+    if (!input || input.type !== 'radio') return;
+    var group = input.name;
+    var list = root.querySelectorAll('input[name="' + group + '"]');
+    Array.prototype.forEach.call(list, function (i) {
+      var lab = i.closest('label');
+      if (lab) lab.classList.toggle('sel', i.checked);
+    });
+    var item = input.closest('.q-item');
+    if (item) item.classList.remove('err');
+  }
+  TX.on(root, 'change', syncLikert);
+
+  /* 兼容不支持 :has() 的浏览器 */
+  var st = document.createElement('style');
+  st.textContent = '#quiz-root .likert label.sel{background:var(--teal);box-shadow:inset 0 0 0 2px var(--ink)}';
+  document.head.appendChild(st);
+
+  /* ---------- 字数统计 ---------- */
+  var q9El = TX.$('q9'), q9Count = TX.$('q9-count');
+  TX.on(q9El, 'input', function () { TX.txt(q9Count, String(q9El.value.length)); });
+
+  /* ---------- 采集 / 校验 ---------- */
+  function collect() {
+    var rec = {
+      nickname: (TX.$('q-nickname').value || '').trim().slice(0, 24),
+      grade: TX.$('q-grade').value || '',
+      consent: '',
+      q9: (q9El.value || '').trim().slice(0, 300)
+    };
+    var c = root.querySelector('input[name="consent"]:checked');
+    rec.consent = c ? c.value : '';
+    QKEYS.forEach(function (k) {
+      var r = root.querySelector('input[name="' + k + '"]:checked');
+      rec[k] = r ? Number(r.value) : '';
+    });
+    return rec;
+  }
+
+  function validate(rec) {
+    var errors = [];
+    if (!rec.consent) errors.push('「是否同意用于匿名统计」未选择');
+    var missing = QKEYS.filter(function (k) { return rec[k] === ''; });
+    if (missing.length) {
+      errors.push('以下题目未作答：' + missing.map(function (k) { return k.toUpperCase(); }).join('、'));
+      /* 高亮缺失题 */
+      Array.prototype.forEach.call(root.querySelectorAll('.q-item'), function (it) {
+        it.classList.remove('err');
+      });
+      missing.forEach(function (k) {
+        var q = root.querySelector('.q-item[data-q="' + k + '"]');
+        if (q) q.classList.add('err');
+      });
+    }
+    return errors;
+  }
+
+  function score(rec) {
+    var vals = QKEYS.map(function (k) { return rec[k]; }).filter(function (v) { return typeof v === 'number'; });
+    var total = vals.reduce(function (a, b) { return a + b; }, 0);
+    var avg = vals.length ? Math.round((total / vals.length) * 100) / 100 : 0;
+    var top = '', topV = 0;
+    QKEYS.forEach(function (k) {
+      if (typeof rec[k] === 'number' && rec[k] > topV) { topV = rec[k]; top = k; }
+    });
+    return { total: total, avg: avg, topKey: top, topLabel: top ? LABELS[top] : '', topValue: topV };
+  }
+
+  /* ---------- 状态提示 ---------- */
+  function setStatus(kind, lines) {
+    var el = TX.$('quiz-status');
+    if (!el) return;
+    el.className = (kind === 'ok') ? 'q-ok' : (kind === 'bad' ? 'q-bad' : 'q-warn');
+    el.hidden = false;
+    el.textContent = '';
+    lines.forEach(function (t, i) {
+      var p = document.createElement('div');
+      p.textContent = (i === 0 && kind === 'ok' ? '✅ ' : (kind === 'bad' ? '⚠ ' : 'ℹ ')) + t;
+      el.appendChild(p);
+    });
+  }
+
+  /* ---------- 提交 ---------- */
+  function submitToApi(payload) {
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 8000) : null;
+    return fetch(String(cfg.submitUrl).trim(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (res) {
+      if (timer) clearTimeout(timer);
+      return res.ok ? { ok: true, status: res.status }
+                    : { ok: false, reason: '服务器返回 HTTP ' + res.status };
+    }).catch(function (err) {
+      if (timer) clearTimeout(timer);
+      var why = (err && err.name === 'AbortError') ? '请求超时（8 秒）' : ((err && err.message) || '网络错误或被浏览器拦截');
+      return { ok: false, reason: why + '；若接口跨域，需要在服务端允许 CORS' };
+    });
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    var errEl = TX.$('quiz-errors');
+    errEl.hidden = true;
+
+    var rec = collect();
+    var errors = validate(rec);
+    if (errors.length) {
+      errEl.textContent = '';
+      errors.forEach(function (t) {
+        var p = document.createElement('div'); p.textContent = '· ' + t; errEl.appendChild(p);
+      });
+      errEl.hidden = false;
+      /* 能力检测：个别旧版 WebView / 无布局环境不支持 scrollIntoView，缺失时不能中断提交逻辑 */
+      if (typeof errEl.scrollIntoView === 'function') {
+        errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
+    var sc = score(rec);
+    var payload = {
+      nickname: rec.nickname, grade: rec.grade, consent: rec.consent,
+      q1: rec.q1, q2: rec.q2, q3: rec.q3, q4: rec.q4,
+      q5: rec.q5, q6: rec.q6, q7: rec.q7, q8: rec.q8,
+      q9: rec.q9, total: sc.total, avg: sc.avg,
+      topBias: sc.topLabel, submittedAt: new Date().toISOString(),
+      source: '认知偏差研究所 · 页面内自评版'
+    };
+
+    var btn = TX.$('quiz-submit');
+    btn.disabled = true;
+    TX.txt(btn, '提交中…');
+
+    var resultLines = ['总分 ' + sc.total + ' / 40（平均 ' + sc.avg + '），最突出的一项：' + (sc.topLabel || '—') +
+                       '（' + sc.topValue + ' 分）',
+                       '提醒：这是课后自编倾向题，不是标准化量表，别把它当成对自己的结论。'];
+
+    var after = function (kind, head) {
+      btn.disabled = false; TX.txt(btn, '提交问卷');
+      saveRecord(payload);
+      setStatus(kind, head.concat(resultLines));
+    };
+
+    if (cfg.submitUrl && String(cfg.submitUrl).trim()) {
+      submitToApi(payload).then(function (r) {
+        if (r.ok) {
+          after('ok', ['提交成功（HTTP ' + r.status + '）。' + (cfg.thanksHint || '感谢填写！')]);
+        } else {
+          after('bad', ['提交失败：' + r.reason + '。答题内容已保存在本机，可用下方按钮导出后交给统计方。']);
+        }
+      });
+    } else {
+      var head = ['已记录在本机浏览器。'];
+      if (cfg.formUrl && String(cfg.formUrl).trim()) {
+        head.push('要进入正式统计，请点上方「在新窗口打开问卷表单 →」再填一次（第三方平台的数据才会进入后台）。');
+      } else {
+        head.push('当前未配置任何提交地址：数据只存在你自己的浏览器里，请用「导出 CSV / JSON」交回给统计方。');
+      }
+      after('warn', head);
+    }
+  }
+  TX.on(TX.$('quiz-form'), 'submit', onSubmit);
+
+  /* ---------- 清空 ---------- */
+  TX.on(TX.$('quiz-clear'), 'click', function () {
+    if (!window.confirm('确定清空当前表单吗？（已保存的历史记录不会被删除）')) return;
+    TX.$('quiz-form').reset();
+    TX.txt(q9Count, '0');
+    Array.prototype.forEach.call(root.querySelectorAll('.likert label.sel'), function (l) { l.classList.remove('sel'); });
+    Array.prototype.forEach.call(root.querySelectorAll('.q-item.err'), function (l) { l.classList.remove('err'); });
+    TX.show(TX.$('quiz-errors'), false);
+    TX.show(TX.$('quiz-status'), false);
+  });
+
+  /* ---------- 导出 ---------- */
+  function csvCell(v) {
+    var s = (v === null || v === undefined) ? '' : String(v);
+    if (/[",\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  }
+  function toCSV(records) {
+    var cols = ['submittedAt', 'nickname', 'grade', 'consent', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'total', 'avg', 'topBias', 'q9'];
+    var head = ['提交时间', '昵称', '年级', '同意', 'Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', '总分', '平均分', '最突出偏差', '开放题'];
+    var lines = [head.map(csvCell).join(',')];
+    records.forEach(function (r) {
+      lines.push(cols.map(function (c) { return csvCell(r[c]); }).join(','));
+    });
+    return '\ufeff' + lines.join('\r\n') + '\r\n';
+  }
+  function download(name, text, mime) {
+    try {
+      var blob = new Blob([text], { type: mime + ';charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = name;
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(url); }, 400);
+      return true;
+    } catch (e) { return false; }
+  }
+  function stamp() {
+    var d = new Date(), p = function (n) { return (n < 10 ? '0' : '') + n; };
+    return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + p(d.getHours()) + p(d.getMinutes());
+  }
+
+  TX.on(TX.$('quiz-export-json'), 'click', function () {
+    var recs = loadRecords();
+    if (!recs.length) { setStatus('warn', ['本机暂无记录，先填一份吧。']); return; }
+    download('quiz-' + stamp() + '.json', JSON.stringify(recs, null, 2), 'application/json');
+  });
+
+  TX.on(TX.$('quiz-export-csv'), 'click', function () {
+    var recs = loadRecords();
+    if (!recs.length) { setStatus('warn', ['本机暂无记录，先填一份吧。']); return; }
+    download('quiz-' + stamp() + '.csv', toCSV(recs), 'text/csv');
+  });
+
+  TX.on(TX.$('quiz-copy'), 'click', function () {
+    var recs = loadRecords();
+    if (!recs.length) { setStatus('warn', ['本机暂无记录，先填一份吧。']); return; }
+    var text = JSON.stringify(recs, null, 2);
+    var done = function (ok) { setStatus(ok ? 'ok' : 'bad', [ok ? 'JSON 已复制到剪贴板。' : '复制失败，请改用「导出 JSON」。']); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+    } else {
+      done(false);
+    }
+  });
+
+  TX.on(TX.$('quiz-view-local'), 'click', function () {
+    var out = TX.$('quiz-local-out');
+    var recs = loadRecords();
+    out.textContent = recs.length ? JSON.stringify(recs, null, 2) : '（本机暂无记录）';
+    out.hidden = !out.hidden ? true : false;
+    if (!recs.length) out.hidden = false;
+  });
+
+  /* 供调试用：控制台可调用 window.TXQuiz.toCSV(records) 验证转义 */
+  window.TXQuiz = { toCSV: toCSV, collect: collect, loadRecords: loadRecords, _csvCell: csvCell };
+})();
+</script>
+</body>
+</html>
