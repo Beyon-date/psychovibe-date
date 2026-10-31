@@ -113,7 +113,6 @@ h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.07em;height
 .chapter{padding:clamp(50px,7vw,96px) 0;position:relative;background:var(--tint,var(--paper));overflow:hidden}
 .chapter::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0}
 .chapter .inner{display:grid;grid-template-columns:.94fr 1.06fr;gap:clamp(26px,5vw,64px);align-items:center;position:relative;z-index:1}
-.chapter.flip .inner{grid-template-columns:1.06fr .94fr}
 .chapter.flip .figbox{order:2}
 .chapter.wide .inner{grid-template-columns:1fr;gap:30px}
 
@@ -371,8 +370,6 @@ blockquote::after{display:none}
 .chapter.dark blockquote::after{opacity:.2}
 
 /* 所有两栏章节：正文恒在左，图恒在右 */
-.chapter.flip .internal,
-.chapter.flip .ch-copy{grid-column:1}
 
 /* ================= 精修层 07：动效 ================= */
 
@@ -434,6 +431,30 @@ footer{color:#3A342C}
   }
   .intro-inner figure{margin-left:0}
 }
+
+/* ================= 精修层 09：对比度与字号终修 ================= */
+body{font-size:clamp(17px,1.25vw,19px)}
+.ch-body p{color:#000000;line-height:1.88}
+.lede{color:#1A1611}
+.tagline{color:#332D25}
+.ch-head .sub{color:#332D25}
+.figbox figcaption{color:#332D25}
+.note{color:#111008;background:#FFFFFF;border:1px solid rgba(18,16,13,.2)}
+.note b{color:#8A3B2E}
+footer{color:#332D25}
+.fine{color:#332D25}
+
+.chapter.dark .ch-body p{color:#FFFFFF}
+.chapter.dark .tagline{color:rgba(255,255,255,.74)}
+.chapter.dark .ch-head .sub{color:rgba(255,255,255,.74)}
+.chapter.dark .figbox figcaption{color:rgba(255,255,255,.68)}
+.chapter.dark .note{color:rgba(255,255,255,.95);background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.24)}
+.chapter.dark .note b{color:var(--accent)}
+
+@media (max-width:600px){
+  body{font-size:17.5px}
+  .ch-body p{line-height:1.9}
+}
 </style>
 </head>
 <body>
@@ -455,6 +476,7 @@ footer{color:#3A342C}
     <span>SUBJECT <b>高一16班</b></span>
     <span>SAMPLES <b>06</b></span>
     <span>STATUS <b>记录中</b></span>
+    <span>REV <b>09</b></span>
   </div>
 </div>
 
@@ -531,25 +553,29 @@ footer{color:#3A342C}
     </div>
   </section>
 
-  <section class="chapter dark flip ch-verdict" id="ch2" style="--accent:#F0725F;--tint:#1D1210;--fw:320px">
+  <section class="chapter dark ch-verdict" id="ch2" style="--accent:#F0725F;--tint:#1D1210;--fw:320px">
     <div class="wrap inner">
-      <div class="ch-head">
-        <div class="tagline"><span class="idx">02</span><span class="tag">Helplessness</span><span class="rule"></span><span>习得性无助</span></div>
-        <h2>那三分钟，我给自己判了刑</h2>
-        <p class="sub">主诉 · 发下卷子之后</p>
+      
+      <div class="ch-copy">
+        <div class="ch-head">
+                <div class="tagline"><span class="idx">02</span><span class="tag">Helplessness</span><span class="rule"></span><span>习得性无助</span></div>
+                <h2>那三分钟，我给自己判了刑</h2>
+                <p class="sub">主诉 · 发下卷子之后</p>
+              </div>
+        <div class="ch-body">
+                <p>卷子发下来，你第一眼看的是分数。</p>
+                <p>然后迅速把它折起来，塞进书包最底层，动作熟练得像在处理什么见不得人的东西。</p>
+                <p>"我果然不行。"这句话出现得比任何解题思路都快，比你任何一次努力都更准时。</p>
+                <blockquote>真正让你放弃数学的，不是那张卷子，是"努力没用"这个结论。</blockquote>
+                <aside class="note"><b>Mechanism / 后来才知道</b>失败次数多到一定程度，人会先学会不试。心理学叫习得性无助——不是懒，是大脑提前替你止损了。</aside>
+              </div>
       </div>
       <figure class="figbox">
-        <img src="assets/img/ch2-verdict.webp" width="707" height="1000" alt="红裙少女坐在散开的红布上，长刀横在身前" loading="lazy" decoding="async">
-        <figcaption><span>FIG. 02</span><span>自我裁决</span></figcaption>
-        <span class="stamp">已记录</span>
-      </figure>
-      <div class="ch-body">
-        <p>卷子发下来，你第一眼看的是分数。</p>
-        <p>然后迅速把它折起来，塞进书包最底层，动作熟练得像在处理什么见不得人的东西。</p>
-        <p>"我果然不行。"这句话出现得比任何解题思路都快，比你任何一次努力都更准时。</p>
-        <blockquote>真正让你放弃数学的，不是那张卷子，是"努力没用"这个结论。</blockquote>
-        <aside class="note"><b>Mechanism / 后来才知道</b>失败次数多到一定程度，人会先学会不试。心理学叫习得性无助——不是懒，是大脑提前替你止损了。</aside>
-      </div>
+              <img src="assets/img/ch2-verdict.webp" width="707" height="1000" alt="红裙少女坐在散开的红布上，长刀横在身前" loading="lazy" decoding="async">
+              <figcaption><span>FIG. 02</span><span>自我裁决</span></figcaption>
+              <span class="stamp">已记录</span>
+            </figure>
+    
     </div>
   </section>
 
@@ -597,46 +623,54 @@ footer{color:#3A342C}
     </div>
   </section>
 
-  <section class="chapter dark flip" id="ch5" style="--accent:#8AAEFF;--tint:#0A1526;--fw:250px">
+  <section class="chapter dark" id="ch5" style="--accent:#8AAEFF;--tint:#0A1526;--fw:250px">
     <div class="wrap inner">
-      <div class="ch-head">
-        <div class="tagline"><span class="idx">05</span><span class="tag">Rumination</span><span class="rule"></span><span>反刍思维</span></div>
-        <h2>凌晨一点的那部连续剧</h2>
-        <p class="sub">主诉 · 关灯之后</p>
+      
+      <div class="ch-copy">
+        <div class="ch-head">
+                <div class="tagline"><span class="idx">05</span><span class="tag">Rumination</span><span class="rule"></span><span>反刍思维</span></div>
+                <h2>凌晨一点的那部连续剧</h2>
+                <p class="sub">主诉 · 关灯之后</p>
+              </div>
+        <div class="ch-body">
+                <p>躺下了。灯关了。手机也扣过去了。</p>
+                <p>然后你开始复盘今天说过的每一句话。那句话是不是很蠢？他那个表情是什么意思？我为什么要笑？</p>
+                <p>你摸到手机，想找点东西把脑子填满。于是凌晨一点，你和一部并不好看的剧一起亮着。</p>
+                <blockquote>真的反思是有结尾的。你这个没有。它只是循环播放。</blockquote>
+                <aside class="note"><b>Mechanism / 后来才知道</b>这叫声反刍思维。它长得像思考，其实是原地打转。分界线不在你想了多久，而在这句话有没有出口。</aside>
+              </div>
       </div>
       <figure class="figbox">
-        <img src="assets/img/ch5-night.webp" width="527" height="1000" alt="深水中的蓝发少女，金鱼从她身边游过" loading="lazy" decoding="async">
-        <figcaption><span>FIG. 05</span><span>01:00 / 水下</span></figcaption>
-        <span class="stamp">已记录</span>
-      </figure>
-      <div class="ch-body">
-        <p>躺下了。灯关了。手机也扣过去了。</p>
-        <p>然后你开始复盘今天说过的每一句话。那句话是不是很蠢？他那个表情是什么意思？我为什么要笑？</p>
-        <p>你摸到手机，想找点东西把脑子填满。于是凌晨一点，你和一部并不好看的剧一起亮着。</p>
-        <blockquote>真的反思是有结尾的。你这个没有。它只是循环播放。</blockquote>
-        <aside class="note"><b>Mechanism / 后来才知道</b>这叫声反刍思维。它长得像思考，其实是原地打转。分界线不在你想了多久，而在这句话有没有出口。</aside>
-      </div>
+              <img src="assets/img/ch5-night.webp" width="527" height="1000" alt="深水中的蓝发少女，金鱼从她身边游过" loading="lazy" decoding="async">
+              <figcaption><span>FIG. 05</span><span>01:00 / 水下</span></figcaption>
+              <span class="stamp">已记录</span>
+            </figure>
+    
     </div>
   </section>
 
-  <section class="chapter flip ch-autumn" id="ch6" style="--accent:#A25C16;--tint:#F3E4CB;--fw:320px">
+  <section class="chapter ch-autumn" id="ch6" style="--accent:#A25C16;--tint:#F3E4CB;--fw:320px">
     <div class="wrap inner">
-      <div class="ch-head">
-        <div class="tagline"><span class="idx">06</span><span class="tag">Self-concept</span><span class="rule"></span><span>自我确认</span></div>
-        <h2>出门前的第三件衣服</h2>
-        <p class="sub">主诉 · 镜子前</p>
+      
+      <div class="ch-copy">
+        <div class="ch-head">
+                <div class="tagline"><span class="idx">06</span><span class="tag">Self-concept</span><span class="rule"></span><span>自我确认</span></div>
+                <h2>出门前的第三件衣服</h2>
+                <p class="sub">主诉 · 镜子前</p>
+              </div>
+        <div class="ch-body">
+                <p>衣柜翻到第三件，你终于放弃：算了，穿什么都一样。</p>
+                <p>然后出门前最后一秒，你还是回头看了一眼镜子。</p>
+                <blockquote>那不是爱美。那是你在确认"我到底是谁"。</blockquote>
+                <aside class="note"><b>Mechanism / 后来才知道</b>青春期有件不太公平的事：身体变化的速度，快过心理适应的速度。你会格外在意别人怎么看你，因为那几乎是唯一能确认"我是谁"的镜子。</aside>
+              </div>
       </div>
       <figure class="figbox">
-        <img src="assets/img/ch6-autumn.webp" width="707" height="1000" alt="秋日林间的狐耳少女坐着，身旁是一只狐狸" loading="lazy" decoding="async">
-        <figcaption><span>FIG. 06</span><span>秋天 / 林间</span></figcaption>
-        <span class="stamp">已记录</span>
-      </figure>
-      <div class="ch-body">
-        <p>衣柜翻到第三件，你终于放弃：算了，穿什么都一样。</p>
-        <p>然后出门前最后一秒，你还是回头看了一眼镜子。</p>
-        <blockquote>那不是爱美。那是你在确认"我到底是谁"。</blockquote>
-        <aside class="note"><b>Mechanism / 后来才知道</b>青春期有件不太公平的事：身体变化的速度，快过心理适应的速度。你会格外在意别人怎么看你，因为那几乎是唯一能确认"我是谁"的镜子。</aside>
-      </div>
+              <img src="assets/img/ch6-autumn.webp" width="707" height="1000" alt="秋日林间的狐耳少女坐着，身旁是一只狐狸" loading="lazy" decoding="async">
+              <figcaption><span>FIG. 06</span><span>秋天 / 林间</span></figcaption>
+              <span class="stamp">已记录</span>
+            </figure>
+    
     </div>
   </section>
 
