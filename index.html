@@ -358,6 +358,51 @@ body{font-size:clamp(16.5px,1.15vw,18px)}
 .chapter.dark .tagline .rule{background:rgba(239,231,218,.28)}
 .chapter.dark .figbox{--edge:rgba(239,231,218,.2)}
 .chapter.dark .ch-head{margin-bottom:4px}
+
+/* ================= 精修层 06：引文成块，消除悬空竖线 ================= */
+blockquote{
+  background:rgba(20,17,14,.045);
+  border-radius:3px;
+  padding:18px 22px;
+  border-left:4px solid var(--accent);
+}
+blockquote::after{display:none}
+.chapter.dark blockquote{background:rgba(255,255,255,.065)}
+.chapter.dark blockquote::after{opacity:.2}
+
+/* 所有两栏章节：正文恒在左，图恒在右 */
+.chapter.flip .internal,
+.chapter.flip .ch-copy{grid-column:1}
+
+/* ================= 精修层 07：动效 ================= */
+
+/* 1. 影像自下而上揭示 */
+.figbox.reveal > img{clip-path:inset(100% 0 0 0)}
+.figbox.reveal.in > img{clip-path:inset(0 0 0 0)}
+.figbox > img{transition:clip-path 1.05s cubic-bezier(.16,.84,.24,1),transform .36s cubic-bezier(.2,.8,.2,1),box-shadow .36s ease}
+
+/* 2. 段落错位进场 */
+.ch-body > *,.hero-copy > *,.intro-copy > *{transition-delay:var(--d,0ms)}
+
+/* 3. 鼠标柔光 */
+.glow{position:fixed;left:0;top:0;width:460px;height:460px;margin:-230px 0 0 -230px;
+  border-radius:50%;pointer-events:none;z-index:2;opacity:0;
+  background:radial-gradient(circle,rgba(255,246,224,.5),rgba(255,246,224,0) 62%);
+  mix-blend-mode:soft-light;transition:opacity .5s ease;will-change:transform}
+@media (pointer:fine){.glow{opacity:1}}
+
+/* 4. 章节标题入场时编号轻微下沉 */
+.tagline.reveal .idx{transform:translateY(-6px);opacity:0;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .7s}
+.tagline.reveal.in .idx{transform:none;opacity:1}
+
+/* 5. 降级 */
+@media (prefers-reduced-motion:reduce){
+  .figbox.reveal > img{clip-path:none;transition:none}
+  .figbox > img{transition:none}
+  .glow{display:none}
+  .tagline.reveal .idx{transform:none;opacity:1;transition:none}
+  .ch-body > *,.hero-copy > *,.intro-copy > *{transition-delay:0ms}
+}
 </style>
 </head>
 <body>
@@ -543,7 +588,7 @@ body{font-size:clamp(16.5px,1.15vw,18px)}
     </div>
   </section>
 
-  <section class="chapter ch-autumn" id="ch6" style="--accent:#A25C16;--tint:#F3E4CB;--fw:320px">
+  <section class="chapter flip ch-autumn" id="ch6" style="--accent:#A25C16;--tint:#F3E4CB;--fw:320px">
     <div class="wrap inner">
       <div class="ch-head">
         <div class="tagline"><span class="idx">06</span><span class="tag">Self-concept</span><span class="rule"></span><span>自我确认</span></div>
@@ -619,37 +664,88 @@ body{font-size:clamp(16.5px,1.15vw,18px)}
 
 <script>
 (function () {
+  try { localStorage.setItem('pv:motion', 'on'); } catch (e) {}
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
   var bar = document.querySelector('.progress i');
-  function onScroll() {
+  var ticking = false;
+
+  function progress() {
     var el = document.documentElement;
     var max = el.scrollHeight - el.clientHeight;
-    bar.style.width = (max > 0 ? (el.scrollTop / max) * 100 : 0) + '%';
+    if (bar) bar.style.width = (max > 0 ? (el.scrollTop / max) * 100 : 0) + '%';
   }
+
+  /* 视差：只动 translate，不与 transform 冲突 */
+  var px = [];
+  Array.prototype.forEach.call(document.querySelectorAll('.figbox, .hero-art'), function (el) {
+    px.push({ el: el, amp: el.classList.contains('hero-art') ? 54 : 22 });
+  });
+
+  function frame() {
+    ticking = false;
+    progress();
+    if (reduce) return;
+    var vh = window.innerHeight;
+    for (var i = 0; i < px.length; i++) {
+      var o = px[i], r = o.el.getBoundingClientRect();
+      if (r.bottom < -240 || r.top > vh + 240) continue;
+      var p = (r.top + r.height / 2 - vh / 2) / vh;
+      p = p < -1 ? -1 : (p > 1 ? 1 : p);
+      o.el.style.translate = '0 ' + (p * o.amp).toFixed(2) + 'px';
+    }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('resize', onScroll, { passive: true });
+  frame();
 
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;
-
+  /* 进场 */
   var nodes = document.querySelectorAll(
     '.hero-copy > *, .hero-art, .intro-copy > *, .intro .figbox, .tagline, .ch-head, .figbox, .ch-body > *, .night .inner > *, .survey .inner > *, footer .cols > *'
   );
-  var list = [];
   Array.prototype.forEach.call(nodes, function (el) {
-    if (el.classList.contains('reveal')) return;
-    el.classList.add('reveal');
-    list.push(el);
+    if (!el.classList.contains('reveal')) el.classList.add('reveal');
   });
+  var all = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window)) {
-    list.forEach(function (el) { el.classList.add('in'); });
-    return;
+    Array.prototype.forEach.call(all, function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -6% 0px' });
+    Array.prototype.forEach.call(all, function (el) { io.observe(el); });
   }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+
+  /* 段落错位延迟 */
+  if (!reduce) {
+    Array.prototype.forEach.call(document.querySelectorAll('.ch-body, .hero-copy, .intro-copy'), function (box) {
+      Array.prototype.forEach.call(box.children, function (el, i) {
+        el.style.setProperty('--d', Math.min(i, 7) * 60 + 'ms');
+      });
     });
-  }, { threshold: 0.06, rootMargin: '0px 0px -6% 0px' });
-  list.forEach(function (el) { io.observe(el); });
+  }
+
+  /* 鼠标柔光 */
+  if (fine && !reduce) {
+    var g = document.createElement('div');
+    g.className = 'glow';
+    document.body.appendChild(g);
+    var gx = 0, gy = 0, cx = 0, cy = 0, run = false;
+    document.addEventListener('mousemove', function (e) {
+      gx = e.clientX; gy = e.clientY;
+      if (!run) { run = true; requestAnimationFrame(glowFrame); }
+    }, { passive: true });
+    function glowFrame() {
+      cx += (gx - cx) * 0.12;
+      cy += (gy - cy) * 0.12;
+      g.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0)';
+      if (Math.abs(gx - cx) > 0.5 || Math.abs(gy - cy) > 0.5) requestAnimationFrame(glowFrame);
+      else run = false;
+    }
+  }
 })();
 </script>
 </body>
