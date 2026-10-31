@@ -549,6 +549,38 @@ footer{background:linear-gradient(180deg,#0F2755 0,#0C0A0E clamp(120px,15vw,200p
   .chapter .inner::after{top:-26px;width:7px;height:7px}
   .chapter .inner::before{top:-22px}
 }
+
+/* ================= 附记 · 动漫 ================= */
+.appendix{
+  background:linear-gradient(180deg,#2A1E12 0,#0B0A10 clamp(140px,17vw,220px));
+  color:#F2ECE2;padding:clamp(72px,10vw,132px) 0 clamp(64px,9vw,112px);
+  position:relative;overflow:hidden;
+}
+.appendix .wrap{max-width:52em}
+.ap-tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;
+  color:#D89B5A;border:1px solid rgba(216,155,90,.45);padding:4px 10px;border-radius:2px;margin-bottom:22px}
+.appendix h2{font-size:clamp(28px,4.2vw,50px);line-height:1.22;letter-spacing:-.02em;
+  margin:0 0 14px;font-weight:900;color:#FFFFFF;max-width:16em}
+.ap-sub{color:rgba(255,255,255,.62);font-size:14px;letter-spacing:.06em;margin:0 0 clamp(36px,5vw,56px)}
+.ap-body{max-width:44em;font-size:1.06em;line-height:2.02}
+.ap-body p{color:rgba(255,255,255,.9);margin:0 0 1.1em}
+.ap-body p strong{color:#FFFFFF;font-weight:800}
+.ap-body blockquote.big{
+  background:none;border:none;padding:0;border-radius:0;
+  max-width:25em;margin:clamp(44px,6.5vw,76px) auto;
+  text-align:center;font-size:clamp(20px,2.7vw,31px);line-height:1.68;
+  font-weight:900;letter-spacing:-.01em;color:#FFFFFF;
+  position:relative;
+}
+.ap-body blockquote.big::after{display:none}
+.ap-end{margin:clamp(44px,6vw,72px) 0 0;text-align:center;
+  font-size:clamp(17px,2vw,22px);font-weight:800;color:#D89B5A;letter-spacing:.02em}
+
+@media (max-width:900px){
+  .appendix{padding:56px 0 52px}
+  .ap-body{font-size:1em;line-height:1.95}
+  .ap-body blockquote.big{margin:36px auto}
+}
 </style>
 </head>
 <body>
@@ -559,7 +591,8 @@ footer{background:linear-gradient(180deg,#0F2755 0,#0C0A0E clamp(120px,15vw,200p
     <a class="brand" href="#top">心身反应<b>/</b>PSYCHOVIBE<i>高一16班</i></a>
     <nav>
       <a href="#ch1">正文</a>
-      <a href="#survey">问卷</a>
+      <a href="#appendix">附记</a>
+    <a href="#survey">问卷</a>
     </nav>
   </div>
 </header>
@@ -784,6 +817,41 @@ footer{background:linear-gradient(180deg,#0F2755 0,#0C0A0E clamp(120px,15vw,200p
               <span class="stamp">已记录</span>
             </figure>
     
+    </div>
+  </section>
+
+
+  <section class="appendix" id="appendix">
+    <div class="wrap">
+      <div class="ap-head">
+        <span class="ap-tag">Appendix / 附记</span>
+        <h2>动漫给了我一段没过上的人生</h2>
+        <p class="ap-sub">不是躲开现实，是学会了怎么看眼前</p>
+      </div>
+
+      <div class="ap-body">
+        <p>先说清楚一件事：我看动漫，不是为了躲开现实。</p>
+        <p>现实里我过得挺认真。会烦恼，会计较，会因为一句话记很久，也会在半夜把手机翻到没电。</p>
+        <p>但动漫里有一种东西，现实很少给我——完整。</p>
+        <p>那里有我没走过的街道、没遇见的人、没来得及说出口的那句话。我向往的从来不是“完美”，是“完整”。</p>
+
+        <blockquote class="big">人生就是永无止境的徒劳。</blockquote>
+
+        <p>第一次看到这句台词，我愣了很久。</p>
+        <p>按说这挺丧的。可奇怪的是，看完反而松了一口气——如果努力本来就没有终点，那就不必非得抵达什么。</p>
+
+        <blockquote class="big">正因为徒劳没有意义，<br>当下的每一个瞬间，才都是值得珍惜的财富。</blockquote>
+
+        <p>于是我开始留意那些“没什么用”的小事。</p>
+        <p>切菜时刀落在案板上的声音。阳光从窗口慢慢移到脸颊上。一集放完，片尾曲响起来的那几秒。</p>
+        <p>这些瞬间里什么都没发生，可我就是沉进去了。</p>
+
+        <p>所以这个课题记的也是这些。</p>
+        <p>考完试的空教室、笑完之后的那一下空、耳机里突然响起的前奏。</p>
+        <p><strong>它们都没什么用。可它们是我真正过过的日子。</strong></p>
+      </div>
+
+      <p class="ap-end">动漫教我看的，从来不是远方。是眼前。</p>
     </div>
   </section>
 
