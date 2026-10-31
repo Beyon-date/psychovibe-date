@@ -514,6 +514,41 @@ footer a{color:#E0B084}
   .ch-copy,.ch-head h2,.ch-body{max-width:none}
   .figbox{margin-left:auto;margin-right:auto}
 }
+
+/* ================= 精修层 12：章节过渡与分节装饰 ================= */
+
+/* 修复：跑马灯不能跟随 --ink（现已是浅色），固定深底 */
+.strip{background:#000000;color:#F2ECE2}
+
+/* 章节：从上节色渐变进本节色，消除硬切 */
+.chapter.dark{
+  background:linear-gradient(180deg, var(--from, var(--tint)) 0,
+             var(--tint) clamp(110px,14vw,190px));
+}
+
+/* 分节装饰：渐隐细线 + 中央菱形 */
+.chapter .inner::before{
+  top:-32px;height:1px;opacity:1;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2) 22%,
+             rgba(255,255,255,.2) 78%,transparent);
+}
+.chapter .inner::after{
+  content:"";position:absolute;left:50%;top:-36px;width:8px;height:8px;
+  transform:translateX(-50%) rotate(45deg);
+  background:var(--accent);opacity:.9;
+  box-shadow:0 0 20px var(--accent);
+  pointer-events:none;
+}
+
+/* 深夜区 / 问卷区 / 页脚 平滑衔接 */
+.night{background:linear-gradient(180deg,#2A1E12 0,#080C16 clamp(130px,16vw,210px))}
+.survey{background:linear-gradient(180deg,#080C16 0,#0F2755 clamp(130px,16vw,210px))}
+footer{background:linear-gradient(180deg,#0F2755 0,#0C0A0E clamp(120px,15vw,200px))}
+
+@media (max-width:900px){
+  .chapter .inner::after{top:-26px;width:7px;height:7px}
+  .chapter .inner::before{top:-22px}
+}
 </style>
 </head>
 <body>
@@ -590,7 +625,7 @@ footer a{color:#E0B084}
     </div>
   </section>
 
-  <section class="chapter dark ch-exam" id="ch1" style="--accent:#E0B084;--tint:#241C15;--fw:560px">
+  <section class="chapter dark ch-exam" id="ch1" style="--accent:#E0B084;--tint:#241C15;--fw:560px;--from:#12100E">
     <div class="wrap inner">
       
       <div class="ch-copy">
@@ -617,7 +652,7 @@ footer a{color:#E0B084}
     </div>
   </section>
 
-  <section class="chapter dark ch-verdict" id="ch2" style="--accent:#F0725F;--tint:#2A1412;--fw:380px">
+  <section class="chapter dark ch-verdict" id="ch2" style="--accent:#F0725F;--tint:#2A1412;--fw:380px;--from:#241C15">
     <div class="wrap inner">
       
       <div class="ch-copy">
@@ -644,7 +679,7 @@ footer a{color:#E0B084}
     </div>
   </section>
 
-  <section class="chapter dark ch-summer" id="ch3" style="--accent:#E8C060;--tint:#2A2410;--fw:560px">
+  <section class="chapter dark ch-summer" id="ch3" style="--accent:#E8C060;--tint:#2A2410;--fw:560px;--from:#2A1412">
     <div class="wrap inner">
       
       <div class="ch-copy">
@@ -671,7 +706,7 @@ footer a{color:#E0B084}
     </div>
   </section>
 
-  <section class="chapter dark ch-crowd" id="ch4" style="--accent:#4CC8DF;--tint:#0E2A32;--fw:560px">
+  <section class="chapter dark ch-crowd" id="ch4" style="--accent:#4CC8DF;--tint:#0E2A32;--fw:560px;--from:#2A2410">
     <div class="wrap inner">
       
       <div class="ch-copy">
@@ -698,7 +733,7 @@ footer a{color:#E0B084}
     </div>
   </section>
 
-  <section class="chapter dark" id="ch5" style="--accent:#8AAEFF;--tint:#0A1526;--fw:340px">
+  <section class="chapter dark" id="ch5" style="--accent:#8AAEFF;--tint:#0A1526;--fw:340px;--from:#0E2A32">
     <div class="wrap inner">
       
       <div class="ch-copy">
@@ -725,7 +760,7 @@ footer a{color:#E0B084}
     </div>
   </section>
 
-  <section class="chapter dark ch-autumn" id="ch6" style="--accent:#D89B5A;--tint:#2A1E12;--fw:380px">
+  <section class="chapter dark ch-autumn" id="ch6" style="--accent:#D89B5A;--tint:#2A1E12;--fw:380px;--from:#0A1526">
     <div class="wrap inner">
       
       <div class="ch-copy">
