@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>问卷速录</title>
+<style>
+  :root{--bg:#0B0A10;--card:#16141C;--line:rgba(255,255,255,.12);--txt:#F2EEE6;--muted:#9A938A;--gold:#D89B5A;--ok:#5FD3A0}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font:16px/1.6 -apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+    padding:20px 14px 80px}
+  h1{font-size:19px;margin:0 0 6px;letter-spacing:.02em}
+  .tip{color:var(--muted);font-size:13px;margin:0 0 22px;line-height:1.7}
+  .q{margin:0 0 18px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 12px 8px}
+  .qh{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .num{flex:0 0 auto;color:var(--gold);font-weight:800;font-size:13px;padding-top:3px}
+  .row{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-top:1px solid rgba(255,255,255,.05)}
+  .row:first-of-type{border-top:none}
+  .t{flex:1;min-width:0;word-break:break-word}
+  .t.qt{font-weight:700}
+  .t.ot{color:#D6D0C6;font-size:15px}
+  button{flex:0 0 auto;background:transparent;color:var(--gold);border:1px solid rgba(216,155,90,.45);
+    border-radius:6px;padding:8px 12px;font-size:13px;font-family:inherit;cursor:pointer;min-width:62px}
+  button:active{background:rgba(216,155,90,.14)}
+  button.done{color:var(--ok);border-color:rgba(95,211,160,.5)}
+  button.all{width:100%;margin-top:6px;padding:9px;font-size:12.5px;color:#B8B0A5;border-color:rgba(255,255,255,.14)}
+  .bar{position:fixed;left:0;right:0;bottom:0;padding:10px 14px;background:rgba(11,10,16,.94);
+    border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center;backdrop-filter:blur(8px)}
+</style>
+</head>
+<body>
+<h1>问卷速录助手</h1>
+<p class="tip">点题目右侧「复制」→ 切到腾讯问卷粘贴题目；再点每个选项的「复制」→ 粘贴到选项框。<br>按钮变绿就说明复制成功了。</p>
+<div id="list"></div>
+<div class="bar">共 16 题 · 第 13 题是多选 · 第 16 题不设必答</div>
+
+<script>
+var data = [
+ { n:1, t:'如果今天过得不太好，你更可能怎么处理？', o:[
+   '找个安静的地方自己待着','找人聊聊，说出来会好受些','装作没事，该干嘛干嘛','睡一觉，醒了再说']},
+ { n:2, t:'班里要分组做任务，你通常？', o:[
+   '主动去找想合作的人','等人来拉我，谁拉跟谁','无所谓，分到哪组都行','希望自己一个人做']},
+ { n:3, t:'有人当面夸你，你的第一反应是？', o:[
+   '大大方方说谢谢','有点不好意思，但挺开心','怀疑对方是不是客气','觉得他说的不是我']},
+ { n:4, t:'考完一场重要的试，你会？', o:[
+   '马上找人核对答案','先放空，暂时不想这件事','反复回想哪题可能做错了','不想跟任何人提']},
+ { n:5, t:'有没有过“明明很难受，却说不出为什么”的时候？', o:[
+   '经常有','偶尔有','很少有','从来没有']},
+ { n:6, t:'在人多的地方待久了，你的感受更接近？', o:[
+   '越聊越有劲','还行，没什么特别感觉','有点累，想找个安静角落','非常想马上离开']},
+ { n:7, t:'做一件事之前，你会先想“别人会怎么看”吗？', o:[
+   '几乎每次都会','经常','偶尔','基本不会']},
+ { n:8, t:'晚上躺下之后，你的脑子通常在想什么？', o:[
+   '很快睡着，什么都不想','想白天发生的事','想很久以前的事','想明天要做的事，停不下来']},
+ { n:9, t:'心里有事的时候，你最愿意告诉谁？', o:[
+   '同学或朋友','家里人','写下来，或发在自己看得见的地方','谁也不说']},
+ { n:10, t:'最近一个月，有没有过“干什么都提不起劲”的时候？', o:[
+   '经常有','有过几次','很少','没有']},
+ { n:11, t:'最近的学习压力，你更接近哪种？', o:[
+   '基本能扛住，偶尔累一下','经常觉得喘不过气','已经麻木了，压不压力都一样','压力不算大，但就是提不起劲']},
+ { n:12, t:'你觉得家里的氛围，对你的学习状态影响大吗？', o:[
+   '影响很大，家里好的时候我状态就好','有影响，但没有那么大','没什么影响，我尽量不让它影响我','家里的事，我不太想提']},
+ { n:13, t:'你的压力主要来自哪里？（可多选）', o:[
+   '自己给自己的期待','父母的要求或态度','和同学之间的比较','考试成绩和排名','说不清，就是一直有']},
+ { n:14, t:'如果压力大到扛不住，你会找谁说？', o:[
+   '父母','朋友或同学','老师','自己扛过去','不知道能找谁']},
+ { n:15, t:'你和家里人能聊心事吗？', o:[
+   '能，基本上什么都能说','能聊一部分','基本不聊，说了也没用','不想聊，怕他们担心或怪我']},
+ { n:16, t:'有没有哪个瞬间，你的身体或情绪比脑子先有反应？简单说说就行。（选填）', o:[]}
+];
+
+function copyText(text, btn){
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly','');
+  ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.select(); ta.setSelectionRange(0, text.length);
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch(e) { ok = false; }
+  document.body.removeChild(ta);
+  if (!ok && navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function(){ flash(btn); }, function(){ btn.textContent='长按复制'; });
+    return;
+  }
+  if (ok) flash(btn); else btn.textContent = '长按复制';
+}
+function flash(btn){
+  var old = btn.textContent;
+  btn.textContent = '已复制';
+  btn.classList.add('done');
+  setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1100);
+}
+function makeRow(text, cls, label){
+  var row = document.createElement('div'); row.className = 'row';
+  var t = document.createElement('div'); t.className = 't ' + cls; t.textContent = text;
+  var b = document.createElement('button'); b.textContent = '复制';
+  b.onclick = function(){
+    copyText(text, b);
+    if (navigator.vibrate) navigator.vibrate(12);
+  };
+  row.appendChild(t); row.appendChild(b);
+  return row;
+}
+
+var list = document.getElementById('list');
+data.forEach(function(item){
+  var box = document.createElement('div'); box.className = 'q';
+  box.appendChild(makeRow(item.n + '. ' + item.t, 'qt'));
+  item.o.forEach(function(o, i){
+    box.appendChild(makeRow(String.fromCharCode(65+i) + '. ' + o, 'ot'));
+  });
+  if (item.o.length){
+    var all = document.createElement('button');
+    all.className = 'all';
+    all.textContent = '复制整题（题目 + 所有选项）';
+    all.onclick = function(){
+      var s = item.n + '. ' + item.t + '\n' + item.o.map(function(o,i){ return String.fromCharCode(65+i) + '. ' + o; }).join('\n');
+      copyText(s, all);
+    };
+    box.appendChild(all);
+  }
+  list.appendChild(box);
+});
+</script>
+</body>
+</html>
