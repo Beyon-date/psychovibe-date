@@ -650,18 +650,18 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
 /* ================= 附记专属背景：星点 + 双色光晕 ================= */
 .appendix{
   background:
-    radial-gradient(ellipse 90% 58% at 50% 14%, rgba(216,155,90,.15), transparent 64%),
+    radial-gradient(ellipse 90% 58% at 50% 24%, rgba(216,155,90,.14), transparent 64%),
     radial-gradient(ellipse 62% 50% at 10% 88%, rgba(110,140,255,.12), transparent 62%),
     radial-gradient(ellipse 50% 42% at 94% 68%, rgba(176,118,255,.09), transparent 60%),
-    linear-gradient(180deg,#2A1E12 0%,#2A1E12 16%,#251A2A 62%,#1A1220 100%);
+    linear-gradient(180deg,#2A1E12 0%,#2A1E12 22%,#2A1D26 48%,#251A2A 68%,#1A1220 100%);
 }
 .appendix::before{
   content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
   background-image:radial-gradient(circle,rgba(255,255,255,.42) 1px,transparent 1.5px);
   background-size:54px 54px;
   opacity:.22;
-  -webkit-mask-image:linear-gradient(180deg,transparent,#000 24%,#000 76%,transparent);
-  mask-image:linear-gradient(180deg,transparent,#000 24%,#000 76%,transparent);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 42%,#000 78%,transparent);
+  mask-image:linear-gradient(180deg,transparent,#000 42%,#000 78%,transparent);
 }
 .appendix .wrap{position:relative;z-index:1}
 @media (max-width:900px){
