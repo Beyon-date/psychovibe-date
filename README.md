@@ -12,18 +12,18 @@
 .
 ├── index.html              # 整个网站（HTML + CSS 内联，单文件）
 ├── README.md               # 本文件
-└── assets/                 # 全部图片（7 张，文件名 = 角色名）
-    ├── README.md           # ★ 图片对照清单（每张图是什么角色、用在哪）
-    ├── 初音未来-首屏.png    # 初音未来 —— 首屏主视觉
-    ├── 派蒙.png            # 派蒙 —— 第 1 节
-    ├── 艾米莉亚.webp        # 艾米莉亚 —— 第 2 节
-    ├── 洛天依.png           # 洛天依 —— 第 3 节
-    ├── 波奇.png            # 后藤一里（波奇）—— 第 4 节
-    ├── 洛琪希.png           # 洛琪希 —— 第 5 节
-    └── 初音未来-第六节.png   # 初音未来 —— 第 6 节
+├── 图片清单.md              # ★ 图片对照清单（每张图是什么角色、用在哪）
+├── 初音未来-首屏.png        # 初音未来 —— 首屏主视觉
+├── 派蒙.png                # 派蒙 —— 第 1 节
+├── 艾米莉亚.webp            # 艾米莉亚 —— 第 2 节
+├── 洛天依.png               # 洛天依 —— 第 3 节
+├── 波奇.png                # 后藤一里（波奇）—— 第 4 节
+├── 洛琪希.png               # 洛琪希 —— 第 5 节
+└── 初音未来-第六节.png       # 初音未来 —— 第 6 节
 ```
 
-**图片对应关系详见 [`assets/README.md`](assets/README.md)**
+**图片全部位于仓库根目录（与 `index.html` 同级），`src` 用相对文件名直接引用。**
+**图片对应关系详见 [`图片清单.md`](图片清单.md)**
 
 ---
 
@@ -66,8 +66,8 @@ git remote add origin https://github.com/你的用户名/仓库名.git
 git push -u origin main
 ```
 
-> 如果是在手机 / 网页端操作：GitHub 仓库页面 → `Add file` → `Upload files` → 把 `index.html` 和 `assets` 文件夹一起拖进去 → Commit。
-> ⚠️ **`assets` 文件夹要整个上传**，不能只传 `index.html`，否则图片全部裂掉。
+> 如果是在手机 / 网页端操作：GitHub 仓库页面 → `Add file` → `Upload files` → 把 `index.html` 和 7 张图片一起拖进去 → Commit。
+> ⚠️ **7 张图片要全部上传**，且必须与 `index.html` 放在同一层目录，否则图片会裂掉。
 
 ### 第二步：部署到 Vercel
 
@@ -91,7 +91,7 @@ git push -u origin main
 
 | 现象 | 原因 | 解决 |
 |---|---|---|
-| 图片全部裂开 | `assets` 文件夹没上传，或传成了 `Assets`（大写） | Vercel 是 Linux，**区分大小写**，文件夹名必须是 `assets` |
+| 图片全部裂开 | 图片没上传，或没有和 `index.html` 放在同一目录 | 图片需与 `index.html` 同级；Vercel 是 Linux，**区分大小写**，文件名必须与 HTML 里写的完全一致 |
 | 图片部分裂开 | HTML 里的文件名和实际文件名大小写不一致 | 全部改成小写（本项目已统一为小写文件名） |
 | 打开是 404 | 入口文件不叫 `index.html` | 根目录必须有 `index.html` |
 | 样式全丢 | 上传时漏了文件 | 确认 `index.html` 是完整的单文件（CSS 在里面） |
@@ -129,7 +129,7 @@ git push -u origin main
 
 ### 换角色图
 
-见 [`assets/README.md`](assets/README.md) 最后一节。
+见 [`图片清单.md`](图片清单.md) 最后一节。
 
 ---
 
