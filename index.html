@@ -625,6 +625,15 @@ footer{background:linear-gradient(180deg,#0F2755 0,#0C0A0E clamp(120px,15vw,200p
 .ap-head{text-align:center}
 .appendix h2{max-width:none;margin-left:auto;margin-right:auto}
 .ap-tag{margin-left:auto;margin-right:auto}
+
+
+/* 图片加载前：隐藏 alt 文字，显示占位色块；加载完成后恢复 */
+.figbox img,.hero-art img{
+  color:transparent;
+  background:rgba(255,255,255,.06);
+  transition:background-color .4s ease;
+}
+.figbox img.loaded,.hero-art img.loaded{background:transparent}
 </style>
 </head>
 <body>
@@ -1005,6 +1014,13 @@ footer{background:linear-gradient(180deg,#0F2755 0,#0C0A0E clamp(120px,15vw,200p
       });
     });
   }
+
+
+  /* 图片加载完成标记（用于撤掉占位底色） */
+  Array.prototype.forEach.call(document.querySelectorAll('.figbox img, .hero-art img'), function (img) {
+    if (img.complete && img.naturalWidth > 0) { img.classList.add('loaded'); }
+    else { img.addEventListener('load', function () { img.classList.add('loaded'); }); }
+  });
 
   /* 鼠标柔光 */
   if (fine && !reduce) {
