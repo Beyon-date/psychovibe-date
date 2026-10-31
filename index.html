@@ -5,175 +5,216 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>你的身体，正在替你说那些说不出口的话 · 高一16班心理课题</title>
 <meta name="description" content="一个纯静态的校园课题展示网站：用段子和口语讲心理学，末尾挂一份匿名问卷收集研究数据。">
-<meta name="theme-color" content="#FAF7F1">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23171310'/><path d='M50 22v34' stroke='%23FAF7F1' stroke-width='9' stroke-linecap='round'/><circle cx='50' cy='72' r='7' fill='%23C0392B'/></svg>">
+<meta name="theme-color" content="#F5F2EA">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%2312100D'/><path d='M50 20v36' stroke='%23F5F2EA' stroke-width='8' stroke-linecap='round'/><circle cx='50' cy='72' r='8' fill='%23B23A2E'/></svg>">
 <style>
 :root{
-  --paper:#FAF7F1;
-  --ink:#171310;
-  --muted:#6E665C;
-  --line:rgba(23,19,16,.13);
-  --accent:#C0392B;
-  --maxw:1180px;
+  --paper:#F5F2EA;
+  --ink:#12100D;
+  --ink-soft:#3C362E;
+  --muted:#7A7167;
+  --line:rgba(18,16,13,.13);
+  --line-2:rgba(18,16,13,.32);
+  --stamp:#B23A2E;
+  --blue:#276DD7;
+  --maxw:1160px;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono","Roboto Mono",Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  margin:0;background:var(--paper);color:var(--ink);
-  font:400 17px/1.9 "PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  margin:0;background:var(--paper);color:var(--ink);position:relative;
+  font:400 17px/1.92 "PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
+/* 纸张颗粒 */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.05;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>")}
 img{display:block;max-width:100%}
 a{color:inherit}
-::selection{background:#171310;color:#FAF7F1}
-
+::selection{background:var(--ink);color:var(--paper)}
 .wrap{width:min(var(--maxw),100% - 44px);margin:0 auto;position:relative;z-index:1}
 
-/* ---------- 顶部 ---------- */
+/* ---------- 顶栏 ---------- */
 .progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:99}
-.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .1s linear}
-.bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-  padding:13px min(26px,4vw);background:rgba(250,247,241,.86);
+.progress i{display:block;height:100%;width:0;background:var(--stamp);transition:width .1s linear}
+.bar{position:sticky;top:0;z-index:50;background:rgba(245,242,234,.9);
   -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.brand{font-weight:900;font-size:14px;letter-spacing:.04em;text-decoration:none}
-.brand span{color:var(--accent);margin:0 4px}
-.bar nav{display:flex;gap:20px;font-size:13px}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;padding:13px 0}
+.brand{font-weight:900;font-size:14px;letter-spacing:.02em;text-decoration:none}
+.brand b{color:var(--stamp);font-weight:900;margin:0 5px}
+.brand i{font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:.18em;color:var(--muted);margin-left:8px}
+.bar nav{display:flex;gap:20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em}
 .bar nav a{text-decoration:none;color:var(--muted);transition:color .2s}
 .bar nav a:hover{color:var(--ink)}
+.filebar{border-bottom:1px solid var(--line);background:rgba(18,16,13,.028)}
+.filebar .wrap{display:flex;gap:26px;flex-wrap:wrap;padding:8px 0;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.filebar b{color:var(--ink);font-weight:700}
 
 /* ---------- 首屏 ---------- */
-.hero{position:relative;padding:clamp(44px,7vw,88px) 0 clamp(52px,7vw,92px);overflow:hidden}
-.hero::before{content:"";position:absolute;top:-14%;right:-10%;width:min(66vw,620px);aspect-ratio:1/1;
-  border-radius:50%;background:radial-gradient(circle,rgba(39,109,215,.13),transparent 66%);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(26px,5vw,70px);align-items:center}
-.kicker{display:inline-block;margin:0;font-size:12px;font-weight:800;letter-spacing:.2em;
-  color:#fff;background:var(--ink);padding:6px 12px;border-radius:2px}
-h1{font-size:clamp(38px,6.2vw,76px);line-height:.99;letter-spacing:-.035em;font-weight:900;margin:.34em 0 .4em}
-h1 em{font-style:normal;color:#276DD7;position:relative;white-space:nowrap}
-h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height:.1em;
-  background:#276DD7;opacity:.28;border-radius:99px}
-.lede{max-width:33em;color:var(--muted);font-size:clamp(15px,1.3vw,17.5px);line-height:1.95;margin:0}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn{display:inline-block;padding:13px 24px;border-radius:3px;text-decoration:none;font-weight:800;font-size:14.5px;
-  background:var(--ink);color:#FAF7F1;transition:transform .16s ease,box-shadow .16s ease}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(23,19,16,.6)}
+.hero{position:relative;padding:clamp(40px,6vw,76px) 0 clamp(48px,6vw,84px);overflow:hidden}
+.hero::before{content:"";position:absolute;top:-16%;right:-8%;width:min(60vw,560px);aspect-ratio:1/1;
+  border-radius:50%;background:radial-gradient(circle,rgba(39,109,215,.12),transparent 66%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(26px,5vw,66px);align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:10px;margin:0;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.kicker::before{content:"";width:26px;height:1px;background:var(--stamp)}
+h1{font-size:clamp(36px,6vw,74px);line-height:.99;letter-spacing:-.035em;font-weight:900;margin:.3em 0 .36em}
+h1 em{font-style:normal;color:var(--blue);position:relative;white-space:nowrap}
+h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.07em;height:.11em;
+  background:var(--blue);opacity:.22;border-radius:99px}
+.lede{max-width:32em;color:var(--ink-soft);font-size:clamp(15px,1.3vw,17px);line-height:1.95;margin:0}
+.meta{display:grid;grid-template-columns:repeat(3,auto);gap:0 34px;margin:28px 0 0;padding:16px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.meta div{display:flex;flex-direction:column;gap:5px}
+.meta dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.meta dd{margin:0;font-size:13.5px;font-weight:700;letter-spacing:-.01em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-block;padding:13px 24px;border-radius:2px;text-decoration:none;font-weight:800;font-size:14px;
+  background:var(--ink);color:var(--paper);transition:transform .16s ease,box-shadow .16s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(18,16,13,.6)}
 .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#FAF7F1}
-.hero-art{margin:0;position:relative;width:100%;max-width:380px;justify-self:end}
-.hero-art img{width:100%;height:auto;border-radius:6px;box-shadow:0 44px 80px -44px rgba(23,19,16,.55)}
-.hero-art figcaption{margin-top:12px;font-size:12.5px;color:var(--muted);letter-spacing:.06em}
-.hero-dots{position:absolute;left:-4%;bottom:8%;width:120px;height:120px;pointer-events:none;
-  background-image:radial-gradient(circle,rgba(23,19,16,.22) 1.6px,transparent 1.7px);
-  background-size:16px 16px;opacity:.55}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+
+/* 影像框 */
+.figbox{margin:0 auto;width:100%;max-width:var(--fw,100%);position:relative;z-index:1}
+.figbox > img{width:100%;height:auto;display:block;padding:9px;background:#fff;
+  border:1px solid var(--line-2);border-radius:2px;box-shadow:0 30px 56px -34px rgba(18,16,13,.55)}
+.figbox figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--muted);text-transform:uppercase}
+.hero-art{max-width:380px;justify-self:end}
+.hero-dots{position:absolute;left:-3%;bottom:6%;width:120px;height:120px;pointer-events:none;
+  background-image:radial-gradient(circle,rgba(18,16,13,.24) 1.5px,transparent 1.6px);
+  background-size:15px 15px;opacity:.5}
 
 /* ---------- 跑马灯 ---------- */
-.strip{background:var(--ink);color:#F6F1EA;overflow:hidden;white-space:nowrap;padding:11px 0;font-size:13px;letter-spacing:.16em}
-.strip-track{display:inline-block;animation:slide 26s linear infinite}
-.strip-track b{color:var(--accent);margin:0 16px;font-weight:400}
-.strip-track span{margin:0 6px}
+.strip{background:var(--ink);color:#F3EEE6;overflow:hidden;white-space:nowrap;padding:10px 0;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.strip-track{display:inline-block;animation:slide 30s linear infinite}
+.strip-track b{color:#E4A79E;margin:0 18px;font-weight:400}
+.strip-track span{margin:0 4px}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ---------- 序章（深色幕间） ---------- */
-.intro{background:#14100F;color:#F4EEE6;padding:clamp(52px,8vw,104px) 0;position:relative;overflow:hidden}
-.intro::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:repeating-linear-gradient(118deg,transparent 0 74px,rgba(192,57,43,.13) 74px 76px)}
-.intro-inner{display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(26px,5vw,70px);align-items:center}
-.intro figure{margin:0;width:100%;max-width:380px}
-.intro figure img{width:100%;height:auto;border-radius:5px;box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
-.intro .label{margin:0 0 10px;font-size:11.5px;font-weight:800;letter-spacing:.22em;color:#E0563F}
-.intro h2{font-size:clamp(26px,3.4vw,40px);line-height:1.22;margin:0 0 .7em;letter-spacing:-.02em}
-.intro p{color:rgba(244,238,230,.74);margin:0 0 .95em;font-size:16.5px}
-.intro p.strong{color:#fff;font-weight:700;margin-top:1.3em}
+/* ---------- 序章 ---------- */
+.intro{background:#12100E;color:#F1EBE2;padding:clamp(52px,7vw,96px) 0;position:relative;overflow:hidden}
+.intro::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:repeating-linear-gradient(118deg,transparent 0 84px,rgba(178,58,46,.14) 84px 86px)}
+.intro-inner{display:grid;grid-template-columns:.84fr 1.16fr;gap:clamp(26px,5vw,66px);align-items:center}
+.intro .figbox > img{box-shadow:0 40px 80px -40px rgba(0,0,0,.95)}
+.intro .figbox figcaption{color:rgba(241,235,226,.5)}
+.label{display:block;margin:0 0 12px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.22em;color:#D9664F;text-transform:uppercase}
+.intro h2{font-size:clamp(25px,3.3vw,38px);line-height:1.24;margin:0 0 .7em;letter-spacing:-.02em}
+.intro p{color:rgba(241,235,226,.74);margin:0 0 .95em;font-size:16px}
+.intro p.strong{color:#fff;font-weight:700;margin-top:1.2em}
 
 /* ---------- 章节 ---------- */
-.chapter{padding:clamp(52px,8vw,104px) 0;position:relative;background:var(--tint,var(--paper));overflow:hidden}
+.chapter{padding:clamp(50px,7vw,96px) 0;position:relative;background:var(--tint,var(--paper));overflow:hidden}
 .chapter::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0}
-.chapter .inner{display:grid;grid-template-columns:.94fr 1.06fr;gap:clamp(26px,5vw,68px);align-items:center;position:relative;z-index:1}
+.chapter .inner{display:grid;grid-template-columns:.94fr 1.06fr;gap:clamp(26px,5vw,64px);align-items:center;position:relative;z-index:1}
 .chapter.flip .inner{grid-template-columns:1.06fr .94fr}
-.chapter.flip figure{order:2}
-.chapter.wide .inner{grid-template-columns:1fr;gap:34px}
+.chapter.flip .figbox{order:2}
+.chapter.wide .inner{grid-template-columns:1fr;gap:30px}
+
+.tagline{display:flex;align-items:center;gap:14px;margin-bottom:12px;font-family:var(--mono);
+  font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.tagline .idx{font-family:inherit;font-size:clamp(30px,4vw,44px);font-weight:900;
+  letter-spacing:-.04em;color:var(--accent);line-height:.8}
+.tagline .tag{padding:3px 7px;border:1px solid currentColor;border-radius:2px;white-space:nowrap}
+.tagline .rule{flex:1;height:1px;background:var(--line-2)}
 .ch-head{position:relative;z-index:1}
-.ch-head .num{display:block;font-size:clamp(42px,5.4vw,66px);font-weight:900;line-height:.9;
-  letter-spacing:-.05em;color:var(--accent);margin-bottom:6px}
-.ch-head h2{font-size:clamp(25px,3.2vw,41px);line-height:1.22;letter-spacing:-.02em;margin:0 0 8px}
-.ch-head .sub{margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--muted)}
-.chapter figure{margin:0 auto;position:relative;z-index:1;width:100%;max-width:var(--fw,100%)}
-.chapter figure img{width:100%;height:auto;display:block;
-  border-radius:5px;box-shadow:0 30px 60px -34px rgba(23,19,16,.5)}
-.ch-body{max-width:37em;margin-top:30px;position:relative;z-index:1}
+.ch-head h2{font-size:clamp(24px,3.1vw,39px);line-height:1.24;letter-spacing:-.022em;margin:0 0 9px}
+.ch-head .sub{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--muted)}
+.ch-body{max-width:37em;margin-top:28px;position:relative;z-index:1}
 .chapter.wide .ch-body{margin-top:0}
 .chapter.flip .ch-body{margin-left:auto}
-.ch-body p{margin:0 0 1.12em}
-blockquote{margin:1.7em 0;padding:.15em 0 .15em 1.05em;border-left:3px solid var(--accent);
-  font-weight:700;font-size:1.05em;line-height:1.75}
-.note{margin:1.9em 0 0;padding:16px 18px;background:rgba(23,19,16,.05);
-  border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-size:14.5px;line-height:1.82;color:#4C453D}
-.note b{display:block;font-size:10.5px;letter-spacing:.18em;color:var(--accent);margin-bottom:7px}
+.ch-body p{margin:0 0 1.1em}
+blockquote{margin:1.6em 0;padding:.1em 0 .1em 18px;border-left:4px solid var(--accent);
+  font-size:1.1em;font-weight:800;line-height:1.72;letter-spacing:-.012em}
+.note{margin:1.8em 0 0;padding:15px 17px;border:1px solid var(--line);
+  border-left:3px solid var(--accent);background:rgba(255,255,255,.5);
+  font-size:14px;line-height:1.86;color:var(--ink-soft)}
+.note b{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;
+  color:var(--accent);margin-bottom:7px;text-transform:uppercase}
+.stamp{position:absolute;right:6px;bottom:8px;transform:rotate(-8deg);z-index:2;
+  font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.22em;
+  color:var(--stamp);border:2px solid var(--stamp);padding:5px 9px;border-radius:2px;
+  opacity:.72;background:rgba(245,242,234,.5);pointer-events:none}
 
-/* 各节专属纹样 */
-.ch-exam::before{background-image:repeating-linear-gradient(0deg,transparent 0 33px,rgba(138,106,79,.11) 33px 34px)}
-.ch-verdict::before{background-image:repeating-linear-gradient(116deg,transparent 0 62px,rgba(142,58,52,.08) 62px 64px)}
+/* 各节纹样 */
+.ch-exam::before{background-image:repeating-linear-gradient(0deg,transparent 0 34px,rgba(138,106,79,.10) 34px 35px)}
+.ch-verdict::before{background-image:repeating-linear-gradient(116deg,transparent 0 64px,rgba(142,58,52,.075) 64px 66px)}
 .ch-summer::before{background-image:
-  radial-gradient(circle at 11% 18%,rgba(200,148,46,.18) 0 8%,transparent 8.5%),
-  radial-gradient(circle at 89% 78%,rgba(125,199,173,.18) 0 11%,transparent 11.5%)}
+  radial-gradient(circle at 10% 16%,rgba(200,148,46,.17) 0 8%,transparent 8.5%),
+  radial-gradient(circle at 90% 80%,rgba(125,199,173,.17) 0 11%,transparent 11.5%)}
 .ch-crowd::before{background-image:
-  radial-gradient(circle at 7% 76%,rgba(31,168,196,.17) 0 4.5%,transparent 5%),
-  radial-gradient(circle at 93% 16%,rgba(31,168,196,.14) 0 6.5%,transparent 7%),
-  radial-gradient(circle at 82% 88%,rgba(31,168,196,.10) 0 3%,transparent 3.5%)}
-.ch-autumn::before{background-image:repeating-linear-gradient(-46deg,transparent 0 46px,rgba(168,98,26,.08) 46px 48px)}
+  radial-gradient(circle at 6% 78%,rgba(31,168,196,.16) 0 4.5%,transparent 5%),
+  radial-gradient(circle at 94% 14%,rgba(31,168,196,.13) 0 6.5%,transparent 7%)}
+.ch-autumn::before{background-image:repeating-linear-gradient(-46deg,transparent 0 48px,rgba(168,98,26,.07) 48px 50px)}
 
-/* 深海章：整节反色 */
+/* 深海反色 */
 .ch-deep{background:#0A1730;color:#E9EEF8}
-.ch-deep::before{background-image:repeating-linear-gradient(180deg,transparent 0 72px,rgba(120,168,255,.07) 72px 74px)}
-.ch-deep .sub{color:rgba(233,238,248,.6)}
+.ch-deep::before{background-image:repeating-linear-gradient(180deg,transparent 0 74px,rgba(120,168,255,.07) 74px 76px)}
+.ch-deep .sub{color:rgba(233,238,248,.55)}
+.ch-deep .tagline{color:rgba(233,238,248,.5)}
+.ch-deep .tagline .rule{background:rgba(233,238,248,.22)}
 .ch-deep blockquote{color:#fff}
-.ch-deep .note{background:rgba(255,255,255,.065);color:rgba(233,238,248,.82)}
-.ch-deep figure img{box-shadow:0 40px 90px -40px rgba(0,0,0,.95)}
+.ch-deep .note{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);
+  border-left-color:var(--accent);color:rgba(233,238,248,.82)}
+.ch-deep .stamp{color:#E88C7C;border-color:#E88C7C;background:rgba(10,23,48,.6);opacity:.5}
 
-/* ---------- 深夜区 ---------- */
-.night{background:#070C16;color:#E6EBF5;padding:clamp(56px,8vw,104px) 0;position:relative;overflow:hidden}
+/* ---------- 深夜 ---------- */
+.night{background:#080C16;color:#E6EBF5;padding:clamp(54px,7vw,100px) 0;position:relative;overflow:hidden}
 .night::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:radial-gradient(circle,rgba(255,255,255,.16) 1px,transparent 1.4px);background-size:44px 44px;opacity:.5}
-.night .inner{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(26px,5vw,68px);align-items:center}
+  background-image:radial-gradient(circle,rgba(255,255,255,.15) 1px,transparent 1.4px);
+  background-size:42px 42px;opacity:.45}
+.night .inner{display:grid;grid-template-columns:.78fr 1.22fr;gap:clamp(26px,5vw,64px);align-items:center}
 .night-clock{position:relative;display:flex;align-items:center;justify-content:center;
-  width:min(100%,320px);aspect-ratio:1/1;margin:0 auto;border-radius:50%;
-  border:1px solid rgba(255,255,255,.15);
+  width:min(100%,300px);aspect-ratio:1/1;margin:0 auto;border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);
   background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.07),transparent 62%)}
-.night-clock span{font-size:clamp(38px,6.2vw,58px);font-weight:900;letter-spacing:-.045em}
+.night-clock span{font-family:var(--mono);font-size:clamp(34px,5.6vw,52px);font-weight:800;letter-spacing:-.03em}
 .night-clock i{position:absolute;top:17%;right:21%;width:9px;height:9px;border-radius:50%;
   background:#E0563F;box-shadow:0 0 0 7px rgba(224,86,63,.14)}
-.night .label{margin:0 0 10px;font-size:11.5px;font-weight:800;letter-spacing:.22em;color:#E0563F}
-.night h2{font-size:clamp(25px,3.2vw,38px);margin:0 0 .7em;letter-spacing:-.02em;line-height:1.25}
-.night ol{margin:0;padding-left:1.25em;color:rgba(230,235,245,.8)}
-.night ol li{margin:0 0 .75em}
+.night h2{font-size:clamp(24px,3.1vw,36px);margin:0 0 .65em;letter-spacing:-.02em;line-height:1.26}
+.night ol{margin:0;padding-left:1.2em;color:rgba(230,235,245,.8)}
+.night ol li{margin:0 0 .7em}
+.night .label{color:#E0563F}
 
 /* ---------- 问卷 ---------- */
-.survey{background:#0F2755;color:#fff;padding:clamp(60px,9vw,120px) 0;position:relative;overflow:hidden}
+.survey{background:#0F2755;color:#fff;padding:clamp(58px,8vw,112px) 0;position:relative;overflow:hidden}
 .survey::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(circle at 78% 22%,rgba(39,109,215,.5),transparent 55%)}
-.survey .inner{max-width:760px;position:relative;z-index:1}
-.survey .label{margin:0 0 14px;font-size:11.5px;font-weight:800;letter-spacing:.22em;color:#8FB6F0}
-.survey h2{font-size:clamp(27px,4vw,48px);line-height:1.24;letter-spacing:-.025em;margin:0 0 .55em}
-.survey p{color:rgba(255,255,255,.78);margin:0 0 .8em;font-size:16.5px}
-.survey .cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:16px 30px;border-radius:3px;
-  background:#fff;color:#0F2755;font-weight:900;text-decoration:none;font-size:15.5px;
+  background:radial-gradient(circle at 76% 20%,rgba(39,109,215,.5),transparent 56%)}
+.survey .inner{max-width:740px;position:relative;z-index:1}
+.survey .label{color:#8FB6F0}
+.survey h2{font-size:clamp(26px,3.8vw,44px);line-height:1.26;letter-spacing:-.025em;margin:0 0 .5em}
+.survey p{color:rgba(255,255,255,.78);margin:0 0 .8em;font-size:16px}
+.survey .cta{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:15px 28px;border-radius:2px;
+  background:#fff;color:#0F2755;font-weight:900;text-decoration:none;font-size:15px;
   transition:transform .18s ease,box-shadow .18s ease}
 .survey .cta:hover{transform:translateY(-3px);box-shadow:0 18px 34px -16px rgba(0,0,0,.65)}
 .survey .cta span{transition:transform .18s ease}
 .survey .cta:hover span{transform:translateX(4px)}
-.survey .fine{margin-top:18px;font-size:12.5px;color:rgba(255,255,255,.5);letter-spacing:.04em}
+.survey .fine{margin-top:16px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.06em}
 
 /* ---------- 页脚 ---------- */
-footer{padding:clamp(44px,6vw,74px) 0 54px;font-size:13.5px;color:var(--muted)}
-footer .cols{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:34px}
-footer h3{font-size:12px;letter-spacing:.18em;color:var(--ink);margin:0 0 12px}
+footer{padding:clamp(42px,6vw,70px) 0 50px;font-size:13px;color:var(--muted)}
+footer .cols{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px}
+footer h3{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--ink);
+  margin:0 0 12px;text-transform:uppercase}
 footer p{margin:0 0 .7em;line-height:1.85}
 footer a{text-decoration:none;border-bottom:1px solid var(--line)}
 footer a:hover{border-color:var(--ink)}
-footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:#8C8479}
+footer .end{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:#8A8175}
+.barcode{width:118px;height:24px;opacity:.7;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 3px,
+    var(--ink) 3px 5px,transparent 5px 6px,var(--ink) 6px 8px,transparent 8px 11px)}
 
 /* ---------- 入场 ---------- */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
@@ -183,75 +224,175 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
 
 /* ---------- 响应式 ---------- */
 @media (max-width:900px){
-  body{font-size:16.5px}
-  .hero-grid,.intro-inner,.night .inner{grid-template-columns:1fr;gap:34px}
-  .hero-art{order:-1}
-  .chapter .inner,.chapter.flip .inner{grid-template-columns:1fr;gap:26px}
-  .chapter.flip figure{order:0}
-  .chapter figure img{width:100%}
-  .ch-head .num{font-size:44px}
-  footer .cols{grid-template-columns:1fr;gap:26px}
+  body{font-size:16px}
+  .hero-grid,.intro-inner,.night .inner{grid-template-columns:1fr;gap:30px}
+  .hero-art{order:-1;max-width:100%;justify-self:start}
+  .chapter .inner,.chapter.flip .inner{grid-template-columns:1fr;gap:24px}
+  .chapter.flip .figbox{order:0}
+  .meta{grid-template-columns:1fr 1fr;gap:14px 20px}
+  footer .cols{grid-template-columns:1fr;gap:24px}
   .hero-dots{display:none}
-  .bar nav{gap:14px;font-size:12.5px}
+  .bar nav{gap:14px;font-size:9.5px}
+  .stamp{right:0;bottom:4px;font-size:9px;padding:4px 7px}
 }
 @media (max-width:520px){
-  .wrap{width:calc(100% - 32px)}
-  h1{letter-spacing:-.03em}
-  .btn{padding:12px 18px;font-size:13.5px}
-  .strip{font-size:11.5px;letter-spacing:.1em}
+  .wrap{width:calc(100% - 30px)}
+  .filebar .wrap{gap:12px;font-size:9px}
+  .btn{padding:12px 18px;font-size:13px}
+  .tagline{gap:10px}
+  .tagline .tag{font-size:9px}
+  blockquote{font-size:1.04em}
+}
+
+/* ================= 精修层 02：档案细节 ================= */
+
+/* 每节页脚页码 */
+main{counter-reset:pg}
+.chapter{counter-increment:pg}
+.chapter::after{content:"PAGE " counter(pg,decimal-leading-zero) " / 06";
+  position:absolute;left:0;right:0;bottom:16px;text-align:center;z-index:1;
+  font-family:var(--mono);font-size:9px;letter-spacing:.24em;color:var(--muted);
+  opacity:.55;pointer-events:none}
+.ch-deep::after{color:rgba(233,238,248,.42)}
+
+/* 章节顶部细分隔 */
+.chapter .inner::before{content:"";position:absolute;left:0;right:0;top:-26px;height:1px;
+  background:var(--line-2);opacity:.45;pointer-events:none}
+.ch-deep .inner::before{background:rgba(233,238,248,.18);opacity:1}
+
+/* 编号轻微出血 */
+.tagline .idx{margin-left:-3px}
+
+/* 影像悬停 */
+.figbox > img{transition:transform .36s cubic-bezier(.2,.8,.2,1),box-shadow .36s ease}
+.figbox:hover > img{transform:translateY(-4px);box-shadow:0 40px 72px -34px rgba(18,16,13,.62)}
+
+/* 首屏淡色大号班级数字 */
+.hero::after{content:"16";position:absolute;right:-1%;top:2%;z-index:0;pointer-events:none;
+  font-family:var(--mono);font-size:clamp(130px,22vw,280px);font-weight:900;line-height:1;
+  color:rgba(18,16,13,.032)}
+
+/* 引文收尾引号 */
+blockquote{position:relative}
+blockquote::after{content:"\201D";position:absolute;right:2px;bottom:-.42em;pointer-events:none;
+  font-family:Georgia,"Times New Roman",serif;font-size:2.5em;line-height:1;
+  color:var(--accent);opacity:.16}
+
+/* 移动端收敛 */
+@media (max-width:900px){
+  .chapter::after{bottom:10px;font-size:8px;letter-spacing:.3em}
+  .chapter .inner::before{top:-18px}
+  .hero::after{display:none}
+  .figbox:hover > img{transform:none}
+}
+
+/* ================= 精修层 03：节奏与排版 ================= */
+h1{line-height:1.02;letter-spacing:-.04em}
+.lede{line-height:2}
+.ch-body p{margin:0 0 1.18em;line-height:1.95}
+blockquote{margin:2em 0;padding-left:20px}
+.note{margin-top:2em;padding:17px 19px}
+.tagline{margin-bottom:16px}
+.ch-head h2{margin-bottom:11px}
+.ch-head .sub{letter-spacing:.1em}
+.chapter{padding-top:clamp(56px,7.5vw,104px);padding-bottom:clamp(68px,8vw,112px)}
+.intro p{line-height:1.98}
+@media (max-width:900px){
+  h1{line-height:1.06;letter-spacing:-.032em}
+  .ch-body p{line-height:1.96}
+  .chapter{padding-top:clamp(44px,7vw,64px);padding-bottom:clamp(52px,7vw,74px)}
+}
+
+/* ================= 精修层 04：纸感与落章 ================= */
+/* 极淡档案网格（只在中性底色上可见） */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(18,16,13,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(18,16,13,.022) 1px,transparent 1px);
+  background-size:68px 68px}
+
+/* 印章落章 */
+@keyframes stampIn{
+  0%{transform:rotate(-8deg) scale(1.75);opacity:0}
+  60%{transform:rotate(-8deg) scale(.94);opacity:.8}
+  100%{transform:rotate(-8deg) scale(1);opacity:.72}
+}
+.figbox.in .stamp{animation:stampIn .55s cubic-bezier(.2,1.3,.4,1) both}
+
+/* 图片入场时略微软化到清晰 */
+.figbox.reveal > img{transform:scale(1.015);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.figbox.reveal.in > img{transform:none}
+.figbox:hover > img{transform:translateY(-4px)}
+
+@media (prefers-reduced-motion:reduce){
+  .figbox.in .stamp{animation:none}
+  .figbox.reveal > img{transform:none;transition:none}
 }
 </style>
 </head>
 <body>
-
 <div class="progress"><i></i></div>
 
 <header class="bar">
-  <a class="brand" href="#top">心身反应<span>·</span>高一16班</a>
-  <nav>
-    <a href="#ch1">正文</a>
-    <a href="#survey">问卷</a>
-  </nav>
+  <div class="wrap">
+    <a class="brand" href="#top">心身反应<b>/</b>PSYCHOVIBE<i>高一16班</i></a>
+    <nav>
+      <a href="#ch1">正文</a>
+      <a href="#survey">问卷</a>
+    </nav>
+  </div>
 </header>
+
+<div class="filebar" aria-hidden="true">
+  <div class="wrap">
+    <span>CASE FILE <b>NO. 2026-16</b></span>
+    <span>SUBJECT <b>高一16班</b></span>
+    <span>SAMPLES <b>06</b></span>
+    <span>STATUS <b>记录中</b></span>
+  </div>
+</div>
 
 <main id="top">
 
-  <!-- 首屏 -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <p class="kicker">研究性学习 · 心理学方向</p>
         <h1>你的身体<br>正在替你<br><em>说出</em>那些<br>说不出口的话</h1>
         <p class="lede">考前一晚，肚子先疼。被点名的时候，手先抖。困到极点，反而睡不着。我们用一学期，想弄清楚这些反应到底在替我们说什么。</p>
+        <dl class="meta">
+          <div><dt>样本</dt><dd>六个人人都有的瞬间</dd></div>
+          <div><dt>方法</dt><dd>回忆 · 对照 · 问卷</dd></div>
+          <div><dt>周期</dt><dd>一个学期</dd></div>
+        </dl>
         <div class="hero-actions">
           <a class="btn" href="#ch1">从头读起</a>
           <a class="btn ghost" href="#survey">直接填问卷</a>
         </div>
       </div>
-      <figure class="hero-art">
-        <img src="assets/img/hero-sky.webp" width="707" height="1000" alt="蓝天下的少女，白鸽四散飞起" fetchpriority="high" decoding="async">
-        <figcaption>有些话，是等风来了才说出口的。</figcaption>
+      <figure class="figbox hero-art">
+        <img src="assets/img/hero-sky.webp" width="707" height="1000" alt="蓝天下的蓝发少女，白鸽在四周飞散" fetchpriority="high" decoding="async">
+        <figcaption><span>FIG. 00</span><span>说出口之后</span></figcaption>
       </figure>
-      <span class="hero-dots" aria-hidden="true"></span>
     </div>
+    <span class="hero-dots" aria-hidden="true"></span>
   </section>
 
-  <!-- 跑马灯 -->
   <div class="strip" aria-hidden="true">
     <div class="strip-track">
-      <span>六段日常</span><b>·</b><span>六种身体语言</span><b>·</b><span>一份匿名问卷</span><b>·</b><span>全部真实，全部普通</span><b>·</b>
-      <span>六段日常</span><b>·</b><span>六种身体语言</span><b>·</b><span>一份匿名问卷</span><b>·</b><span>全部真实，全部普通</span><b>·</b>
+      <span>六段日常</span><b>+</b><span>六种身体语言</span><b>+</b><span>一份匿名问卷</span><b>+</b><span>全部真实</span><b>+</b><span>全部普通</span><b>+</b>
+      <span>六段日常</span><b>+</b><span>六种身体语言</span><b>+</b><span>一份匿名问卷</span><b>+</b><span>全部真实</span><b>+</b><span>全部普通</span><b>+</b>
     </div>
   </div>
 
-  <!-- 序章 -->
   <section class="intro">
     <div class="wrap intro-inner">
-      <figure>
+      <figure class="figbox">
         <img src="assets/img/intro-miku.webp" width="851" height="1200" alt="碎发与飞散的红线，像没说出口的话" loading="lazy" decoding="async">
+        <figcaption><span>FIG. 00—A</span><span>未被记录的情绪</span></figcaption>
       </figure>
       <div class="intro-copy">
-        <p class="label">序</p>
+        <span class="label">Preface / 序</span>
         <h2>先说一件小事</h2>
         <p>上课铃响之前，教室总是很吵。</p>
         <p>有人在讲昨晚的剧，有人在借橡皮，有人趴在桌上假装睡觉。</p>
@@ -262,143 +403,142 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
     </div>
   </section>
 
-  <!-- 01 -->
-  <section class="chapter wide ch-exam" id="ch1" style="--accent:#8A6A4F;--tint:#F4F0E8;--fw:640px">
+  <section class="chapter wide ch-exam" id="ch1" style="--accent:#8A6A4F;--tint:#F1EDE3;--fw:640px">
     <div class="wrap inner">
       <div class="ch-head">
-        <span class="num">01</span>
+        <div class="tagline"><span class="idx">01</span><span class="tag">Somatic</span><span class="rule"></span><span>躯体化</span></div>
         <h2>那天晚上，胃比你先睡着</h2>
-        <p class="sub">考试前一晚 · 躯体化反应</p>
+        <p class="sub">主诉 · 考试前一晚</p>
       </div>
-      <figure>
-        <img src="assets/img/ch1-exam.webp" width="1200" height="899" alt="黄昏的教室里，一个男生伏在摊开的书页上" loading="lazy" decoding="async">
+      <figure class="figbox">
+        <img src="assets/img/ch1-exam.webp" width="1200" height="899" alt="黄昏的教室里，一个男生伏在堆满书本的桌上" loading="lazy" decoding="async">
+        <figcaption><span>FIG. 01</span><span>黄昏教室 / 18:40</span></figcaption>
+        <span class="stamp">已记录</span>
       </figure>
       <div class="ch-body">
         <p>考前一晚，你把闹钟调早了十分钟。十分钟后你醒了，比闹钟还早。</p>
         <p>胃里像有只猫在踩奶，一下一下，很规律。你开始排除原因：晚饭吃坏了？着凉了？紧张了？——最后那个你不想承认，但它最像答案。</p>
         <p>你翻了个身，胃又动了一下，像在说：这件事我替你记着呢。</p>
         <blockquote>情绪不走高速公路，它走的是胃肠道。</blockquote>
-        <aside class="note"><b>后来才知道</b>考前胃疼不是"想太多"，是身体真的在执行一套应激程序。肾上腺素和皮质醇上来，血流从消化道撤走，胃就先开始抗议了。</aside>
+        <aside class="note"><b>Mechanism / 后来才知道</b>考前胃疼不是"想太多"，是身体真的在执行一套应激程序。肾上腺素和皮质醇上来，血流从消化道撤走，胃就先开始抗议了。</aside>
       </div>
     </div>
   </section>
 
-  <!-- 02 -->
-  <section class="chapter flip ch-verdict" id="ch2" style="--accent:#8E3A34;--tint:#F8F0ED;--fw:320px">
-    <div class="wrap inner">
-      <figure>
-        <img src="assets/img/ch2-verdict.webp" width="707" height="1000" alt="红裙少女抱膝而坐，长刀横在身前" loading="lazy" decoding="async">
-      </figure>
-      <div class="ch-copy">
-        <div class="ch-head">
-          <span class="num">02</span>
-          <h2>那三分钟，我给自己判了刑</h2>
-          <p class="sub">发下卷子之后 · 习得性无助</p>
-        </div>
-        <div class="ch-body">
-          <p>卷子发下来，你第一眼看的是分数。</p>
-          <p>然后迅速把它折起来，塞进书包最底层，动作熟练得像在处理什么见不得人的东西。</p>
-          <p>"我果然不行。"这句话出现得比任何解题思路都快，比你任何一次努力都更准时。</p>
-          <blockquote>真正让你放弃数学的，不是那张卷子，是"努力没用"这个结论。</blockquote>
-          <aside class="note"><b>后来才知道</b>失败次数多到一定程度，人会先学会不试。心理学叫习得性无助——不是懒，是大脑提前替你止损了。</aside>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 -->
-  <section class="chapter wide ch-summer" id="ch3" style="--accent:#B07A1E;--tint:#FBF6E5;--fw:640px">
+  <section class="chapter flip ch-verdict" id="ch2" style="--accent:#8E3A34;--tint:#F7EFEC;--fw:320px">
     <div class="wrap inner">
       <div class="ch-head">
-        <span class="num">03</span>
-        <h2>角落里那顿饭</h2>
-        <p class="sub">班级聚餐 · 社交中的孤独</p>
+        <div class="tagline"><span class="idx">02</span><span class="tag">Helplessness</span><span class="rule"></span><span>习得性无助</span></div>
+        <h2>那三分钟，我给自己判了刑</h2>
+        <p class="sub">主诉 · 发下卷子之后</p>
       </div>
-      <figure>
-        <img src="assets/img/ch3-summer.webp" width="1300" height="919" alt="夏日绿意里，少女举着一杯蓝色的酒" loading="lazy" decoding="async">
+      <figure class="figbox">
+        <img src="assets/img/ch2-verdict.webp" width="707" height="1000" alt="红裙少女坐在散开的红布上，长刀横在身前" loading="lazy" decoding="async">
+        <figcaption><span>FIG. 02</span><span>自我裁决</span></figcaption>
+        <span class="stamp">已记录</span>
+      </figure>
+      <div class="ch-body">
+        <p>卷子发下来，你第一眼看的是分数。</p>
+        <p>然后迅速把它折起来，塞进书包最底层，动作熟练得像在处理什么见不得人的东西。</p>
+        <p>"我果然不行。"这句话出现得比任何解题思路都快，比你任何一次努力都更准时。</p>
+        <blockquote>真正让你放弃数学的，不是那张卷子，是"努力没用"这个结论。</blockquote>
+        <aside class="note"><b>Mechanism / 后来才知道</b>失败次数多到一定程度，人会先学会不试。心理学叫习得性无助——不是懒，是大脑提前替你止损了。</aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter wide ch-summer" id="ch3" style="--accent:#B07A1E;--tint:#FAF5E4;--fw:640px">
+    <div class="wrap inner">
+      <div class="ch-head">
+        <div class="tagline"><span class="idx">03</span><span class="tag">Social</span><span class="rule"></span><span>社交孤独</span></div>
+        <h2>角落里那顿饭</h2>
+        <p class="sub">主诉 · 班级聚餐</p>
+      </div>
+      <figure class="figbox">
+        <img src="assets/img/ch3-summer.webp" width="1300" height="919" alt="夏日绿意中，蓝发少女举着一杯蓝色饮品" loading="lazy" decoding="async">
+        <figcaption><span>FIG. 03</span><span>一场标准笑容</span></figcaption>
+        <span class="stamp">已记录</span>
       </figure>
       <div class="ch-body">
         <p>班级聚餐，你被安排在最里面的位置。桌上的菜转了两圈，你夹了三次，每次都刚好转到你不爱吃的。</p>
         <p>你一直在等一个话题落到你头上。有人说了一句什么，全场笑了，你也笑了，晚了半秒。</p>
         <p>那半秒，你在检查：我笑得对不对。</p>
         <blockquote>那天阳光很好，你笑得也很标准，只是没有一句是真的。</blockquote>
-        <aside class="note"><b>后来才知道</b>那一眼只花了对方一秒，它在你脑子里待了二十分钟。这不是玻璃心，是大脑对"被排斥"的警报特别灵敏——很久以前，被群体赶出去真的等于死。</aside>
+        <aside class="note"><b>Mechanism / 后来才知道</b>那一眼只花了对方一秒，它在你脑子里待了二十分钟。这不是玻璃心，是大脑对"被排斥"的警报特别灵敏——很久以前，被群体赶出去真的等于死。</aside>
       </div>
     </div>
   </section>
 
-  <!-- 04 -->
-    <section class="chapter wide ch-crowd" id="ch4" style="--accent:#17849B;--tint:#EDF7F9;--fw:640px">
+  <section class="chapter wide ch-crowd" id="ch4" style="--accent:#17849B;--tint:#EBF5F7;--fw:640px">
     <div class="wrap inner">
       <div class="ch-head">
-        <span class="num">04</span>
+        <div class="tagline"><span class="idx">04</span><span class="tag">Conformity</span><span class="rule"></span><span>从众</span></div>
         <h2>那道题，全班都没听懂</h2>
-        <p class="sub">教室里的三秒沉默 · 从众</p>
+        <p class="sub">主诉 · 教室里的三秒沉默</p>
       </div>
-      <figure>
+      <figure class="figbox">
         <img src="assets/img/ch4-crowd.webp" width="1300" height="910" alt="水光与金鱼之间，两名和服少女彼此对视" loading="lazy" decoding="async">
+        <figcaption><span>FIG. 04</span><span>同一片水里</span></figcaption>
+        <span class="stamp">已记录</span>
       </figure>
       <div class="ch-body">
         <p>老师问：这道题大家听明白了吗？</p>
         <p>教室里安静了三秒。没人举手。</p>
         <p>你其实听懂了。你也想举手。但手抬到一半，你听见那片安静，又把它放下了。</p>
         <blockquote>没人举手的时候，不举手也不是你的错。那是房间里所有人的共同决定。</blockquote>
-        <aside class="note"><b>后来才知道</b>1951 年的从众实验里，被试平均有三分之一会跟着明显错误的答案走。没有惩罚，没有威胁，只要有"大家都这样"五个字就够了。</aside>
+        <aside class="note"><b>Mechanism / 后来才知道</b>1951 年的从众实验里，被试平均有三分之一会跟着明显错误的答案走。没有惩罚，没有威胁，只要有"大家都这样"五个字就够了。</aside>
       </div>
     </div>
   </section>
 
-  <!-- 05 深海 -->
   <section class="chapter flip ch-deep" id="ch5" style="--accent:#5B8DEF;--fw:250px">
     <div class="wrap inner">
-      <figure>
-        <img src="assets/img/ch5-night.webp" width="527" height="1000" alt="深水之中，蓝发少女托着腮，金鱼从她发间游过" loading="lazy" decoding="async">
+      <div class="ch-head">
+        <div class="tagline"><span class="idx">05</span><span class="tag">Rumination</span><span class="rule"></span><span>反刍思维</span></div>
+        <h2>凌晨一点的那部连续剧</h2>
+        <p class="sub">主诉 · 关灯之后</p>
+      </div>
+      <figure class="figbox">
+        <img src="assets/img/ch5-night.webp" width="527" height="1000" alt="深水中的蓝发少女，金鱼从她身边游过" loading="lazy" decoding="async">
+        <figcaption><span>FIG. 05</span><span>01:00 / 水下</span></figcaption>
+        <span class="stamp">已记录</span>
       </figure>
-      <div class="ch-copy">
-        <div class="ch-head">
-          <span class="num">05</span>
-          <h2>凌晨一点的那部连续剧</h2>
-          <p class="sub">关灯之后 · 反刍思维</p>
-        </div>
-        <div class="ch-body">
-          <p>躺下了。灯关了。手机也扣过去了。</p>
-          <p>然后你开始复盘今天说过的每一句话。那句话是不是很蠢？他那个表情是什么意思？我为什么要笑？</p>
-          <p>你摸到手机，想找点东西把脑子填满。于是凌晨一点，你和一部并不好看的剧一起亮着。</p>
-          <blockquote>真的反思是有结尾的。你这个没有。它只是循环播放。</blockquote>
-          <aside class="note"><b>后来才知道</b>这叫声反刍思维。它长得像思考，其实是原地打转。分界线不在你想了多久，而在这句话有没有出口。</aside>
-        </div>
+      <div class="ch-body">
+        <p>躺下了。灯关了。手机也扣过去了。</p>
+        <p>然后你开始复盘今天说过的每一句话。那句话是不是很蠢？他那个表情是什么意思？我为什么要笑？</p>
+        <p>你摸到手机，想找点东西把脑子填满。于是凌晨一点，你和一部并不好看的剧一起亮着。</p>
+        <blockquote>真的反思是有结尾的。你这个没有。它只是循环播放。</blockquote>
+        <aside class="note"><b>Mechanism / 后来才知道</b>这叫声反刍思维。它长得像思考，其实是原地打转。分界线不在你想了多久，而在这句话有没有出口。</aside>
       </div>
     </div>
   </section>
 
-  <!-- 06 -->
-  <section class="chapter ch-autumn" id="ch6" style="--accent:#A8621A;--tint:#F9F2E6;--fw:320px">
+  <section class="chapter ch-autumn" id="ch6" style="--accent:#A8621A;--tint:#F8F2E7;--fw:320px">
     <div class="wrap inner">
-      <figure>
-        <img src="assets/img/ch6-autumn.webp" width="707" height="1000" alt="秋日林间，狐耳少女坐在落叶中，身旁伏着一只狐狸" loading="lazy" decoding="async">
+      <div class="ch-head">
+        <div class="tagline"><span class="idx">06</span><span class="tag">Self-concept</span><span class="rule"></span><span>自我确认</span></div>
+        <h2>出门前的第三件衣服</h2>
+        <p class="sub">主诉 · 镜子前</p>
+      </div>
+      <figure class="figbox">
+        <img src="assets/img/ch6-autumn.webp" width="707" height="1000" alt="秋日林间的狐耳少女坐着，身旁是一只狐狸" loading="lazy" decoding="async">
+        <figcaption><span>FIG. 06</span><span>秋天 / 林间</span></figcaption>
+        <span class="stamp">已记录</span>
       </figure>
-      <div class="ch-copy">
-        <div class="ch-head">
-          <span class="num">06</span>
-          <h2>出门前的第三件衣服</h2>
-          <p class="sub">镜子前 · 自我确认</p>
-        </div>
-        <div class="ch-body">
-          <p>衣柜翻到第三件，你终于放弃：算了，穿什么都一样。</p>
-          <p>然后出门前最后一秒，你还是回头看了一眼镜子。</p>
-          <blockquote>那不是爱美。那是你在确认"我到底是谁"。</blockquote>
-          <aside class="note"><b>后来才知道</b>青春期有件不太公平的事：身体变化的速度，快过心理适应的速度。你会格外在意别人怎么看你，因为那几乎是唯一能确认"我是谁"的镜子。</aside>
-        </div>
+      <div class="ch-body">
+        <p>衣柜翻到第三件，你终于放弃：算了，穿什么都一样。</p>
+        <p>然后出门前最后一秒，你还是回头看了一眼镜子。</p>
+        <blockquote>那不是爱美。那是你在确认"我到底是谁"。</blockquote>
+        <aside class="note"><b>Mechanism / 后来才知道</b>青春期有件不太公平的事：身体变化的速度，快过心理适应的速度。你会格外在意别人怎么看你，因为那几乎是唯一能确认"我是谁"的镜子。</aside>
       </div>
     </div>
   </section>
 
-  <!-- 深夜 -->
   <section class="night">
     <div class="wrap inner">
       <div class="night-clock" aria-hidden="true"><span>01:00</span><i></i></div>
       <div>
-        <p class="label">睡不着的时候看</p>
+        <span class="label">Night Shift / 睡不着的时候看</span>
         <h2>如果今晚又轮到你了</h2>
         <ol>
           <li>把没想完的事写在一张纸上，放在床头。纸比你更能记住它。</li>
@@ -409,17 +549,14 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
     </div>
   </section>
 
-  <!-- 问卷 -->
   <section class="survey" id="survey">
-    <div class="wrap">
-      <div class="inner">
-        <p class="label">最后一个问题</p>
-        <h2>上面六段里，有没有哪一段，你看着看着，慢了一下？</h2>
-        <p>如果答案是"有"，那你就是我们想找的人。</p>
-        <p>一份三分钟的匿名问卷，不记名，不追踪，不评价。你只需要说实话，甚至不用说完美。</p>
-        <a class="cta" href="https://wj.qq.com/s2/27865770/oevk/" target="_blank" rel="noopener">填写匿名问卷 <span>→</span></a>
-        <p class="fine">问卷结果仅用于本课题研究，不会公开任何可识别个人的信息。</p>
-      </div>
+    <div class="wrap inner">
+      <span class="label">Form 07 / 匿名问卷</span>
+      <h2>上面六段里，有没有哪一段，你看着看着，慢了一下？</h2>
+      <p>如果答案是"有"，那你就是我们想找的人。</p>
+      <p>一份三分钟的匿名问卷，不记名，不追踪，不评价。你只需要说实话，甚至不用说完美。</p>
+      <a class="cta" href="https://wj.qq.com/s2/27865770/oevk/" target="_blank" rel="noopener">填写匿名问卷 <span>→</span></a>
+      <p class="fine">问卷结果仅用于本课题研究，不会公开任何可识别个人的信息。</p>
     </div>
   </section>
 
@@ -430,21 +567,23 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
     <div class="cols">
       <div>
         <h3>关于本站</h3>
-        <p>高一16班研究性学习课题，心理学方向，课题代号「心身反应」。</p>
-        <p>我们把一学期读到的、聊到的、以及发生在自己身上的事，整理成了这六段。</p>
+        <p>这是一个研究性学习课题的展示页面，主题是"身体反应与情绪的关系"。我们不是专业人士，只是一个班的高一学生，把这些反应整理出来，想听听更多人的答案。</p>
       </div>
       <div>
-        <h3>问卷</h3>
+        <h3>声明</h3>
+        <p>本站内容不能替代专业心理评估、诊断或治疗。</p>
+        <p>如果你正处在困难时期，请和信任的大人、老师或专业机构联系。</p>
+      </div>
+      <div>
+        <h3>参与</h3>
         <p><a href="https://wj.qq.com/s2/27865770/oevk/" target="_blank" rel="noopener">填写匿名问卷 →</a></p>
-        <p>约 3 分钟，完全不记名。</p>
-      </div>
-      <div>
-        <h3>说明</h3>
-        <p>本站内容仅用于校园研究与心理科普，不能替代专业评估、诊断或治疗。</p>
-        <p>如果你正在经历困难，请告诉信任的大人，或寻求专业帮助。</p>
+        <p>插画来自网络公开图源，版权归原作者所有。</p>
       </div>
     </div>
-    <p class="end">页面插画来自网络公开图源，版权归原作者所有；本站为非商业校园课题展示，如有不妥请联系删除。</p>
+    <div class="end">
+      <span>CASE FILE NO. 2026-16 · 高一16班 · 心理学方向</span>
+      <span class="barcode" aria-hidden="true"></span>
+    </div>
   </div>
 </footer>
 
@@ -462,13 +601,15 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;
 
-  var nodes = document.querySelectorAll('.hero-copy > *, .hero-art, .intro-copy > *, .intro figure, .ch-head, .chapter figure, .ch-body > *, .night > .wrap > *, .survey .inner > *, footer .cols > *');
+  var nodes = document.querySelectorAll(
+    '.hero-copy > *, .hero-art, .intro-copy > *, .intro .figbox, .tagline, .ch-head, .figbox, .ch-body > *, .night .inner > *, .survey .inner > *, footer .cols > *'
+  );
   var list = [];
   Array.prototype.forEach.call(nodes, function (el) {
+    if (el.classList.contains('reveal')) return;
     el.classList.add('reveal');
     list.push(el);
   });
-
   if (!('IntersectionObserver' in window)) {
     list.forEach(function (el) { el.classList.add('in'); });
     return;
@@ -477,7 +618,7 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.05, rootMargin: '0px 0px -6% 0px' });
+  }, { threshold: 0.06, rootMargin: '0px 0px -6% 0px' });
   list.forEach(function (el) { io.observe(el); });
 })();
 </script>
