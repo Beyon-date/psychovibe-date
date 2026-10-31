@@ -542,7 +542,7 @@ footer a{color:#E0B084}
 
 /* 深夜区 / 问卷区 / 页脚 平滑衔接 */
 .night{background:linear-gradient(180deg,#2A1E12 0,#080C16 clamp(130px,16vw,200px))}
-.survey{background:linear-gradient(180deg,#080C16 0,#0F2755 clamp(130px,16vw,200px))}
+.survey{background:linear-gradient(180deg,#2A1E12 0,#0F2755 clamp(130px,16vw,200px))}
 footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(130px,16vw,200px))}
 
 @media (max-width:900px){
@@ -625,7 +625,6 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(130px,16vw,200p
 .ap-head{text-align:center}
 .appendix h2{max-width:none;margin-left:auto;margin-right:auto}
 .ap-tag{margin-left:auto;margin-right:auto}
-
 
 /* 图片加载前：隐藏 alt 文字，显示占位色块；加载完成后恢复 */
 .figbox img,.hero-art img{
@@ -888,24 +887,9 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(130px,16vw,200p
     </div>
   </section>
 
-
   
 
-  <section class="night" style="--sep:#8AAEFF">
-    <div class="sep" aria-hidden="true"></div>
-    <div class="wrap inner">
-      <div class="night-clock" aria-hidden="true"><span>01:00</span><i></i></div>
-      <div>
-        <span class="label">Night Shift / 绷得太紧的时候看</span>
-        <h2>绷得太紧的时候，先别急着想通</h2>
-        <ol>
-          <li>去走十分钟。走到能听见自己脚步声的地方，脑子会自己松一点。</li>
-          <li>把手机放远一点。不是为了自律，是为了让脑子真的空一会儿。</li>
-          <li>如果连续两周都睡不好、吃不下、提不起劲，去跟大人说一声。这不是矫情，是需要被处理的事。</li>
-        </ol>
-      </div>
-    </div>
-  </section>
+  
 
   <section class="survey" id="survey" style="--sep:#8FB6F0">
     <div class="sep" aria-hidden="true"></div>
@@ -1033,7 +1017,6 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(130px,16vw,200p
       });
     });
   }
-
 
   /* 图片加载完成标记（用于撤掉占位底色） */
   Array.prototype.forEach.call(document.querySelectorAll('.figbox img, .hero-art img'), function (img) {
