@@ -336,18 +336,18 @@ body{font-size:clamp(16.5px,1.15vw,18px)}
 
 /* —— 深色章节 —— */
 .chapter.dark{background:var(--tint);color:#EFE7DA}
-.chapter.dark .tagline{color:rgba(239,231,218,.52)}
+.chapter.dark .tagline{color:rgba(255,255,255,.7)}
 .chapter.dark .tagline .tag{border-color:rgba(239,231,218,.32)}
 .chapter.dark .num{color:var(--accent)}
-.chapter.dark .ch-head h2{color:#F7F2E8}
-.chapter.dark .ch-head .sub{color:rgba(239,231,218,.5)}
-.chapter.dark .ch-body p{color:rgba(247,242,232,.91)}
+.chapter.dark .ch-head h2{color:#FFFFFF}
+.chapter.dark .ch-head .sub{color:rgba(255,255,255,.7)}
+.chapter.dark .ch-body p{color:#FFFFFF}
 .chapter.dark blockquote{color:#FFF;border-left-color:var(--accent)}
 .chapter.dark blockquote::after{opacity:.3}
-.chapter.dark .note{background:rgba(255,255,255,.055);border-color:rgba(239,231,218,.18);color:rgba(239,231,218,.84)}
+.chapter.dark .note{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:rgba(255,255,255,.94)}
 .chapter.dark .note b{color:var(--accent)}
 .chapter.dark .figbox img{border-color:rgba(239,231,218,.2);box-shadow:0 40px 80px -36px rgba(0,0,0,.88)}
-.chapter.dark .figbox figcaption{color:rgba(239,231,218,.46)}
+.chapter.dark .figbox figcaption{color:rgba(255,255,255,.62)}
 .chapter.dark .stamp{color:var(--accent);border-color:var(--accent);background:rgba(255,255,255,.035)}
 .chapter.dark::after{color:rgba(239,231,218,.32)}
 .chapter.dark .inner::before{background:rgba(239,231,218,.17);opacity:1}
@@ -455,6 +455,65 @@ footer{color:#332D25}
   body{font-size:17.5px}
   .ch-body p{line-height:1.9}
 }
+
+/* ================= 精修层 10：全站深色底 ================= */
+:root{--paper:#12100E;--ink:#F2ECE2;--muted:rgba(242,236,226,.6);
+  --line:rgba(255,255,255,.1);--line-2:rgba(255,255,255,.2)}
+body{background:#12100E;color:#F2ECE2}
+body::before{background-image:
+  linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px)}
+
+.bar{background:rgba(18,16,14,.88);border-bottom:1px solid rgba(255,255,255,.09)}
+.brand{color:#F2ECE2}
+.bar nav a{color:rgba(242,236,226,.62)}
+.bar nav a:hover{color:#FFF}
+.filebar{border-bottom:1px solid rgba(255,255,255,.1);color:rgba(242,236,226,.48)}
+.filebar b{color:rgba(242,236,226,.86)}
+
+.hero{background:#12100E}
+.hero::after{color:rgba(255,255,255,.028)}
+.kicker{color:rgba(242,236,226,.55)}
+.hero h1{color:#FFFFFF}
+.hero h1 em{color:#F0725F}
+.hero h1 em::after{background:#F0725F;opacity:.4}
+.lede{color:rgba(242,236,226,.74)}
+.hero .meta{border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)}
+.hero .meta dt{color:rgba(242,236,226,.48)}
+.hero .meta dd{color:#F2ECE2}
+.btn{background:#F2ECE2;color:#12100E;border-color:#F2ECE2}
+.btn:hover{background:#FFF}
+.btn.ghost{background:transparent;color:#F2ECE2;border-color:rgba(242,236,226,.38)}
+.btn.ghost:hover{border-color:#F2ECE2}
+.hero .float-note{color:rgba(242,236,226,.42);border-color:rgba(242,236,226,.16)}
+.hero-art figcaption{color:rgba(242,236,226,.5)}
+
+.intro{background:#0E0C10}
+.intro h2{color:#FFFFFF}
+.intro .label{color:#F0725F}
+.intro .strong{color:#FFFFFF}
+
+footer{background:#0C0A0E;color:rgba(242,236,226,.62)}
+footer b,footer h3{color:#F2ECE2}
+footer a{color:#E0B084}
+
+/* 两栏：文字略窄、图片略宽，横图能占满 */
+.chapter .inner{grid-template-columns:.98fr 1.02fr}
+
+/* ================= 精修层 11：排版收口 ================= */
+.ch-copy{max-width:36em;min-width:0}
+.ch-head h2{max-width:15em;line-height:1.24}
+.ch-body{max-width:33em}
+.chapter .inner{gap:clamp(28px,5vw,76px);align-items:center}
+.figbox{width:100%;max-width:var(--fw,100%);margin-left:auto;margin-right:auto}
+.figbox img{width:100%;height:auto;border:1px solid rgba(255,255,255,.16);
+  padding:9px;background:rgba(255,255,255,.06);border-radius:3px}
+.chapter.dark .figbox img{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.07)}
+
+@media (max-width:900px){
+  .ch-copy,.ch-head h2,.ch-body{max-width:none}
+  .figbox{margin-left:auto;margin-right:auto}
+}
 </style>
 </head>
 <body>
@@ -476,7 +535,7 @@ footer{color:#332D25}
     <span>SUBJECT <b>高一16班</b></span>
     <span>SAMPLES <b>06</b></span>
     <span>STATUS <b>记录中</b></span>
-    <span>REV <b>09</b></span>
+    <span>REV <b>10</b></span>
   </div>
 </div>
 
@@ -531,30 +590,34 @@ footer{color:#332D25}
     </div>
   </section>
 
-  <section class="chapter ch-exam" id="ch1" style="--accent:#8A6A4F;--tint:#F2EBDC;--fw:640px">
+  <section class="chapter dark ch-exam" id="ch1" style="--accent:#E0B084;--tint:#241C15;--fw:560px">
     <div class="wrap inner">
-      <div class="ch-head">
-        <div class="tagline"><span class="idx">01</span><span class="tag">Somatic</span><span class="rule"></span><span>躯体化</span></div>
-        <h2>那天晚上，胃比你先招了</h2>
-        <p class="sub">主诉 · 考试前一晚</p>
+      
+      <div class="ch-copy">
+        <div class="ch-head">
+                <div class="tagline"><span class="idx">01</span><span class="tag">Somatic</span><span class="rule"></span><span>躯体化</span></div>
+                <h2>那天晚上，胃比你先招了</h2>
+                <p class="sub">主诉 · 考试前一晚</p>
+              </div>
+        <div class="ch-body">
+                  <p>明天考试，今晚你躺在床上，肚子开始疼。</p>
+                  <p>你开始排查：晚饭吃坏了？着凉了？还是……紧张？</p>
+                  <p>前两个你都接受得了。第三个你不太想说出口。</p>
+                  <p>可你的胃不管这些。你嘴上说“没事，我复习得挺好”，它直接给你来个现场直播。</p>
+                  <blockquote>情绪不走高速公路，它走的是胃肠道。</blockquote>
+                  <aside class="note"><b>Mechanism / 后来才知道</b>紧张不是“心理活动”，是全身总动员。肾上腺素一上来，血都往肌肉那儿调，消化道直接断供。胃不是病了，是被临时抽调去打仗了。</aside>
+                </div>
       </div>
       <figure class="figbox">
-        <img src="assets/img/ch1-exam.webp" width="1200" height="899" alt="黄昏的教室里，一个男生伏在堆满书本的桌上" loading="lazy" decoding="async">
-        <figcaption><span>FIG. 01</span><span>黄昏教室 / 18:40</span></figcaption>
-        <span class="stamp">已记录</span>
-      </figure>
-      <div class="ch-body">
-          <p>明天考试，今晚你躺在床上，肚子开始疼。</p>
-          <p>你开始排查：晚饭吃坏了？着凉了？还是……紧张？</p>
-          <p>前两个你都接受得了。第三个你不太想说出口。</p>
-          <p>可你的胃不管这些。你嘴上说“没事，我复习得挺好”，它直接给你来个现场直播。</p>
-          <blockquote>情绪不走高速公路，它走的是胃肠道。</blockquote>
-          <aside class="note"><b>Mechanism / 后来才知道</b>紧张不是“心理活动”，是全身总动员。肾上腺素一上来，血都往肌肉那儿调，消化道直接断供。胃不是病了，是被临时抽调去打仗了。</aside>
-        </div>
+              <img src="assets/img/ch1-exam.webp" width="1200" height="899" alt="黄昏的教室里，一个男生伏在堆满书本的桌上" loading="lazy" decoding="async">
+              <figcaption><span>FIG. 01</span><span>黄昏教室 / 18:40</span></figcaption>
+              <span class="stamp">已记录</span>
+            </figure>
+    
     </div>
   </section>
 
-  <section class="chapter dark ch-verdict" id="ch2" style="--accent:#F0725F;--tint:#1D1210;--fw:320px">
+  <section class="chapter dark ch-verdict" id="ch2" style="--accent:#F0725F;--tint:#2A1412;--fw:380px">
     <div class="wrap inner">
       
       <div class="ch-copy">
@@ -581,53 +644,61 @@ footer{color:#332D25}
     </div>
   </section>
 
-  <section class="chapter wide ch-summer" id="ch3" style="--accent:#A9711A;--tint:#FAEFC9;--fw:640px">
+  <section class="chapter dark ch-summer" id="ch3" style="--accent:#E8C060;--tint:#2A2410;--fw:560px">
     <div class="wrap inner">
-      <div class="ch-head">
-        <div class="tagline"><span class="idx">03</span><span class="tag">Social</span><span class="rule"></span><span>社交孤独</span></div>
-        <h2>班里聚餐，我成了最会笑的那个人</h2>
-        <p class="sub">主诉 · 班级聚餐</p>
+      
+      <div class="ch-copy">
+        <div class="ch-head">
+                <div class="tagline"><span class="idx">03</span><span class="tag">Social</span><span class="rule"></span><span>社交孤独</span></div>
+                <h2>班里聚餐，我成了最会笑的那个人</h2>
+                <p class="sub">主诉 · 班级聚餐</p>
+              </div>
+        <div class="ch-body">
+                  <p>聚餐坐最里面。菜转了两圈，你夹了三次，每次刚好停在你最不爱吃的那盘。</p>
+                  <p>你一直在等一句话掉到自己头上。</p>
+                  <p>有人说了句什么，全场笑，你也笑——慢了半拍。</p>
+                  <p>那半秒你在干嘛？你在检查：我这个笑，笑得对不对。</p>
+                  <blockquote>那天阳光很好，你笑得也很标准，只是没有一句是真的。</blockquote>
+                  <aside class="note"><b>Mechanism / 后来才知道</b>别人那一眼可能只花了一秒，却在你脑子里住了二十分钟。这不是玻璃心。人类对“被群体排除”的警报特别灵敏，因为在很久以前，被赶出群体真的等于死。</aside>
+                </div>
       </div>
       <figure class="figbox">
-        <img src="assets/img/ch3-summer.webp" width="1300" height="919" alt="夏日绿意中，蓝发少女举着一杯蓝色饮品" loading="lazy" decoding="async">
-        <figcaption><span>FIG. 03</span><span>一场标准笑容</span></figcaption>
-        <span class="stamp">已记录</span>
-      </figure>
-      <div class="ch-body">
-          <p>聚餐坐最里面。菜转了两圈，你夹了三次，每次刚好停在你最不爱吃的那盘。</p>
-          <p>你一直在等一句话掉到自己头上。</p>
-          <p>有人说了句什么，全场笑，你也笑——慢了半拍。</p>
-          <p>那半秒你在干嘛？你在检查：我这个笑，笑得对不对。</p>
-          <blockquote>那天阳光很好，你笑得也很标准，只是没有一句是真的。</blockquote>
-          <aside class="note"><b>Mechanism / 后来才知道</b>别人那一眼可能只花了一秒，却在你脑子里住了二十分钟。这不是玻璃心。人类对“被群体排除”的警报特别灵敏，因为在很久以前，被赶出群体真的等于死。</aside>
-        </div>
+              <img src="assets/img/ch3-summer.webp" width="1300" height="919" alt="夏日绿意中，蓝发少女举着一杯蓝色饮品" loading="lazy" decoding="async">
+              <figcaption><span>FIG. 03</span><span>一场标准笑容</span></figcaption>
+              <span class="stamp">已记录</span>
+            </figure>
+    
     </div>
   </section>
 
-  <section class="chapter dark wide ch-crowd" id="ch4" style="--accent:#4CC8DF;--tint:#10333B;--fw:640px">
+  <section class="chapter dark ch-crowd" id="ch4" style="--accent:#4CC8DF;--tint:#0E2A32;--fw:560px">
     <div class="wrap inner">
-      <div class="ch-head">
-        <div class="tagline"><span class="idx">04</span><span class="tag">Conformity</span><span class="rule"></span><span>从众</span></div>
-        <h2>那道题，全班都没听懂，包括举手的人</h2>
-        <p class="sub">主诉 · 教室里的三秒沉默</p>
+      
+      <div class="ch-copy">
+        <div class="ch-head">
+                <div class="tagline"><span class="idx">04</span><span class="tag">Conformity</span><span class="rule"></span><span>从众</span></div>
+                <h2>那道题，全班都没听懂，包括举手的人</h2>
+                <p class="sub">主诉 · 教室里的三秒沉默</p>
+              </div>
+        <div class="ch-body">
+                  <p>老师问：都听懂了吗？</p>
+                  <p>教室安静了三秒。没人举手。</p>
+                  <p>其实你听懂了。手都抬到一半了，你听见那片安静，又把手放回去。</p>
+                  <p>最有意思的是，旁边那几个，可能也听懂了。</p>
+                  <blockquote>没人举手的时候，不举手也不能怪你。那是整个房间一起做的决定。</blockquote>
+                  <aside class="note"><b>Mechanism / 后来才知道</b>1951 年的从众实验里，被试平均三分之一会跟着明显错误的答案走。没有惩罚，没有威胁，只要有“大家都这样”五个字就够了。</aside>
+                </div>
       </div>
       <figure class="figbox">
-        <img src="assets/img/ch4-crowd.webp" width="1300" height="910" alt="水光与金鱼之间，两名和服少女彼此对视" loading="lazy" decoding="async">
-        <figcaption><span>FIG. 04</span><span>同一片水里</span></figcaption>
-        <span class="stamp">已记录</span>
-      </figure>
-      <div class="ch-body">
-          <p>老师问：都听懂了吗？</p>
-          <p>教室安静了三秒。没人举手。</p>
-          <p>其实你听懂了。手都抬到一半了，你听见那片安静，又把手放回去。</p>
-          <p>最有意思的是，旁边那几个，可能也听懂了。</p>
-          <blockquote>没人举手的时候，不举手也不能怪你。那是整个房间一起做的决定。</blockquote>
-          <aside class="note"><b>Mechanism / 后来才知道</b>1951 年的从众实验里，被试平均三分之一会跟着明显错误的答案走。没有惩罚，没有威胁，只要有“大家都这样”五个字就够了。</aside>
-        </div>
+              <img src="assets/img/ch4-crowd.webp" width="1300" height="910" alt="水光与金鱼之间，两名和服少女彼此对视" loading="lazy" decoding="async">
+              <figcaption><span>FIG. 04</span><span>同一片水里</span></figcaption>
+              <span class="stamp">已记录</span>
+            </figure>
+    
     </div>
   </section>
 
-  <section class="chapter dark" id="ch5" style="--accent:#8AAEFF;--tint:#0A1526;--fw:250px">
+  <section class="chapter dark" id="ch5" style="--accent:#8AAEFF;--tint:#0A1526;--fw:340px">
     <div class="wrap inner">
       
       <div class="ch-copy">
@@ -654,7 +725,7 @@ footer{color:#332D25}
     </div>
   </section>
 
-  <section class="chapter ch-autumn" id="ch6" style="--accent:#A25C16;--tint:#F3E4CB;--fw:320px">
+  <section class="chapter dark ch-autumn" id="ch6" style="--accent:#D89B5A;--tint:#2A1E12;--fw:380px">
     <div class="wrap inner">
       
       <div class="ch-copy">
