@@ -182,7 +182,7 @@ blockquote{margin:1.6em 0;padding:.1em 0 .1em 18px;border-left:4px solid var(--a
 .night .label{color:#E0563F}
 
 /* ---------- 问卷 ---------- */
-.survey{background:#0F2755;color:#fff;padding:clamp(58px,8vw,112px) 0;position:relative;overflow:hidden}
+.survey{background:#0F2755;color:#fff;padding:clamp(58px,8vw,112px) 0;position:relative;overflow:visible}
 .survey::before{display:none}
 .survey .inner{max-width:740px;position:relative;z-index:1}
 .survey .label{color:#8FB6F0}
@@ -670,6 +670,10 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
 
 .ap-note{margin-top:clamp(28px,4vw,42px);color:#9DB4E0;
   font-size:.95em;letter-spacing:.02em;line-height:1.9}
+
+/* 问卷顶部：中性白分隔，不改变纯黑底 */
+.survey .sep::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.22) 26%,rgba(255,255,255,.22) 74%,transparent)}
+.survey .sep::after{box-shadow:0 0 14px rgba(255,255,255,.5)}
 </style>
 </head>
 <body>
@@ -939,7 +943,8 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
 
 </main>
 
-<section class="survey" id="survey" style="--sep:#8FB6F0">
+<section class="survey" id="survey" style="--sep:rgba(255,255,255,.42)">
+    <div class="sep" aria-hidden="true"></div>
     <div class="wrap inner">
       <span class="label">Form 07 / 匿名问卷</span>
       <h2>上面六段里，有没有哪一段，你看着看着，慢了一下？</h2>
