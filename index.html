@@ -4,530 +4,500 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>你的身体，正在替你说那些说不出口的话 · 高一16班心理课题</title>
-<meta name="description" content="高一16班研究性学习课题：高中生的心理压力与心身反应。含科普内容与匿名问卷。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23F6C51C'/><rect x='18' y='30' width='30' height='30' fill='%23fff'/><circle cx='62' cy='62' r='22' fill='%231E1B18'/></svg>">
+<meta name="description" content="一个纯静态的校园课题展示网站：用段子和口语讲心理学，末尾挂一份匿名问卷收集研究数据。">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2315120E'/><path d='M28 30h44M28 50h44M28 70h26' stroke='%23DE3A2B' stroke-width='9' stroke-linecap='round'/></svg>">
 <style>
 :root{
-  --mustard:#F6C51C; --orange:#F2762E; --ink:#1E1B18; --paper:#FFFDF5;
-  --red:#E23E2B; --blue:#2E7DD1; --mint:#2FB39B; --gray:#6E655C; --sky:#7FC8E8; --mint:#9FDCA8; --lav:#C9A8E0;
+  --paper:#FBF7F1;
+  --ink:#15120E;
+  --muted:#6E665C;
+  --red:#DE3A2B;
+  --blue:#1C2C4C;
+  --night:#0C111E;
+  --line:rgba(21,18,14,.13);
+  --maxw:1180px;
+  --ease:cubic-bezier(.2,.75,.25,1);
 }
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--mustard);color:var(--ink);
-  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Source Han Sans SC",sans-serif;
-  font-size:17px;line-height:1.95;letter-spacing:.01em;overflow-x:hidden}
-p{margin:0 0 1.05em}
-strong{font-weight:900}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Source Han Sans SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  font-size:17px;line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;height:auto}
 a{color:inherit}
+::selection{background:var(--red);color:#fff}
 
-/* ---------- 首屏 ---------- */
-.hero{position:relative;overflow:hidden;
-  min-height:100vh;min-height:100svh;
-  display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:18px;
-  padding:56px 22px 84px;
-  background-color:var(--mustard);
-  background-image:radial-gradient(rgba(0,0,0,.08) 1.5px,transparent 1.6px);
-  background-size:14px 14px}
-.hero-left{position:relative;z-index:3;padding-left:12px}
-.pill{display:inline-block;background:var(--ink);color:#fff;font-size:12px;font-weight:700;
-  letter-spacing:.12em;padding:6px 13px;margin-bottom:22px}
-h1.hero-title{display:grid;margin:0 0 26px;font-weight:900;line-height:1.04;
-  letter-spacing:-.02em;font-size:clamp(40px,9.6vw,104px)}
-h1.hero-title span{display:block;justify-self:start;color:#fff;text-shadow:6px 6px 0 var(--ink)}
-h1.hero-title .l2{margin-left:.28em}
-h1.hero-title .l3{margin-left:-.03em}
-h1.hero-title .l4{background:var(--ink);color:#fff;text-shadow:none;padding:0 .10em;
-  margin-left:.4em;margin-top:.08em;box-shadow:7px 7px 0 var(--red)}
-.hero-sub{font-size:18px;font-weight:700;line-height:1.8;margin:0 0 28px;max-width:26em}
-.btns{display:flex;flex-wrap:wrap;gap:14px}
-.btn{display:inline-block;text-decoration:none;font-weight:900;font-size:16px;padding:12px 22px;
-  background:var(--ink);color:#fff;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--red)}
-.btn.ghost{background:#fff;color:var(--ink);box-shadow:6px 6px 0 var(--ink)}
-.btn:hover,.btn:focus{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--red)}
-.btn.ghost:hover,.btn.ghost:focus{box-shadow:3px 3px 0 var(--ink)}
+/* 顶部阅读进度 */
+.readbar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--red);z-index:100;transition:width .1s linear}
 
-/* 黑底竖排英文条 */
-.vbar{position:absolute;z-index:4;left:53%;top:16%;background:var(--ink);
-  writing-mode:vertical-rl;color:#fff;font-weight:900;font-size:22px;
-  letter-spacing:.34em;padding:20px 12px;box-shadow:6px 6px 0 var(--red)}
-.hero-right{position:relative;display:flex;align-items:flex-end;justify-content:center;min-height:46vh}
-.circle{position:absolute;bottom:5%;width:min(48vw,400px);aspect-ratio:1/1;border-radius:50%;
-  background:var(--blue);z-index:1}
-.miku{position:relative;z-index:3;max-height:min(58vh,500px);width:auto;
-  filter:drop-shadow(9px 9px 0 var(--ink))}
-.pixelcloud{position:absolute;left:-2%;bottom:6%;width:min(30vw,220px);z-index:2}
-.px{position:absolute;z-index:4;background:var(--ink)}
-.px.p1{width:16px;height:16px;top:14%;left:6%}
-.px.p2{width:22px;height:22px;top:22%;left:16%;background:var(--red)}
-.px.p3{width:14px;height:14px;bottom:20%;left:3%;background:var(--blue)}
-.px.p4{width:18px;height:18px;top:9%;right:9%;background:#fff;border:3px solid var(--ink)}
+/* 顶栏 */
+.topbar{
+  position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;
+  gap:18px;max-width:var(--maxw);margin:0 auto;padding:22px clamp(20px,5vw,44px) 18px;
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.02em;font-size:15px}
+.brand i{width:11px;height:11px;background:var(--red);display:inline-block;border-radius:50%}
+.topbar .meta{font-size:12.5px;color:var(--muted);letter-spacing:.06em}
 
-/* ---------- 跑马灯 ---------- */
-.ticker{background:var(--ink);color:#fff;overflow:hidden;white-space:nowrap;
-  padding:14px 0;font-weight:900;font-size:18px;letter-spacing:.04em}
-.ticker-track{display:inline-block;animation:marquee 26s linear infinite}
-.ticker-track span{padding:0 26px}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+/* ============ 首屏 ============ */
+.hero{
+  position:relative;max-width:var(--maxw);margin:0 auto;
+  padding:clamp(40px,7vw,84px) clamp(20px,5vw,44px) clamp(56px,8vw,104px);
+  display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(24px,4vw,64px);align-items:center;
+}
+.hero-copy{position:relative;z-index:2}
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;margin:0 0 22px;
+  font-size:12.5px;font-weight:800;letter-spacing:.22em;color:var(--red);
+}
+.kicker::before{content:"";width:26px;height:2px;background:var(--red)}
+h1{
+  margin:0 0 26px;font-size:clamp(40px,7.2vw,82px);line-height:1.04;
+  letter-spacing:-.045em;font-weight:900;
+}
+h1 em{
+  font-style:normal;position:relative;white-space:nowrap;
+}
+h1 em::after{
+  content:"";position:absolute;left:-.02em;right:-.02em;bottom:.08em;height:.28em;
+  background:var(--red);z-index:-1;transform:skewX(-8deg);
+}
+.lede{
+  margin:0 0 34px;max-width:30em;font-size:clamp(15px,1.5vw,18px);line-height:1.95;color:#3B352E;
+}
+.lede b{font-weight:800;color:var(--ink)}
+.btn-row{display:flex;flex-wrap:wrap;gap:14px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 26px;border-radius:999px;text-decoration:none;
+  font-weight:800;font-size:15px;letter-spacing:.02em;
+  background:var(--ink);color:var(--paper);border:2px solid var(--ink);
+  transition:transform .18s var(--ease),background .18s var(--ease),color .18s var(--ease);
+}
+.btn:hover{transform:translateY(-3px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn.red:hover{background:#c22f22;border-color:#c22f22}
 
-/* ---------- 正文区块 ---------- */
-.sec{padding:64px 20px;background:var(--mustard)}
-.sec.orange{background:var(--orange)}
-.sec.paper{background:var(--paper)}
-.sec.blue{background:var(--sky)}
-.sec.mint{background:var(--mint)}
-.sec.lav{background:var(--lav)}
-.sec.blue2{background:var(--sky2)}
-.inner{max-width:820px;margin:0 auto}
-.sec-head{max-width:820px;margin:0 auto 40px}
-h2{font-size:clamp(24px,4.4vw,36px);font-weight:900;line-height:1.25;margin:0 0 20px;letter-spacing:-.01em}
-h3{font-size:21px;font-weight:900;line-height:1.4;margin:0 0 14px}
-.lead{font-size:19px;font-weight:700;line-height:1.8}
-.quote{font-size:clamp(19px,3.2vw,23px);font-weight:900;line-height:1.6;
-  border-left:9px solid var(--red);padding:.06em 0 .06em .55em;margin:1.5em 0}
-.kicker{font-weight:900;background:var(--ink);color:#fff;display:inline-block;
-  padding:3px 12px;font-size:13px;letter-spacing:.1em;margin:1.6em 0 .8em}
-.soft{border-left:6px solid var(--mint);padding-left:16px;font-style:italic;color:#4b443c;margin:1.3em 0 0}
-.terms{font-size:13px;color:var(--gray)}
+.hero-art{position:relative}
+.hero-art::before{
+  content:"";position:absolute;inset:-6% -8% -10% -12%;z-index:0;
+  background:radial-gradient(circle at 62% 42%,rgba(222,58,43,.20),rgba(222,58,43,0) 62%);
+  filter:blur(6px);
+}
+.hero-art img{
+  position:relative;z-index:1;width:100%;
+  border-radius:6px;object-fit:cover;
+  box-shadow:0 30px 70px -30px rgba(21,18,14,.45);
+}
+.hero-tag{
+  position:absolute;z-index:3;left:-14px;bottom:26px;
+  background:var(--paper);border:1px solid var(--line);
+  padding:10px 16px;border-radius:999px;font-size:12.5px;font-weight:700;
+  letter-spacing:.04em;box-shadow:0 12px 28px -14px rgba(0,0,0,.4);
+}
+.scroll-hint{
+  grid-column:1 / -1;margin-top:clamp(20px,4vw,44px);
+  display:flex;align-items:center;gap:12px;
+  font-size:12.5px;font-weight:800;letter-spacing:.2em;color:var(--muted);
+}
+.scroll-hint::after{
+  content:"";width:1px;height:34px;background:linear-gradient(var(--ink),transparent);
+  animation:drop 1.9s ease-in-out infinite;
+}
+@keyframes drop{0%{transform:scaleY(.2);transform-origin:top;opacity:.2}55%{transform:scaleY(1);opacity:1}100%{transform:scaleY(.2);transform-origin:bottom;opacity:.2}}
 
-/* ---------- 表格 ---------- */
-table{width:100%;border-collapse:collapse;background:var(--paper);border:4px solid var(--ink);
-  box-shadow:10px 10px 0 var(--ink)}
-th,td{border:3px solid var(--ink);padding:12px 14px;text-align:left;font-size:15px;line-height:1.75;vertical-align:top}
-th{background:var(--ink);color:#fff;font-weight:900;font-size:14px;letter-spacing:.08em}
-td.t{white-space:nowrap;font-weight:900;color:var(--gray);font-size:13px}
+/* ============ 跑马灯 ============ */
+.strip{
+  background:var(--ink);color:#F7F3EC;overflow:hidden;white-space:nowrap;
+  padding:15px 0;font-size:13px;font-weight:800;letter-spacing:.18em;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+}
+.strip-track{display:inline-block;animation:slide 26s linear infinite}
+.strip-track span{margin:0 26px}
+.strip-track b{color:var(--red);font-weight:800}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ---------- 问卷区 ---------- */
-.qgrid{max-width:820px;margin:0 auto;display:grid;gap:26px}
-.qcard{background:var(--paper);border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:28px 26px}
-.qcard h3{margin:0 0 12px;font-size:23px}
-.qmeta{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 20px;padding:0;list-style:none}
-.qmeta li{font-size:12px;font-weight:700;background:#fff;border:2px solid var(--ink);padding:3px 9px}
-.qbtn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
-  font-weight:900;padding:12px 22px;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--red)}
-.qbtn:hover,.qbtn:focus{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--red)}
-.note-plain{font-size:14px;color:var(--gray);border-left:5px solid var(--blue);padding-left:14px}
+/* ============ 序章 ============ */
+.intro{max-width:840px;margin:0 auto;padding:clamp(70px,11vw,130px) clamp(22px,5vw,44px) clamp(52px,7vw,92px)}
+.intro .label{font-size:12.5px;font-weight:800;letter-spacing:.22em;color:var(--red);margin:0 0 26px}
+.intro p{font-size:clamp(18px,2.1vw,23px);line-height:1.92;margin:0 0 1.1em;font-weight:500}
+.intro p:first-of-type{font-size:clamp(22px,2.8vw,31px);font-weight:800;line-height:1.6;letter-spacing:-.02em}
+.intro .dim{color:var(--muted);font-size:clamp(16px,1.8vw,19px)}
 
-/* ---------- 章节交界装饰带 ---------- */
-.sec{position:relative}
-.sec::before{content:"";position:absolute;top:0;left:0;right:0;height:34px;
-  background-color:var(--ink);
-  background-image:repeating-linear-gradient(-45deg,#fff 0 9px,transparent 9px 21px)}
-.sec:nth-of-type(even)::before{
-  background-image:repeating-linear-gradient(90deg,#fff 0 11px,transparent 11px 28px)}
-.sec::after{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);
-  width:13px;height:13px;background:var(--red);
-  box-shadow:25px 0 0 var(--red),-25px 0 0 var(--red)}
+/* ============ 章节 ============ */
+.chapter{
+  position:relative;border-top:1px solid var(--line);
+  padding:clamp(56px,8vw,110px) clamp(20px,5vw,44px);
+}
+.chapter .inner{
+  max-width:var(--maxw);margin:0 auto;
+  display:grid;grid-template-columns:1.02fr .98fr;
+  gap:clamp(26px,4.5vw,74px);align-items:center;
+}
+.chapter.flip .inner{grid-template-columns:.98fr 1.02fr}
+.chapter.flip figure{order:2}
+.chapter figure{margin:0;position:relative}
+.chapter figure img{
+  width:100%;border-radius:5px;object-fit:cover;
+  box-shadow:0 26px 60px -34px rgba(21,18,14,.5);
+}
+.chapter .cap{
+  margin:12px 0 0;font-size:12px;letter-spacing:.1em;color:var(--muted);
+}
+.ch-copy{position:relative}
+.ch-num{
+  position:absolute;top:-.62em;left:-.04em;z-index:0;
+  font-size:clamp(88px,13vw,152px);line-height:1;font-weight:900;
+  color:transparent;-webkit-text-stroke:1.5px rgba(21,18,14,.10);
+  letter-spacing:-.06em;pointer-events:none;user-select:none;
+}
+.ch-copy h2{
+  position:relative;z-index:1;margin:0 0 24px;
+  font-size:clamp(27px,3.9vw,44px);line-height:1.28;letter-spacing:-.03em;font-weight:900;
+}
+.ch-copy h2 small{
+  display:block;font-size:13px;font-weight:800;letter-spacing:.18em;
+  color:var(--red);margin-bottom:12px;
+}
+.ch-copy p{margin:0 0 1.15em;max-width:33em;color:#2C2721}
+.ch-copy p.strong{font-weight:800;font-size:18.5px;color:var(--ink)}
+.ch-copy .quote{
+  margin:1.7em 0;padding:4px 0 4px 20px;border-left:3px solid var(--red);
+  font-size:18px;font-weight:700;line-height:1.8;color:var(--ink);
+}
+.note{
+  margin:1.9em 0 0;padding:18px 20px;background:#F1ECE2;border-radius:6px;
+  font-size:15.5px;line-height:1.85;color:#3A342C;
+}
+.note b{display:block;font-size:12px;letter-spacing:.16em;color:var(--red);margin-bottom:7px}
 
-/* ---------- 正文角色图 ---------- */
-.fig{margin:0;width:186px;filter:drop-shadow(7px 7px 0 var(--ink))}
-.fig img{display:block;width:100%;height:auto}
-.fig.left{float:left;margin:6px 26px 14px 0}
-.fig.right{float:right;margin:6px 0 14px 26px}
-
-/* ---------- 页脚 ---------- */
-footer{background:var(--ink);color:#fff;padding:50px 22px 64px}
-.fwrap{max-width:820px;margin:0 auto}
-footer .warn{border-left:8px solid var(--red);padding-left:18px;font-size:17px;line-height:1.9;font-weight:700}
-footer .fine{font-size:12px;line-height:1.9;color:#b9b3ab;margin-top:28px}
-.sig{font-weight:900;font-size:18px;margin-top:24px}
-
-@media (max-width:820px){
-  .hero{grid-template-columns:1fr;padding:42px 18px 62px;gap:8px}
-  .hero-left{padding-left:0}
-  .hero-right{min-height:auto;margin-top:8px}
-  .miku{max-height:38vh}
-  .circle{width:min(64vw,290px);bottom:2%}
-  .vbar{left:auto;right:8px;top:8%;font-size:16px;padding:14px 9px;letter-spacing:.3em}
-  .pixelcloud{width:34vw;left:-4%;bottom:10%}
-  .sec{padding:46px 16px}
-  h1.hero-title{font-size:clamp(38px,11.5vw,60px)}
-  h1.hero-title .l4{margin-left:.2em}
-  .qcard{padding:22px 18px}
-  .fig,.fig.left,.fig.right{float:none;width:168px;margin:0 auto 22px}
+/* ============ 深夜区 ============ */
+.night{
+  background:var(--night);color:#E9E4DB;
+  padding:clamp(64px,9vw,120px) clamp(20px,5vw,44px);
+  border-top:1px solid #000;
+}
+.night .inner{
+  max-width:var(--maxw);margin:0 auto;
+  display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,5vw,72px);align-items:center;
+}
+.night img{width:100%;border-radius:5px;box-shadow:0 30px 70px -30px rgba(0,0,0,.9)}
+.night-clock{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:min(100%,320px);aspect-ratio:1/1;margin:0 auto;border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);
+  background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.06),transparent 62%);
+}
+.night-clock span{font-size:clamp(38px,6.4vw,60px);font-weight:900;letter-spacing:-.045em;color:#EDE9E3}
+.night-clock i{position:absolute;top:17%;right:21%;width:9px;height:9px;border-radius:50%;
+  background:var(--red);box-shadow:0 0 0 7px rgba(222,58,43,.13)}
+.night .label{font-size:12.5px;font-weight:800;letter-spacing:.22em;color:#7F8FB0;margin:0 0 20px}
+.night h2{margin:0 0 26px;font-size:clamp(28px,4.2vw,46px);line-height:1.25;letter-spacing:-.03em;font-weight:900;color:#fff}
+.night p{margin:0 0 1.1em;color:#B9B4AA;max-width:34em}
+.night ol{margin:22px 0 0;padding:0;list-style:none;counter-reset:n;display:grid;gap:14px;max-width:34em}
+.night li{
+  counter-increment:n;position:relative;padding:14px 18px 14px 52px;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:6px;
+  font-size:15.5px;color:#D8D3C9;
+}
+.night li::before{
+  content:counter(n,decimal-leading-zero);position:absolute;left:18px;top:13px;
+  font-size:12px;font-weight:900;color:var(--red);letter-spacing:.06em;
 }
 
-/* ================= 精修层 v2：视觉节奏、角色贴纸化、滚动编排 ================= */
+/* ============ 问卷 ============ */
+.survey{padding:clamp(64px,9vw,120px) clamp(20px,5vw,44px);background:#F5EFE4}
+.survey .inner{
+  max-width:var(--maxw);margin:0 auto;
+  display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(26px,5vw,70px);align-items:center;
+}
+.survey .label{font-size:12.5px;font-weight:800;letter-spacing:.22em;color:var(--red);margin:0 0 20px}
+.survey h2{margin:0 0 22px;font-size:clamp(27px,4vw,44px);line-height:1.3;letter-spacing:-.03em;font-weight:900}
+.survey p{margin:0 0 1.1em;max-width:32em;color:#3B352E}
+.survey img{width:100%;border-radius:5px;box-shadow:0 26px 60px -34px rgba(21,18,14,.5)}
+.survey .btn-row{margin-top:30px}
+.survey .fine{margin-top:18px;font-size:12.5px;color:var(--muted);letter-spacing:.03em}
 
-/* --- 通用过渡 --- */
-.btn,.qbtn{transition:transform .16s ease,box-shadow .16s ease}
+/* ============ 页脚 ============ */
+footer{border-top:1px solid var(--line);padding:clamp(44px,6vw,76px) clamp(20px,5vw,44px) 60px}
+footer .inner{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:40px}
+footer h3{margin:0 0 14px;font-size:14px;letter-spacing:.14em;color:var(--ink)}
+footer p{margin:0 0 .9em;font-size:13.5px;line-height:1.9;color:var(--muted);max-width:40em}
+footer .sig{font-size:12.5px;color:var(--muted);margin-top:34px}
 
-/* --- 顶部阅读进度条（由脚本注入） --- */
-.readbar{position:fixed;top:0;left:0;height:6px;width:0;background:var(--red);z-index:999;pointer-events:none}
-
-/* --- 滚动进场 --- */
-.reveal{opacity:0;transform:translateY(22px);
-  transition:opacity .65s cubic-bezier(.2,.8,.2,1),transform .65s cubic-bezier(.2,.8,.2,1)}
+/* ============ 动效 ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.in{opacity:1;transform:none}
+.chapter figure.reveal{transform:translateY(26px) scale(.985)}
+.chapter figure.reveal.in{transform:none}
 
-/* --- 首屏入场动效 --- */
-@keyframes riseIn{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
-@keyframes popIn{from{opacity:0;transform:translateY(26px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-.hero-left .pill{animation:riseIn .6s .02s both cubic-bezier(.2,.8,.2,1)}
-h1.hero-title span{animation:riseIn .72s both cubic-bezier(.2,.8,.2,1)}
-h1.hero-title .l1{animation-delay:.10s}
-h1.hero-title .l2{animation-delay:.18s}
-h1.hero-title .l3{animation-delay:.26s}
-h1.hero-title .l4{animation-delay:.34s}
-.hero-sub{animation:riseIn .72s .46s both cubic-bezier(.2,.8,.2,1)}
-.btns{animation:riseIn .72s .54s both cubic-bezier(.2,.8,.2,1)}
-.miku{animation:popIn .9s .22s both cubic-bezier(.2,.8,.2,1)}
-.circle{animation:popIn 1s .12s both cubic-bezier(.2,.8,.2,1)}
-.vbar{animation:riseIn .8s .5s both cubic-bezier(.2,.8,.2,1)}
-
-/* --- 首屏光斑与滚动提示 --- */
-.hero::before{content:"";position:absolute;top:-18%;right:-12%;width:min(70vw,520px);
-  aspect-ratio:1/1;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,rgba(255,255,255,.5),rgba(255,255,255,0) 68%)}
-.hero::after{content:"↓  往下看";position:absolute;bottom:22px;left:50%;z-index:4;
-  font-size:12px;font-weight:900;letter-spacing:.2em;color:var(--ink);opacity:.6;
-  white-space:nowrap;pointer-events:none;animation:bob 2.6s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
-
-/* --- 每节首段放大，形成阅读节奏 --- */
-.inner>p:first-of-type{font-size:18px;font-weight:700;line-height:1.85}
-
-/* --- 首屏漫画气泡 --- */
-.bubble{position:absolute;z-index:6;background:#fff;border:3px solid var(--ink);
-  padding:7px 12px;font-weight:900;font-size:13px;line-height:1.5;max-width:172px;
-  box-shadow:5px 5px 0 var(--ink);animation:floatY 4.8s ease-in-out infinite}
-.bubble::after{content:"";position:absolute;width:11px;height:11px;background:#fff;
-  border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(45deg)}
-.bubble.b1{top:4%;right:0}
-.bubble.b1::after{bottom:-8px;left:24px}
-.bubble.b2{bottom:26%;left:-8%}
-.bubble.b2::after{top:-8px;right:22px;transform:rotate(225deg)}
-
-/* --- 章节编号水印：六节各自独立编号 --- */
-main{counter-reset:story}
-main>section:nth-of-type(n+2):nth-of-type(-n+7){counter-increment:story}
-main>section:nth-of-type(n+2):nth-of-type(-n+7) .inner{position:relative}
-main>section:nth-of-type(n+2):nth-of-type(-n+7) .inner::before{
-  content:counter(story,decimal-leading-zero);
-  position:absolute;top:-46px;right:-10px;z-index:0;
-  font-size:clamp(86px,15vw,164px);font-weight:900;line-height:1;
-  letter-spacing:-.06em;color:rgba(30,27,24,.075);
-  pointer-events:none;user-select:none}
-main>section:nth-of-type(n+2):nth-of-type(-n+7) .inner>*{position:relative;z-index:1}
-/* 深色底改用浅色水印，避免看不见 */
-main>section.blue:nth-of-type(n+2):nth-of-type(-n+7) .inner::before,
-main>section.orange:nth-of-type(n+2):nth-of-type(-n+7) .inner::before{color:rgba(255,255,255,.17)}
-
-/* --- 角色图：贴纸相框化，放大并轻微倾斜 --- */
-.fig{box-sizing:border-box;width:236px;background:#fff;border:4px solid var(--ink);padding:10px;
-  box-shadow:9px 9px 0 var(--ink);filter:none;position:relative;z-index:2;
-  transform:rotate(-2.4deg);
-  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
-.fig.right{transform:rotate(2.4deg)}
-.fig:hover{transform:rotate(0) translateY(-5px);box-shadow:13px 13px 0 var(--ink)}
-.fig img{filter:none}
-
-/* --- 金句：白底压印 + 大引号 --- */
-.quote{position:relative;background:rgba(255,255,255,.66);
-  padding:.5em .8em .5em .8em;box-shadow:7px 7px 0 rgba(30,27,24,.14)}
-.quote::before{content:"“";position:absolute;top:-.30em;right:.08em;
-  font-size:3.4em;line-height:1;font-weight:900;color:var(--red);opacity:.22;pointer-events:none}
-
-/* --- 「后来才知道」：印章 --- */
-.kicker{transform:rotate(-1.6deg);box-shadow:4px 4px 0 var(--red);letter-spacing:.16em}
-
-/* --- 「小声说」：便利贴 --- */
-.soft{background:#FFFCEB;border:3px solid var(--ink);padding:13px 15px;
-  box-shadow:5px 5px 0 var(--ink);font-style:normal;color:#2b2622;
-  transform:rotate(-.7deg);position:relative}
-.soft::before{content:"PS";display:inline-block;margin-right:7px;
-  font-size:10px;font-weight:900;letter-spacing:.08em;vertical-align:2px;
-  background:var(--ink);color:#fff;padding:1px 6px}
-
-/* --- h2 红色短标 --- */
-h2{position:relative;padding-bottom:.16em}
-h2::after{content:"";position:absolute;left:0;bottom:0;width:58px;height:7px;background:var(--red)}
-
-/* --- 表格：斑马纹 + 悬停 --- */
-tbody tr{transition:background .18s ease}
-tbody tr:nth-child(even){background:rgba(246,197,28,.16)}
-tbody tr:hover{background:var(--mustard)}
-
-/* --- 问卷卡：胶带 + 抬起 --- */
-.qcard{position:relative;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
-.qcard::before{content:"";position:absolute;top:-13px;left:50%;
-  transform:translateX(-50%) rotate(-3deg);width:126px;height:25px;
-  background:rgba(246,197,28,.9);border:2px solid rgba(30,27,24,.18);z-index:3}
-.qcard:hover{transform:translateY(-6px);box-shadow:15px 15px 0 var(--ink)}
-
-/* --- 页脚签名 --- */
-.sig{display:inline-block;border-bottom:4px solid var(--red);padding-bottom:4px;transform:rotate(-.8deg)}
-
-/* --- 小屏适配 --- */
-@media (max-width:820px){
-  .bubble{display:none}
-  .hero::after{bottom:8px;font-size:11px;letter-spacing:.14em;opacity:.5}
-  .inner .fig,.inner .fig.left,.inner .fig.right{
-    float:none!important;display:block;width:auto!important;
-    max-width:min(64vw,208px);margin:26px auto 28px!important;
-    transform:none!important;box-shadow:6px 6px 0 var(--ink)}
-  .inner .fig img{width:100%;height:auto}
-  .inner p{margin:0 0 1.15em;line-height:1.95}
-  .quote{margin:1.7em 0;padding:.6em .75em}
-  .qcard{box-shadow:7px 7px 0 var(--ink)}
-  .qcard:hover{transform:none}
-  main>section:nth-of-type(n+2):nth-of-type(-n+7) .inner::before{top:-28px;right:0;font-size:74px}
-  .quote::before{font-size:2.6em}
-  .soft{transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .strip-track,.scroll-hint::after{animation:none}
 }
 
-/* --- 无障碍：减少动效 --- */
-@media (prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
-  .hero-left .pill,h1.hero-title span,.hero-sub,.btns,.miku,.circle,.vbar,.bubble,.hero::after{animation:none}
-  .fig,.qcard,.soft,.kicker{transition:none}
+/* ============ 响应式 ============ */
+@media (max-width:900px){
+  body{font-size:16px}
+  .hero{grid-template-columns:1fr;padding-top:34px;gap:30px}
+  .hero-art{order:-1}
+  .hero-art::before{inset:-4% -6% -8% -6%}
+  .hero-tag{left:10px;bottom:12px}
+  .topbar{flex-wrap:wrap;gap:8px;padding-bottom:14px}
+  .topbar .meta{display:none}
+  .scroll-hint{display:none}
+  .chapter .inner,.chapter.flip .inner,.night .inner,.survey .inner,footer .inner{grid-template-columns:1fr}
+  .chapter.flip figure{order:0}
+  .night .inner{grid-template-columns:1fr}
+  .night img{max-width:min(64vw,260px);margin:0 auto}
+  .survey img{max-width:min(66vw,300px);margin:0 auto}
+  .ch-num{font-size:78px;top:-.5em}
+  .chapter{padding-top:44px}
+  .note{padding:16px 16px}
+  .btn{width:100%;justify-content:center}
+  .btn-row{flex-direction:column}
+}
+@media (max-width:420px){
+  h1{font-size:clamp(34px,10.5vw,44px)}
+  .intro p:first-of-type{font-size:22px}
 }
 </style>
 </head>
 <body>
-<section class="hero">
-  <div class="hero-left">
-    <span class="pill">高一16班 · 研究性学习课题 · 心理学方向</span>
-    <h1 class="hero-title">
-      <span class="l1">你的身体</span>
-      <span class="l2">正在替你</span>
-      <span class="l3">说出那些</span>
-      <span class="l4">说不出口的话</span>
-    </h1>
-    <p class="hero-sub">考前一晚，肚子先疼。<br>被点名的时候，手先抖。<br>困到极点，反而睡不着。<br>我们花了一学期，想弄清楚这些反应到底在替我们说什么。</p>
-    <div class="btns">
-      <a class="btn" href="#know">先看内容</a>
-      <a class="btn ghost" href="#survey">当一次研究对象</a>
+
+<div class="readbar" id="readbar"></div>
+
+<header class="topbar">
+  <div class="brand"><i></i>心身反应 · 高一16班</div>
+  <div class="meta">研究性学习 · 心理学方向</div>
+</header>
+
+<main>
+
+  <!-- ================= 首屏 ================= -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="kicker">课题代号「心身反应」</p>
+      <h1>你的身体<br>正在替你<br><em>说出</em>那些<br>说不出口的话</h1>
+      <p class="lede">考前一晚，肚子先疼。被点名的时候，手先抖。困到极点，反而睡不着。<br>我们用一学期，想弄清楚这些反应到底在替我们说什么。</p>
+      <div class="btn-row">
+        <a class="btn" href="#ch1">从第一段开始 ↓</a>
+        <a class="btn ghost" href="#survey">当一次研究对象</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="assets/img/hero-miku.webp" width="851" height="1200" alt="插画：风吹起的白色长发与红蓝色线条" fetchpriority="high" decoding="async">
+      <span class="hero-tag">六段日常 · 六种身体语言</span>
+    </div>
+    <div class="scroll-hint">往下读</div>
+  </section>
+
+  <div class="strip" aria-hidden="true">
+    <div class="strip-track">
+      <span>身体比嘴诚实</span><b>·</b><span>紧张会先到胃</span><b>·</b><span>被看见是一种生理反应</span><b>·</b><span>反刍不是思考</span><b>·</b><span>匿名问卷在最后</span><b>·</b>
+      <span>身体比嘴诚实</span><b>·</b><span>紧张会先到胃</span><b>·</b><span>被看见是一种生理反应</span><b>·</b><span>反刍不是思考</span><b>·</b><span>匿名问卷在最后</span><b>·</b>
     </div>
   </div>
 
-  <div class="vbar" aria-hidden="true">DALA DA DA DA</div>
+  <!-- ================= 序章 ================= -->
+  <section class="intro">
+    <p class="label">先说一件小事</p>
+    <p>上课铃响之前，教室总是很吵。</p>
+    <p>有人在讲昨晚的剧，有人在借橡皮，有人趴在桌上假装睡觉。</p>
+    <p>只有一个人安静地坐着，手心全是汗。</p>
+    <p class="dim">没有人会记得这个画面。连他自己，第二天也会忘。</p>
+    <p>我们要做的，就是把这些「没人记得」的时刻，一个一个捡回来，看清楚。</p>
+  </section>
 
-  <div class="hero-right">
-    <div class="circle" aria-hidden="true"></div>
-    <span class="px p1" aria-hidden="true"></span>
-    <span class="px p2" aria-hidden="true"></span>
-    <span class="px p3" aria-hidden="true"></span>
-    <span class="px p4" aria-hidden="true"></span>
-    <svg class="pixelcloud" viewBox="0 0 220 170" aria-hidden="true">
-      <g fill="#ffffff">
-        <rect x="20" y="40" width="160" height="100"/>
-        <rect x="40" y="20" width="60" height="22"/>
-        <rect x="120" y="26" width="48" height="16"/>
-        <rect x="0" y="70" width="22" height="58"/>
-        <rect x="178" y="58" width="30" height="72"/>
-      </g>
-      <g fill="#9c9c98">
-        <rect x="62" y="74" width="26" height="14"/>
-        <rect x="114" y="74" width="26" height="14"/>
-        <rect x="62" y="104" width="26" height="14"/>
-        <rect x="114" y="104" width="26" height="14"/>
-      </g>
-    </svg>
-    <span class="bubble b1" aria-hidden="true">胃：我先紧张了。</span>
-    <span class="bubble b2" aria-hidden="true">第 3 件衣服：又是我。</span>
-    <img class="miku" src="初音未来-首屏.png" width="498" height="483" alt="初音未来 Q 版插画" fetchpriority="high" decoding="async">
-  </div>
-</section>
+  <!-- ================= 01 ================= -->
+  <section class="chapter" id="ch1">
+    <div class="inner">
+      <figure class="reveal">
+        <img src="assets/img/ch1-exam.webp" width="1200" height="899" alt="插画：傍晚教室里伏案看书的学生" loading="lazy" decoding="async">
+        <figcaption class="cap">考前的那间教室，总有人比闹钟先醒。</figcaption>
+      </figure>
+      <div class="ch-copy reveal">
+        <span class="ch-num">01</span>
+        <h2><small>那天晚上</small>胃比你先睡着</h2>
+        <p>考前一晚，你把闹钟调早了十分钟。</p>
+        <p>十分钟后你醒了，比闹钟更早。胃里像有只猫在踩奶，一下一下，很规律。</p>
+        <p>你开始找原因：是不是晚饭吃坏了？是不是着凉了？是不是昨天那杯奶茶？</p>
+        <p class="strong">都不是。是紧张。只是它没走脑子，直接走了胃。</p>
+        <p class="quote">身体从来不会说谎，它只是不会用你的语言。</p>
+        <aside class="note"><b>后来才知道</b>情绪不走高速公路，它走消化道。考前胃疼不是「心理作用」，是身体真的在执行一套应激程序：血液从肠胃调去四肢，消化暂停，因为你可能要逃跑。</aside>
+      </div>
+    </div>
+  </section>
 
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span>你的身体，正在替你说那些说不出口的话　·　高一16班 研究性学习课题　·　</span><span>你的身体，正在替你说那些说不出口的话　·　高一16班 研究性学习课题　·　</span>
-  </div>
-</div>
-<main>
+  <!-- ================= 02 ================= -->
+  <section class="chapter flip" id="ch2">
+    <div class="inner">
+      <figure class="reveal">
+        <img src="assets/img/ch2-verdict.webp" width="707" height="1000" alt="插画：红裙白发少女持刀而坐" loading="lazy" decoding="async">
+        <figcaption class="cap">有些判决，是自己下的。</figcaption>
+      </figure>
+      <div class="ch-copy reveal">
+        <span class="ch-num">02</span>
+        <h2><small>那三分钟</small>我给自己判了刑</h2>
+        <p>卷子发下来，你第一眼看的是分数。</p>
+        <p>然后迅速把它折起来，塞进书包最底层，好像那样它就不存在了。</p>
+        <p>「我果然不行。」这句话出现得比任何解题思路都快。</p>
+        <p class="strong">真正让你放弃数学的，不是那张卷子，是「努力没用」这个结论。</p>
+        <p class="quote">一次失败是事件。反复失败之后，人会先学会不试。</p>
+        <aside class="note"><b>后来才知道</b>心理学里叫「习得性无助」。当一个人反复经历「怎么做都没用」，大脑会提前关闭尝试的开关——不是懒，是它算过账，觉得再试也是白费。</aside>
+      </div>
+    </div>
+  </section>
 
-<section class="sec paper" id="know">
-  <div class="inner">
-    <h2>先说一件小事</h2>
-    <p>有个人做题做到一半，突然把笔放下，去了走廊。</p>
-    <p>不是不会做。</p>
-    <p>是手在抖，他不想让同桌看见。</p>
-    <p>回来的时候，卷子被别人翻过去看了一眼。他没说话，坐下，继续写。</p>
-    <p>这件事没有人记得，包括他自己。</p>
-    <p>但他的手，记得。</p>
-    <p class="quote">我们要做的，就是把这种"没人记得"的时刻，一个一个捡回来，看清楚。</p>
-  </div>
-</section>
+  <!-- ================= 03 ================= -->
+  <section class="chapter" id="ch3">
+    <div class="inner">
+      <figure class="reveal">
+        <img src="assets/img/ch3-dinner.webp" width="1300" height="919" alt="插画：夏日绿意中举着向日葵与饮品的少女" loading="lazy" decoding="async">
+        <figcaption class="cap">热闹是他们的，你在等一个话题落到自己头上。</figcaption>
+      </figure>
+      <div class="ch-copy reveal">
+        <span class="ch-num">03</span>
+        <h2><small>角落里</small>那顿饭</h2>
+        <p>班级聚餐，你被安排在最里面的位置。</p>
+        <p>你一直在等一个话题落到你头上。等的时候，你把杯子摆正了三次。</p>
+        <p>有人说了一句什么，全场笑了。你也笑了，晚了半秒。</p>
+        <p class="strong">那半秒，你在检查：我笑得对不对。</p>
+        <p class="quote">那一眼只花了对方一秒。它在你脑子里待了二十分钟。</p>
+        <aside class="note"><b>后来才知道</b>这不是玻璃心。大脑对「被排斥」的警报天生灵敏，因为在很久以前，被群体赶出去约等于死。所以别人一个眼神，你的身体会按「生存危机」级别处理。</aside>
+      </div>
+    </div>
+  </section>
 
-<section class="sec">
-  <div class="inner">
-    <h2>一 · 那天晚上，胃比你先睡着</h2>
-    <figure class="fig left"><img src="派蒙.png" width="412" height="430" alt="派蒙 Q 版插画" loading="lazy" decoding="async"></figure>
-    <p class="lead">考前一晚，你把闹钟调早了十分钟。</p>
-    <p>你知道那十分钟没用。你只是想让自己觉得，至少做了点什么。</p>
-    <p>然后躺下。十一点，十二点，一点。</p>
-    <p>灯关了，手机扣过去了，脑子没关。</p>
-    <p>第二天早上，胃先醒了。</p>
-    <p>它比你先紧张。</p>
-    <p class="quote">你后来吐出来的不是早饭，是攒了一整晚的紧张。</p>
-    <span class="kicker">后来才知道</span>
-    <p>紧张的时候，身体会自动切到"准备逃跑"那一挡：心跳变快、血流往肌肉和大脑跑、消化系统被临时关掉。这套机制本来是用来对付老虎的。它分不清老虎和月考，所以考场在你身体里，就成了一片草原。</p>
-    <p>而胃和肠子跟大脑之间一直有一条热线在通话——迷走神经和激素来回传话，所以情绪一波动，肠胃第一个知道。</p>
-    <p>至于"适度紧张发挥最好"这个说法，确实有研究支持，但后来被用得太满、太万金油了。更靠谱的版本是：<strong>难题面前要冷静，简单的活稍微紧一点反而快。</strong>数学大题和涂答题卡，需要的状态本来就不一样。</p>
-    <p class="soft">小声说：深呼吸有用——但前提是别一边深呼吸，一边还在心里默背公式。</p>
-  </div>
-</section>
+  <!-- ================= 04 ================= -->
+  <section class="chapter flip" id="ch4">
+    <div class="inner">
+      <figure class="reveal">
+        <img src="assets/img/ch4-crowd.webp" width="1300" height="910" alt="插画：两名和服少女在水族箱前" loading="lazy" decoding="async">
+        <figcaption class="cap">房间里所有人都做了同一个决定。</figcaption>
+      </figure>
+      <div class="ch-copy reveal">
+        <span class="ch-num">04</span>
+        <h2><small>那道题</small>全班都没听懂</h2>
+        <p>老师问：「这道题大家听明白了吗？」</p>
+        <p>教室里安静了三秒。没人举手。你也听懂了，但你也没举手。</p>
+        <p>不是不想问，是那一刻你突然不确定了：万一只有我不懂呢？</p>
+        <p class="strong">不举手不是你的错。那是房间里所有人的共同决定。</p>
+        <p class="quote">从众不需要压力。只要「大家都这样」这五个字，就够了。</p>
+        <aside class="note"><b>后来才知道</b>1951 年的从众实验里，被试平均有三分之一跟着明显错误的答案走。没有惩罚，没有威胁，错了也没人骂你。人只是很难在所有人沉默的时候，第一个开口。</aside>
+      </div>
+    </div>
+  </section>
 
-<section class="sec lav">
-  <div class="inner">
-    <h2>二 · 那三分钟，我给自己判了刑</h2>
-    <figure class="fig right"><img src="艾米莉亚.webp" width="701" height="430" alt="艾米莉亚 Q 版插画" loading="lazy" decoding="async"></figure>
-    <p class="lead">卷子发下来，你第一眼看的是分数。</p>
-    <p>然后才开始看错在哪。</p>
-    <p>可就在那三分钟里，你心里已经有了结论：<strong>我天生就学不好。</strong></p>
-    <p>奇怪的是，这个结论不是这次考试给的。</p>
-    <p>它来自更早的某一次、某几次、很多次。来自那些你很努力了、但结果还是一样的时候。</p>
-    <p class="quote">你不是放弃了数学，你是放弃了"努力会有用"这件事。</p>
-    <span class="kicker">后来才知道</span>
-    <p>如果一个人反复发现"我做什么都改变不了结果"，他会慢慢不再尝试——哪怕后来机会真的来了，也懒得动。</p>
-    <p class="terms">（顺带说一句：提出这个概念的两位学者，在 2016 年自己发文修订了它。教科书上那个版本其实已经更新过了。我们查资料的时候核过。）</p>
-    <p>更要紧的是"怎么解释失败"。把失败归到<strong>改不了的地方</strong>（我笨、我天生不行），比归到<strong>还能动的地方</strong>（这次没复习到那个题型），更容易让人放弃，也更容易消沉。</p>
-    <p class="soft">小声说："我这次没复习到那个题型"听着像自我安慰。但它给你留了个下一步。区别就在这——一句话堵死未来，一句话还开着门。</p>
-  </div>
-</section>
+  <!-- ================= 05 ================= -->
+  <section class="chapter" id="ch5">
+    <div class="inner">
+      <figure class="reveal">
+        <img src="assets/img/ch5-night.webp" width="527" height="1000" alt="插画：水下的蓝发少女与金鱼" loading="lazy" decoding="async">
+        <figcaption class="cap">凌晨一点，脑子比白天还吵。</figcaption>
+      </figure>
+      <div class="ch-copy reveal">
+        <span class="ch-num">05</span>
+        <h2><small>凌晨一点</small>的那部连续剧</h2>
+        <p>躺下了。灯关了。手机也扣过去了。</p>
+        <p>然后你开始复盘今天说过的每一句话。</p>
+        <p>那句话是不是很蠢？他那个表情是什么意思？我为什么要笑？</p>
+        <p class="strong">你打开手机，想找点东西把脑子填满。凌晨一点的连续剧，就是这么来的。</p>
+        <div class="quote">真的反思是有结尾的。你这个没有。它只是循环播放。</div>
+        <aside class="note"><b>后来才知道</b>这叫「反刍思维」。它长得很像思考，其实是在原地转圈：同样的画面，同样的自责，同样的结论。想得越多，越累，越睡不着。</aside>
+      </div>
+    </div>
+  </section>
 
-<section class="sec mint">
-  <div class="inner">
-    <h2>三 · 角落里那顿饭</h2>
-    <figure class="fig left"><img src="洛天依.png" width="395" height="430" alt="洛天依 Q 版插画" loading="lazy" decoding="async"></figure>
-    <p class="lead">班级聚餐，你被安排在最里面的位置。</p>
-    <p>菜很好吃。你也真的在吃。</p>
-    <p>中途有人朝这边看了一眼。</p>
-    <p>你立刻把手放慢了。</p>
-    <p>接下来二十分钟，你都在想：刚才那个动作是不是很奇怪。</p>
-    <p class="quote">那一眼只花了对方一秒。它在你脑子里待了二十分钟。</p>
-    <span class="kicker">后来才知道</span>
-    <p>"不喜欢热闹"和"害怕被人评价"，是两件事。前者是性格——独处能回血，人多了掉电，不用治，也没什么好同情的。后者是焦虑：你其实想跟人说话，但特别怕被否定，于是要么躲，要么硬撑，全程难受。</p>
-    <p>有个数字我们查到的时候挺意外——这类焦虑最常开始的年龄，大约是 <strong>13 岁</strong>。也就是初一初二。</p>
-    <p class="terms">（各家研究的数字差挺多，跟测评工具和样本都有关系。所以我们只说趋势，不打保票。）</p>
-    <p>至于"大家都在看我"的感觉，2000 年有个很实在的实验：让人穿着印了过气歌手头像的 T 恤走进教室，然后问他——你觉得有多少人注意到你的衣服？他猜 <strong>46%</strong>，实际只有 <strong>23%</strong>。而且看完三秒就忘了。</p>
-    <p class="soft">小声说：别人没你想的那么在意你。这话听着有点凉，但想通了之后特别松快——你不是被忽视，你是被放过了。</p>
-  </div>
-</section>
-<section class="sec">
-  <div class="inner">
-    <h2>四 · 那道题，全班都没听懂</h2>
-    <figure class="fig right"><img src="波奇.png" width="428" height="430" alt="波奇 Q 版插画" loading="lazy" decoding="async"></figure>
-    <p class="lead">老师问：「这道题大家听明白了吗？」</p>
-    <p>一片沉默。</p>
-    <p>你也没懂。</p>
-    <p>但你也跟着沉默了。</p>
-    <p>然后下课铃响，二十三个人带着同一个坑，各回各家。</p>
-    <p class="quote">没人举手的时候，不举手也不是你的错。那是房间里所有人的共同决定。</p>
-    <span class="kicker">后来才知道</span>
-    <p>1951 年有个经典实验：让被试在一群人明显错了的时候，选"相信大家"还是"相信自己眼睛"。判断的还只是几根明显长短不同的线段。</p>
-    <p>结果，关键那些题上，被试平均有 <strong>1/3</strong> 跟着一起错。而全程一次都没被带跑的，只有大约四分之一。</p>
-    <p>最值得想的是这点：<strong>那个实验里没有惩罚，没有威胁，错了也没人骂你。</strong>也就是说，从众根本不需要压力。只要"大家都这样"这五个字，就够了。</p>
-    <p class="soft">小声说：从众不是缺点。它是人给自己找安全感的省电模式，没有它我们连过马路都费劲。要警惕的是另一件事——你已经不知道自己想要什么，只知道自己跟上了什么。</p>
-  </div>
-</section>
+  <!-- ================= 06 ================= -->
+  <section class="chapter flip" id="ch6">
+    <div class="inner">
+      <figure class="reveal">
+        <img src="assets/img/ch6-mirror.webp" width="707" height="1000" alt="插画：秋日林间的狐耳少女" loading="lazy" decoding="async">
+        <figcaption class="cap">出门前的最后一眼，是在确认「我是谁」。</figcaption>
+      </figure>
+      <div class="ch-copy reveal">
+        <span class="ch-num">06</span>
+        <h2><small>出门前</small>的第三件衣服</h2>
+        <p>衣柜翻到第三件，你终于放弃：「算了，穿什么都一样。」</p>
+        <p>然后出门前最后一秒，你还是回头看了一眼镜子。</p>
+        <p class="strong">那不是爱美。那是你在确认「我到底是谁」。</p>
+        <p class="quote">青春期有一件不太公平的事：身体变化的速度，快过心理适应的速度。</p>
+        <aside class="note"><b>后来才知道</b>心理学叫「假想观众」——你总觉得有一双眼睛在盯着自己。这不是自恋，是自我意识长得太快时的正常反应。你会格外在意别人怎么看你，因为你还不知道该怎么看自己。</aside>
+      </div>
+    </div>
+  </section>
 
-<section class="sec orange">
-  <div class="inner">
-    <h2>五 · 凌晨一点的那部连续剧</h2>
-    <figure class="fig left"><img src="洛琪希.png" width="428" height="430" alt="洛琪希 Q 版插画" loading="lazy" decoding="async"></figure>
-    <p class="lead">躺下了。灯关了。手机也扣过去了。</p>
-    <p>然后节目开始。</p>
-    <p>第一集，《今天下午我说的那句话是不是很蠢》。</p>
-    <p>第二集，《那个人当时笑了是不是在笑我》。</p>
-    <p>第三集，《我小学二年级干的蠢事，现在想起来还是想钻地缝》。</p>
-    <p>门外有人喊：早点睡。</p>
-    <p>你说：我在反思。</p>
-    <p class="quote">真的反思是有结尾的。你这个没有。它只是循环播放。</p>
-    <span class="kicker">后来才知道</span>
-    <p>反复地、被动地咀嚼自己的痛苦，但不去解决它——这种状态跟更高的情绪低落风险有关。麻烦的是它和睡眠会互相加码：睡前脑子太警觉，就睡不着；睡不着，第二天情绪调节的余量就变少；余量变少，当天晚上又更容易继续想。</p>
-    <p><strong>你不是睡不着才胡思乱想，你是胡思乱想才睡不着。</strong></p>
-    <p>所以分界线不在你想了多久，而在这句话有没有出口："我下次可以怎么做"——有出口；"我为什么这么糟"——没有出口。</p>
-    <p class="soft">小声说：睡前把没想完的事写在一张纸上，摆在床头。它就不会一直亮着灯了。</p>
-    <p class="terms">（这也是我们在问卷里最想收数据的地方。）</p>
-  </div>
-</section>
+  <!-- ================= 深夜区 ================= -->
+  <section class="night">
+    <div class="inner">
+      <div class="night-clock" aria-hidden="true"><span>01:00</span><i></i></div>
+      <div>
+        <p class="label">睡不着的时候看</p>
+        <h2>如果现在已经是凌晨，<br>先别急着想明白。</h2>
+        <p>上面五段，如果你中了不止一条，说明你不是「太敏感」，只是这套警报系统比较灵敏。它曾经很有用，现在有点吵。</p>
+        <ol>
+          <li>把明天要担心的事，写在纸上，写完合上。大脑确认「已经记下了」，才肯松手。</li>
+          <li>呼吸放慢到一分钟六次。不是玄学，是给身体一个「安全」的信号。</li>
+          <li>二十分钟还睡不着就起来，做点无聊的事。躺着硬睡，只会让床和焦虑绑在一起。</li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
-<section class="sec blue">
-  <div class="inner">
-    <h2>六 · 出门前的第三件衣服</h2>
-    <figure class="fig right"><img src="初音未来-第六节.png" width="404" height="512" alt="初音未来 Q 版插画" loading="lazy" decoding="async"></figure>
-    <p class="lead">衣柜翻到第三件，你终于放弃：「算了，穿什么都一样。」</p>
-    <p>然后出门前最后一秒，你还是回头看了一眼镜子。</p>
-    <p class="quote">那不是爱美。那是你在确认"我到底是谁"。</p>
-    <span class="kicker">后来才知道</span>
-    <p>青春期有件不太公平的事：<strong>身体变化的速度，快过心理适应的速度。</strong>身高、体重、体型、皮肤、声音，在短短几年里集中改写。而"我是个什么样的人"这个答案，还在加载中。</p>
-    <p>所以你会格外在意别人怎么看你。心理学里有个说法叫"以为台下坐满了观众"——好像总有一双双眼睛在盯着自己。甚至会觉得：我的感受这么特别，没人能懂。</p>
-    <p>这两种感觉不是"想太多"，是自我意识长得太快造成的正常反应，通常会随着长大慢慢退下去。</p>
-    <p>再往深一层，人其实是靠"想象别人怎么看我"来认识自己的。所以青春期对镜子的执着，本质上不是爱美——是<strong>在找一个能确认自己的回声</strong>。</p>
-    <p>声明一句：本课题不评价任何人的外貌，也不给任何减肥、塑形建议。我们关心的是身体焦虑怎么影响情绪和日常，不是"你够不够好看"。这条线我们守得很死。</p>
-  </div>
-</section>
-<section class="sec paper">
-  <div class="sec-head">
-    <h2>睡不着的时候看</h2>
-    <p>一句话能看完的东西，往往比一篇文章记得久。</p>
-  </div>
-  <div class="inner">
-    <table>
-      <thead>
-        <tr><th>一句话</th><th style="width:34%">出处（想深挖再查）</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>没做完的事会在脑子里亮着灯。所以"先做 5 分钟就停"，比"逼自己坐一小时"更容易继续。</td><td class="t">蔡格尼克效应</td></tr>
-        <tr><td>"你外表开朗但内心敏感"能让九成人觉得"这就是我"。觉得准，不等于它懂你。</td><td class="t">巴纳姆效应</td></tr>
-        <tr><td>先答应"帮我拿支笔"，再答应"帮我写作业"的成功率高得多。</td><td class="t">登门槛效应</td></tr>
-        <tr><td>老师"以为你很行"，你可能真的变行。</td><td class="t">罗森塔尔效应</td></tr>
-        <tr><td>一张卷子没交，接下来三张也不想交了。</td><td class="t">破窗效应</td></tr>
-        <tr><td>同一句道理讲到第三遍，效果变成负数。</td><td class="t">超限效应</td></tr>
-        <tr><td>让人脱下外套的是暖风，不是北风。</td><td class="t">南风效应</td></tr>
-        <tr><td>让你难受的往往不是那件事，而是你对它的解释。</td><td class="t">情绪 ABC 理论</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section class="sec blue" id="survey">
-  <div class="sec-head">
-    <h2>一份匿名问卷</h2>
-    <p class="lead">读到这，问你一句：上面六段里，有没有哪一段，你看着看着慢了一下？</p>
-    <p>如果有——那正好。下面这份问卷就是为你做的。我们不是想研究你，我们只是想知道，到底有多少人跟我们一样。</p>
-    <p>大约 3 分钟。全部匿名：不问姓名、学号、班级，识别不到任何人。随时可以关掉，不会有任何后果——我们根本不知道你是谁。</p>
-  </div>
-  <div class="qgrid">
-
-    <article class="qcard">
-      <h3>身体替你说的那些话</h3>
-      <p>考前一晚胃疼、被点名时手心出汗、心跳快、肩颈僵、莫名其妙想吐……这些"哪儿都没坏、但就是不舒服"的时候，你有多少？这份问卷用来看看，心理压力是怎么变成身体信号的。</p>
-      <ul class="qmeta"><li>约 3 分钟</li><li>12 题</li><li>匿名</li><li>不是医学诊断</li></ul>
-      <a class="qbtn" href="https://wj.qq.com/s2/27865770/oevk/" target="_blank" rel="noopener">填写问卷 →</a>
-    </article>
-
-  </div>
-</section>
-
-<section class="sec paper">
-  <div class="inner">
-    <h2>关于本站</h2>
-    <p>本网站是<strong>高一16班</strong>研究性学习小组的课题成果展示平台，研究方向为高中生的心理压力与心身反应。</p>
-    <p><strong>研究目的：</strong>了解本校高中生在学业、社交与作息情境中的心理压力，如何通过身体感受表现出来，形成一份可供同学阅读的科普报告。</p>
-    <p><strong>数据来源：</strong>本页一份匿名第三方问卷导出的群体统计数据，以及公开心理学文献与教材。</p>
-    <p><strong>问卷使用声明：</strong>参与完全自愿，可随时退出；不收集姓名、学号等可识别信息；数据仅用于本课题统计分析，不公开原始数据、不用于商业用途。本课题不提供任何诊断或治疗建议。</p>
-  </div>
-</section>
+  <!-- ================= 问卷 ================= -->
+  <section class="survey" id="survey">
+    <div class="inner">
+      <div class="reveal">
+        <p class="label">一份匿名问卷</p>
+        <h2>读到这，问你一句：<br>上面六段里，有没有哪一段，<br>你看着看着，慢了一下？</h2>
+        <p>如果答案是「有」，那你就是我们想找的人。</p>
+        <p>一份 3 分钟的匿名问卷，不记名，不追踪，不评价。数据只用于这次课题的统计分析。</p>
+        <div class="btn-row">
+          <a class="btn red" href="https://wj.qq.com/s2/27865770/oevk/" target="_blank" rel="noopener">填写匿名问卷 →</a>
+        </div>
+        <p class="fine">链接打不开？复制到浏览器：wj.qq.com/s2/27865770/oevk/</p>
+      </div>
+      <img class="reveal" src="assets/img/cta-sky.webp" width="707" height="1000" alt="插画：蓝天下捧花的少女与飞鸟" loading="lazy" decoding="async">
+    </div>
+  </section>
 
 </main>
 
 <footer>
-  <div class="fwrap">
-    <p class="warn">本网站内容仅用于校园研究性学习与心理学科普，不能替代专业心理评估、诊断或治疗。若你正处在持续的情绪困扰中，请及时联系学校心理老师、家长，或拨打心理援助热线。</p>
-    <p class="sig">高一16班 研究性学习小组</p>
-    <p class="fine">页面中的 Q 版角色插画来自网络公开图源，版权归原作者及权利方所有；本站为非商业的校园课题展示，如权利人认为不妥，请联系我们删除。</p>
+  <div class="inner">
+    <div>
+      <h3>关于本站</h3>
+      <p>本站是高一16班研究性学习课题「心身反应」的展示页面，属于心理学方向的校园科普，不是专业心理服务。</p>
+      <p>页面中的插画来自网络公开图源，版权归原作者及权利方所有。本站为非商业的校园课题展示，如权利人认为使用不妥，请联系我们删除。</p>
+      <p>如果你正处在持续的情绪困扰中，请告诉信任的成年人，或寻求学校心理老师、专业机构的帮助。本站内容不能替代专业心理评估、诊断或治疗。</p>
+      <p class="sig">高一16班 · 研究性学习 · 心理学方向 · 课题代号「心身反应」</p>
+    </div>
+    <div>
+      <h3>页面导航</h3>
+      <p><a href="#ch1">01 那天晚上，胃比你先睡着</a></p>
+      <p><a href="#ch2">02 那三分钟，我给自己判了刑</a></p>
+      <p><a href="#ch3">03 角落里那顿饭</a></p>
+      <p><a href="#ch4">04 那道题，全班都没听懂</a></p>
+      <p><a href="#ch5">05 凌晨一点的那部连续剧</a></p>
+      <p><a href="#ch6">06 出门前的第三件衣服</a></p>
+      <p><a href="https://wj.qq.com/s2/27865770/oevk/" target="_blank" rel="noopener">填写匿名问卷 →</a></p>
+    </div>
   </div>
 </footer>
+
 <script>
 (function () {
-  /* 顶部阅读进度条 */
-  var bar = document.createElement('div');
-  bar.className = 'readbar';
-  document.body.appendChild(bar);
+  var bar = document.getElementById('readbar');
   function onScroll() {
     var el = document.documentElement;
     var max = el.scrollHeight - el.clientHeight;
@@ -537,28 +507,17 @@ tbody tr:hover{background:var(--mustard)}
   onScroll();
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;
-
-  /* 滚动进场：逐条浮现 */
-  var nodes = document.querySelectorAll('main .inner > *, main .sec-head > *, .qcard');
-  var list = [];
-  Array.prototype.forEach.call(nodes, function (el) {
-    if (el.tagName === 'FIGURE' || el.classList.contains('fig')) return;
-    if (el.querySelector('figure')) return;
-    el.classList.add('reveal');
-    list.push(el);
-  });
-
-  if (!('IntersectionObserver' in window)) {
-    list.forEach(function (el) { el.classList.add('in'); });
+  var nodes = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    Array.prototype.forEach.call(nodes, function (n) { n.classList.add('in'); });
     return;
   }
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.06, rootMargin: '0px 0px -6% 0px' });
-  list.forEach(function (el) { io.observe(el); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  Array.prototype.forEach.call(nodes, function (n) { io.observe(n); });
 })();
 </script>
 </body>

@@ -4,137 +4,73 @@
 
 一个纯静态的校园课题展示网站：用段子和口语讲心理学，末尾挂一份匿名问卷收集研究数据。
 
+**线上地址**：https://psychovibe.cn
+
 ---
 
 ## 目录结构
 
 ```
 .
-├── index.html              # 整个网站（HTML + CSS 内联，单文件）
-├── README.md               # 本文件
-├── 图片清单.md              # ★ 图片对照清单（每张图是什么角色、用在哪）
-├── 初音未来-首屏.png        # 初音未来 —— 首屏主视觉
-├── 派蒙.png                # 派蒙 —— 第 1 节
-├── 艾米莉亚.webp            # 艾米莉亚 —— 第 2 节
-├── 洛天依.png               # 洛天依 —— 第 3 节
-├── 波奇.png                # 后藤一里（波奇）—— 第 4 节
-├── 洛琪希.png               # 洛琪希 —— 第 5 节
-└── 初音未来-第六节.png       # 初音未来 —— 第 6 节
+├── index.html              # 整个网站（HTML + CSS + 少量 JS，单文件）
+├── assets/
+│   ├── img/                # 页面实际使用的 8 张插画（WebP）
+│   └── legacy/             # 早期 7 张 Q 版插画，已从页面撤下，保留备查
+├── 图片清单.md              # 图片对照表（哪张图用在哪、尺寸、体积）
+└── README.md               # 本文件
 ```
 
-**图片全部位于仓库根目录（与 `index.html` 同级），`src` 用相对文件名直接引用。**
-**图片对应关系详见 [`图片清单.md`](图片清单.md)**
+## 技术特点
 
----
-
-## 技术说明
-
-- **零依赖**：没有框架、没有构建步骤、没有 npm、没有 CDN
-- HTML 和 CSS 全部内联在 `index.html`（约 25 KB）
-- 装饰元素（像素方块、斜纹分隔带、跑马灯）全部是 CSS/SVG 手写，**不占用图片**
-- 页面**唯一的外部请求**是问卷链接 `wj.qq.com`
-- 断网状态下除问卷外，网页可以完整正常显示
-
----
+- **单文件页面**：`index.html` 内联全部样式与脚本，不依赖构建工具
+- **零外部依赖**：不引用 CDN、不加载网络字体，离线也能完整打开
+- **图片优化**：全部转为 WebP，首屏图 143 KB，整站图片合计约 1.1 MB
+- **防布局抖动**：每个 `<img>` 都带真实 `width`/`height`
+- **懒加载**：首屏之外使用 `loading="lazy"`
+- **响应式**：900px 以下切换单列布局
+- **无障碍**：遵循 `prefers-reduced-motion`，动效可关闭
 
 ## 本地预览
 
-直接双击 `index.html` 用浏览器打开即可（图片用相对路径，不会裂图）。
-
-或者起一个本地服务：
-
 ```bash
+cd psychovibe-date
 python3 -m http.server 8000
-# 然后访问 http://localhost:8000
+# 浏览器打开 http://localhost:8000
 ```
 
----
+## 部署
 
-## 部署到 GitHub + Vercel
-
-### 第一步：上传到 GitHub
-
-1. 在 GitHub 新建一个仓库（Public 或 Private 都行），**不要**勾选 "Add a README file"
-2. 在本地项目目录执行：
+仓库连接 Vercel，推送到 `main` 即自动重新部署，无需手动构建步骤。
 
 ```bash
-git init
-git add .
-git commit -m "高一16班心理课题网站"
-git branch -M main
-git remote add origin https://github.com/你的用户名/仓库名.git
-git push -u origin main
+git add -A && git commit -m "你的改动" && git push origin main
 ```
 
-> 如果是在手机 / 网页端操作：GitHub 仓库页面 → `Add file` → `Upload files` → 把 `index.html` 和 7 张图片一起拖进去 → Commit。
-> ⚠️ **7 张图片要全部上传**，且必须与 `index.html` 放在同一层目录，否则图片会裂掉。
+## 常见修改
 
-### 第二步：部署到 Vercel
+### 改文案
+直接编辑 `index.html` 中对应 `<section class="chapter">` 里的 `<p>`。六节顺序为 `#ch1` 到 `#ch6`。
 
-1. 打开 [vercel.com](https://vercel.com)，用 GitHub 账号登录
-2. 点 **Add New → Project**，选中刚才那个仓库，点 **Import**
-3. 配置项保持默认即可（这是纯静态站，Vercel 会自动识别）：
+### 换图片
+1. 把图片放进 `assets/img/`（建议先转 WebP，长边不超过 1400px）
+2. 修改对应 `<img>` 的 `src`
+3. **必须同时把 `width`/`height` 改成图片真实像素**，否则会出现布局抖动
 
-   | 配置项 | 填什么 |
-   |---|---|
-   | Framework Preset | `Other`（或保持自动识别） |
-   | Root Directory | `./` |
-   | Build Command | **留空** |
-   | Output Directory | **留空** |
-   | Install Command | **留空** |
+### 问卷链接
+问卷地址：`https://wj.qq.com/s2/27865770/oevk/`
+页面中共两处（问卷区按钮、页脚导航），修改时两处都要改。
 
-4. 点 **Deploy**，等十几秒，会得到一个 `xxx.vercel.app` 的网址
+## 排错
 
-> 之后每次往 GitHub 推送新提交，Vercel 都会自动重新部署，不用手动操作。
-
-### 可能踩的坑
-
-| 现象 | 原因 | 解决 |
+| 现象 | 原因 | 处理 |
 |---|---|---|
-| 图片全部裂开 | 图片没上传，或没有和 `index.html` 放在同一目录 | 图片需与 `index.html` 同级；Vercel 是 Linux，**区分大小写**，文件名必须与 HTML 里写的完全一致 |
-| 图片部分裂开 | HTML 里的文件名和实际文件名大小写不一致 | 全部改成小写（本项目已统一为小写文件名） |
-| 打开是 404 | 入口文件不叫 `index.html` | 根目录必须有 `index.html` |
-| 样式全丢 | 上传时漏了文件 | 确认 `index.html` 是完整的单文件（CSS 在里面） |
+| 图片全部裂开 | 图片没上传，或不在 `assets/img/` 下 | 确认路径与文件名大小写完全一致 |
+| 页面往下跳 | `width`/`height` 与真实像素不符 | 用图片工具查真实尺寸后改正 |
+| 图片显示不全 | 容器宽度限制 | 检查 `max-width` 与 `object-fit` |
+| 部署后没更新 | Vercel 未完成构建 | 到 Vercel Deployments 查看构建状态 |
 
----
+## 内容与版权
 
-## 日常维护
-
-### 换问卷链接
-
-打开 `index.html`，搜索 `wj.qq.com`，替换 `href` 里的地址即可：
-
-```html
-<a class="qbtn" href="https://wj.qq.com/s2/你的问卷ID/" target="_blank" rel="noopener">填写问卷 →</a>
-```
-
-### 改配色
-
-所有颜色集中在 `index.html` 顶部的 `:root` 里，改一处就全局生效：
-
-```css
-:root{
-  --mustard:#F6C51C;   /* 芥末黄 —— 首屏、第1/4节 */
-  --orange:#F2762E;    /* 暖橘   —— 第5节 */
-  --sky:#7FC8E8;       /* 天蓝   —— 第6节、问卷区 */
-  --mint:#9FDCA8;      /* 浅绿   —— 第3节 */
-  --lav:#C9A8E0;       /* 淡紫   —— 第2节（配艾米莉亚） */
-  --ink:#1E1B18;       /* 墨黑 —— 描边、文字块 */
-  --paper:#FFFDF5;     /* 奶白 —— 正文卡片底 */
-  --red:#E23E2B;       /* 波普红 —— 强调色 */
-}
-```
-
-各板块用 `class="sec"` / `sec orange` / `sec blue` / `sec mint` / `sec lav` / `sec paper` 控制。
-
-### 换角色图
-
-见 [`图片清单.md`](图片清单.md) 最后一节。
-
----
-
-## 免责声明
-
-本网站内容仅用于**校园研究性学习与心理学科普**，不能替代专业心理评估、诊断或治疗。
-
-页面中的 Q 版角色插画来自网络公开图源，版权归原作者及权利方所有；本站为非商业的校园课题展示，如权利人认为使用不妥，请联系我们删除。
+- 页面插画来自网络公开图源，版权归原作者及权利方所有
+- 本站为非商业的校园课题展示，如权利人认为使用不妥，请联系删除
+- 本站内容不能替代专业心理评估、诊断或治疗
