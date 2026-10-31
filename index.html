@@ -59,7 +59,7 @@ h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(23,19,16,.6)}
 .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
 .btn.ghost:hover{background:var(--ink);color:#FAF7F1}
-.hero-art{margin:0;position:relative}
+.hero-art{margin:0;position:relative;width:100%;max-width:380px;justify-self:end}
 .hero-art img{width:100%;height:auto;border-radius:6px;box-shadow:0 44px 80px -44px rgba(23,19,16,.55)}
 .hero-art figcaption{margin-top:12px;font-size:12.5px;color:var(--muted);letter-spacing:.06em}
 .hero-dots{position:absolute;left:-4%;bottom:8%;width:120px;height:120px;pointer-events:none;
@@ -78,7 +78,7 @@ h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height
 .intro::before{content:"";position:absolute;inset:0;pointer-events:none;
   background-image:repeating-linear-gradient(118deg,transparent 0 74px,rgba(192,57,43,.13) 74px 76px)}
 .intro-inner{display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(26px,5vw,70px);align-items:center}
-.intro figure{margin:0}
+.intro figure{margin:0;width:100%;max-width:380px}
 .intro figure img{width:100%;height:auto;border-radius:5px;box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
 .intro .label{margin:0 0 10px;font-size:11.5px;font-weight:800;letter-spacing:.22em;color:#E0563F}
 .intro h2{font-size:clamp(26px,3.4vw,40px);line-height:1.22;margin:0 0 .7em;letter-spacing:-.02em}
@@ -88,8 +88,8 @@ h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height
 /* ---------- 章节 ---------- */
 .chapter{padding:clamp(52px,8vw,104px) 0;position:relative;background:var(--tint,var(--paper));overflow:hidden}
 .chapter::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0}
-.chapter .inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,5vw,68px);align-items:center;position:relative;z-index:1}
-.chapter.flip .inner{grid-template-columns:1fr 1fr}
+.chapter .inner{display:grid;grid-template-columns:.94fr 1.06fr;gap:clamp(26px,5vw,68px);align-items:center;position:relative;z-index:1}
+.chapter.flip .inner{grid-template-columns:1.06fr .94fr}
 .chapter.flip figure{order:2}
 .chapter.wide .inner{grid-template-columns:1fr;gap:34px}
 .ch-head{position:relative;z-index:1}
@@ -97,10 +97,9 @@ h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height
   letter-spacing:-.05em;color:var(--accent);margin-bottom:6px}
 .ch-head h2{font-size:clamp(25px,3.2vw,41px);line-height:1.22;letter-spacing:-.02em;margin:0 0 8px}
 .ch-head .sub{margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--muted)}
-.chapter figure{margin:0;position:relative;z-index:1}
-.chapter figure img{max-height:clamp(330px,44vw,540px);width:auto;max-width:100%;margin:0 auto;
+.chapter figure{margin:0 auto;position:relative;z-index:1;width:100%;max-width:var(--fw,100%)}
+.chapter figure img{width:100%;height:auto;display:block;
   border-radius:5px;box-shadow:0 30px 60px -34px rgba(23,19,16,.5)}
-.chapter.wide figure img{max-height:clamp(300px,40vw,510px)}
 .ch-body{max-width:37em;margin-top:30px;position:relative;z-index:1}
 .chapter.wide .ch-body{margin-top:0}
 .chapter.flip .ch-body{margin-left:auto}
@@ -189,7 +188,7 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
   .hero-art{order:-1}
   .chapter .inner,.chapter.flip .inner{grid-template-columns:1fr;gap:26px}
   .chapter.flip figure{order:0}
-  .chapter figure img,.chapter.wide figure img{max-height:none;width:100%}
+  .chapter figure img{width:100%}
   .ch-head .num{font-size:44px}
   footer .cols{grid-template-columns:1fr;gap:26px}
   .hero-dots{display:none}
@@ -264,7 +263,7 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
   </section>
 
   <!-- 01 -->
-  <section class="chapter wide ch-exam" id="ch1" style="--accent:#8A6A4F;--tint:#F4F0E8">
+  <section class="chapter wide ch-exam" id="ch1" style="--accent:#8A6A4F;--tint:#F4F0E8;--fw:640px">
     <div class="wrap inner">
       <div class="ch-head">
         <span class="num">01</span>
@@ -285,7 +284,7 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
   </section>
 
   <!-- 02 -->
-  <section class="chapter flip ch-verdict" id="ch2" style="--accent:#8E3A34;--tint:#F8F0ED">
+  <section class="chapter flip ch-verdict" id="ch2" style="--accent:#8E3A34;--tint:#F8F0ED;--fw:320px">
     <div class="wrap inner">
       <figure>
         <img src="assets/img/ch2-verdict.webp" width="707" height="1000" alt="红裙少女抱膝而坐，长刀横在身前" loading="lazy" decoding="async">
@@ -308,7 +307,7 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
   </section>
 
   <!-- 03 -->
-  <section class="chapter wide ch-summer" id="ch3" style="--accent:#B07A1E;--tint:#FBF6E5">
+  <section class="chapter wide ch-summer" id="ch3" style="--accent:#B07A1E;--tint:#FBF6E5;--fw:640px">
     <div class="wrap inner">
       <div class="ch-head">
         <span class="num">03</span>
@@ -329,30 +328,28 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
   </section>
 
   <!-- 04 -->
-  <section class="chapter ch-crowd" id="ch4" style="--accent:#17849B;--tint:#EDF7F9">
+    <section class="chapter wide ch-crowd" id="ch4" style="--accent:#17849B;--tint:#EDF7F9;--fw:640px">
     <div class="wrap inner">
+      <div class="ch-head">
+        <span class="num">04</span>
+        <h2>那道题，全班都没听懂</h2>
+        <p class="sub">教室里的三秒沉默 · 从众</p>
+      </div>
       <figure>
         <img src="assets/img/ch4-crowd.webp" width="1300" height="910" alt="水光与金鱼之间，两名和服少女彼此对视" loading="lazy" decoding="async">
       </figure>
-      <div class="ch-copy">
-        <div class="ch-head">
-          <span class="num">04</span>
-          <h2>那道题，全班都没听懂</h2>
-          <p class="sub">教室里的三秒沉默 · 从众</p>
-        </div>
-        <div class="ch-body">
-          <p>老师问：这道题大家听明白了吗？</p>
-          <p>教室里安静了三秒。没人举手。</p>
-          <p>你其实听懂了。你也想举手。但手抬到一半，你听见那片安静，又把它放下了。</p>
-          <blockquote>没人举手的时候，不举手也不是你的错。那是房间里所有人的共同决定。</blockquote>
-          <aside class="note"><b>后来才知道</b>1951 年的从众实验里，被试平均有三分之一会跟着明显错误的答案走。没有惩罚，没有威胁，只要有"大家都这样"五个字就够了。</aside>
-        </div>
+      <div class="ch-body">
+        <p>老师问：这道题大家听明白了吗？</p>
+        <p>教室里安静了三秒。没人举手。</p>
+        <p>你其实听懂了。你也想举手。但手抬到一半，你听见那片安静，又把它放下了。</p>
+        <blockquote>没人举手的时候，不举手也不是你的错。那是房间里所有人的共同决定。</blockquote>
+        <aside class="note"><b>后来才知道</b>1951 年的从众实验里，被试平均有三分之一会跟着明显错误的答案走。没有惩罚，没有威胁，只要有"大家都这样"五个字就够了。</aside>
       </div>
     </div>
   </section>
 
   <!-- 05 深海 -->
-  <section class="chapter flip ch-deep" id="ch5" style="--accent:#5B8DEF">
+  <section class="chapter flip ch-deep" id="ch5" style="--accent:#5B8DEF;--fw:250px">
     <div class="wrap inner">
       <figure>
         <img src="assets/img/ch5-night.webp" width="527" height="1000" alt="深水之中，蓝发少女托着腮，金鱼从她发间游过" loading="lazy" decoding="async">
@@ -375,7 +372,7 @@ footer .end{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);fo
   </section>
 
   <!-- 06 -->
-  <section class="chapter ch-autumn" id="ch6" style="--accent:#A8621A;--tint:#F9F2E6">
+  <section class="chapter ch-autumn" id="ch6" style="--accent:#A8621A;--tint:#F9F2E6;--fw:320px">
     <div class="wrap inner">
       <figure>
         <img src="assets/img/ch6-autumn.webp" width="707" height="1000" alt="秋日林间，狐耳少女坐在落叶中，身旁伏着一只狐狸" loading="lazy" decoding="async">
