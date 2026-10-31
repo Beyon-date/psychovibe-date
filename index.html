@@ -541,9 +541,9 @@ footer a{color:#E0B084}
 }
 
 /* 深夜区 / 问卷区 / 页脚 平滑衔接 */
-.night{background:linear-gradient(180deg,#2A1E12 0,#080C16 clamp(130px,16vw,210px))}
-.survey{background:linear-gradient(180deg,#080C16 0,#0F2755 clamp(130px,16vw,210px))}
-footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(120px,15vw,200px))}
+.night{background:linear-gradient(180deg,#2A1E12 0,#080C16 clamp(130px,16vw,200px))}
+.survey{background:linear-gradient(180deg,#080C16 0,#0F2755 clamp(130px,16vw,200px))}
+footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(130px,16vw,200px))}
 
 @media (max-width:900px){
   .chapter .inner::after{top:-26px;width:7px;height:7px}
@@ -552,7 +552,7 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(120px,15vw,200p
 
 /* ================= 附记 · 动漫 ================= */
 .appendix{
-  background:linear-gradient(180deg,#0F2755 0,#0B0A10 clamp(140px,17vw,220px));
+  background:linear-gradient(180deg,#0F2755 0,#0B0A10 clamp(130px,16vw,200px));
   color:#F2ECE2;padding:clamp(72px,10vw,132px) 0 clamp(64px,9vw,112px);
   position:relative;overflow:hidden;
 }
@@ -634,6 +634,20 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(120px,15vw,200p
   transition:background-color .4s ease;
 }
 .figbox img.loaded,.hero-art img.loaded{background:transparent}
+
+/* ================= 下方模块统一过渡装饰 ================= */
+.night,.survey,.appendix{position:relative}
+.sep{position:absolute;left:0;right:0;top:0;height:1px;pointer-events:none;z-index:3}
+.sep::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22) 20%,
+             rgba(255,255,255,.22) 80%,transparent)}
+.sep::after{content:"";position:absolute;left:50%;top:-4px;width:8px;height:8px;
+  transform:translateX(-50%) rotate(45deg);
+  background:var(--sep,#8AAEFF);opacity:.92;
+  box-shadow:0 0 18px var(--sep,#8AAEFF)}
+@media (max-width:900px){
+  .sep::after{width:7px;height:7px;top:-3.5px}
+}
 </style>
 </head>
 <body>
@@ -877,7 +891,8 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(120px,15vw,200p
 
   
 
-  <section class="night">
+  <section class="night" style="--sep:#8AAEFF">
+    <div class="sep" aria-hidden="true"></div>
     <div class="wrap inner">
       <div class="night-clock" aria-hidden="true"><span>01:00</span><i></i></div>
       <div>
@@ -892,7 +907,8 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(120px,15vw,200p
     </div>
   </section>
 
-  <section class="survey" id="survey">
+  <section class="survey" id="survey" style="--sep:#8FB6F0">
+    <div class="sep" aria-hidden="true"></div>
     <div class="wrap inner">
       <span class="label">Form 07 / 匿名问卷</span>
       <h2>上面六段里，有没有哪一段，你看着看着，慢了一下？</h2>
@@ -905,7 +921,8 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(120px,15vw,200p
 
 </main>
 
-<section class="appendix" id="appendix">
+<section class="appendix" id="appendix" style="--sep:#D89B5A">
+    <div class="sep" aria-hidden="true"></div>
     <div class="wrap">
       <div class="ap-head">
         <span class="ap-tag">Appendix / 附记</span>
