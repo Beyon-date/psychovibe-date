@@ -542,8 +542,8 @@ footer a{color:#E0B084}
 
 /* 深夜区 / 问卷区 / 页脚 平滑衔接 */
 .night{background:linear-gradient(180deg,#2A1E12 0,#080C16 clamp(130px,16vw,200px))}
-.survey{background:linear-gradient(180deg,#2A1E12 0%,#33202A 24%,#1E2A46 56%,#132A4E 80%,#0F2755 100%)}
-footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(130px,16vw,200px))}
+.survey{background:#000000}
+footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200px))}
 
 @media (max-width:900px){
   .chapter .inner::after{top:-26px;width:7px;height:7px}
@@ -654,7 +654,7 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(130px,16vw,200p
     radial-gradient(ellipse 90% 58% at 50% 0%, rgba(216,155,90,.17), transparent 66%),
     radial-gradient(ellipse 62% 50% at 10% 88%, rgba(110,140,255,.14), transparent 62%),
     radial-gradient(ellipse 50% 42% at 94% 68%, rgba(176,118,255,.09), transparent 60%),
-    linear-gradient(180deg,#0F2755 0%,#15122A 38%,#0B0A10 100%);
+    linear-gradient(180deg,#2A1E12 0%,#251A2A 40%,#000000 100%);
 }
 .appendix::before{
   content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
@@ -915,21 +915,7 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(130px,16vw,200p
 
   
 
-  <section class="survey" id="survey" style="--sep:#8FB6F0">
-    <div class="sep" aria-hidden="true"></div>
-    <div class="wrap inner">
-      <span class="label">Form 07 / 匿名问卷</span>
-      <h2>上面六段里，有没有哪一段，你看着看着，慢了一下？</h2>
-      <p>如果答案是"有"，那你就是我们想找的人。</p>
-      <p>一份三分钟的匿名问卷。不记名，不追踪，不评价。你只需要说实话，不用说得漂亮。</p>
-      <a class="cta" href="https://wj.qq.com/s2/27865770/oevk/" target="_blank" rel="noopener">填写匿名问卷 <span>→</span></a>
-      <p class="fine">问卷结果仅用于本课题研究，不会公开任何可识别个人的信息。</p>
-    </div>
-  </section>
-
-</main>
-
-<section class="appendix" id="appendix" style="--sep:#D89B5A">
+  <section class="appendix" id="appendix" style="--sep:#D89B5A">
     <div class="sep" aria-hidden="true"></div>
     <div class="wrap">
       <div class="ap-head">
@@ -949,6 +935,20 @@ footer{background:linear-gradient(180deg,#0B0A10 0,#0C0A0E clamp(130px,16vw,200p
       
       
       
+    </div>
+  </section>
+
+</main>
+
+<section class="survey" id="survey" style="--sep:#8FB6F0">
+    <div class="sep" aria-hidden="true"></div>
+    <div class="wrap inner">
+      <span class="label">Form 07 / 匿名问卷</span>
+      <h2>上面六段里，有没有哪一段，你看着看着，慢了一下？</h2>
+      <p>如果答案是"有"，那你就是我们想找的人。</p>
+      <p>一份三分钟的匿名问卷。不记名，不追踪，不评价。你只需要说实话，不用说得漂亮。</p>
+      <a class="cta" href="https://wj.qq.com/s2/27865770/oevk/" target="_blank" rel="noopener">填写匿名问卷 <span>→</span></a>
+      <p class="fine">问卷结果仅用于本课题研究，不会公开任何可识别个人的信息。</p>
     </div>
   </section>
 
