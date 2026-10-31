@@ -677,9 +677,9 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
 
 /* 问卷顶部分隔：加粗提亮，确保可见 */
 .survey .sep{height:2px}
-.survey .sep::before{height:2px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.95) 18%,
-             #FFFFFF 40%,#FFFFFF 60%,rgba(255,255,255,.95) 82%,transparent)}
+.survey .sep::before{height:2px;background:#FFFFFF;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%)}
 .survey .sep::after{width:12px;height:12px;top:-5px;
   background:#FFFFFF;opacity:1;box-shadow:0 0 26px rgba(255,255,255,.9)}
 @media (max-width:900px){
