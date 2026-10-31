@@ -553,7 +553,7 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
 .appendix{
   background:linear-gradient(180deg,#0F2755 0,#0B0A10 clamp(130px,16vw,200px));
   color:#F2ECE2;padding:clamp(72px,10vw,132px) 0 clamp(64px,9vw,112px);
-  position:relative;overflow:hidden;
+  position:relative;overflow:visible;
 }
 .appendix .wrap{max-width:52em}
 .ap-tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;
@@ -684,6 +684,20 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
   background:#FFFFFF;opacity:1;box-shadow:0 0 26px rgba(255,255,255,.9)}
 @media (max-width:900px){
   .survey .sep::after{width:9px;height:9px;top:-3.5px}
+}
+
+/* 附记：从上一节延伸下来的引线，跨越模块边界 */
+.appendix .sep i{
+  position:absolute;left:50%;top:-110px;width:1px;height:110px;
+  transform:translateX(-50%);pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(232,192,96,0) 0%,
+    rgba(232,192,96,.22) 45%,
+    rgba(232,192,96,.55) 88%,
+    rgba(232,192,96,.75) 100%);
+}
+@media (max-width:900px){
+  .appendix .sep i{top:-80px;height:80px}
 }
 </style>
 </head>
@@ -930,7 +944,7 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
   
 
   <section class="appendix" id="appendix" style="--sep:#E8C060">
-    <div class="sep" aria-hidden="true"></div>
+    <div class="sep" aria-hidden="true"><i></i></div>
     <div class="wrap">
       <div class="ap-head">
         <span class="ap-tag">Appendix / 附记</span>
