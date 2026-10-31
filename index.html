@@ -12,7 +12,7 @@
   --paper:#F5F2EA;
   --ink:#12100D;
   --ink-soft:#3C362E;
-  --muted:#7A7167;
+  --muted:#57503F;
   --line:rgba(18,16,13,.13);
   --line-2:rgba(18,16,13,.32);
   --stamp:#B23A2E;
@@ -332,8 +332,8 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
 /* ================= 精修层 05：明暗节奏与可读性 ================= */
 body{font-size:clamp(16.5px,1.15vw,18px)}
 .ch-body p{color:#14110E;line-height:1.9;letter-spacing:.004em}
-.lede{color:#39322A}
-.note{color:#241F19;background:rgba(255,255,255,.66)}
+.lede{color:#241F19}
+.note{color:#1B1712;background:rgba(255,255,255,.66)}
 
 /* —— 深色章节 —— */
 .chapter.dark{background:var(--tint);color:#EFE7DA}
@@ -402,6 +402,37 @@ blockquote::after{display:none}
   .glow{display:none}
   .tagline.reveal .idx{transform:none;opacity:1;transition:none}
   .ch-body > *,.hero-copy > *,.intro-copy > *{transition-delay:0ms}
+}
+
+/* ================= 精修层 08：文案归左 + 浅底文字加深 ================= */
+
+/* 序章：文字归左，图移到右侧 */
+.intro-inner{grid-template-columns:1.06fr .94fr}
+.intro-copy{order:1;grid-column:1}
+.intro-inner figure{order:2;grid-column:2;margin-left:auto;margin-right:0}
+
+/* 深夜区：文字归左，时钟移到右侧 */
+.night .inner{grid-template-columns:1.06fr .94fr}
+.night .inner > div:last-child{order:1;grid-column:1}
+.night-clock{order:2;grid-column:2}
+
+/* 浅底上的文字整体加深一档 */
+.tagline{color:#57503F}
+.ch-head .sub{color:#57503F}
+.figbox figcaption{color:#57503F}
+.ch-body p{color:#100D0A}
+.note{color:#1B1712;background:rgba(255,255,255,.72)}
+.fine{color:#57503F}
+footer{color:#3A342C}
+.hero .meta dt{color:#57503F}
+.hero .meta dd{color:#171310}
+.strip{color:#EFE7DA}
+
+@media (max-width:900px){
+  .intro-copy,.intro-inner figure,.night .inner > div:last-child,.night-clock{
+    order:0;grid-column:auto
+  }
+  .intro-inner figure{margin-left:0}
 }
 </style>
 </head>
