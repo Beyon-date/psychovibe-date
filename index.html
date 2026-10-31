@@ -542,7 +542,7 @@ footer a{color:#E0B084}
 
 /* 深夜区 / 问卷区 / 页脚 平滑衔接 */
 .night{background:linear-gradient(180deg,#2A1E12 0,#080C16 clamp(130px,16vw,200px))}
-.survey{background:#000000}
+.survey{background:#000000!important}
 footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200px))}
 
 @media (max-width:900px){
@@ -651,10 +651,10 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
 /* ================= 附记专属背景：星点 + 双色光晕 ================= */
 .appendix{
   background:
-    radial-gradient(ellipse 90% 58% at 50% 0%, rgba(216,155,90,.17), transparent 66%),
-    radial-gradient(ellipse 62% 50% at 10% 88%, rgba(110,140,255,.14), transparent 62%),
+    radial-gradient(ellipse 90% 58% at 50% 14%, rgba(216,155,90,.15), transparent 64%),
+    radial-gradient(ellipse 62% 50% at 10% 88%, rgba(110,140,255,.12), transparent 62%),
     radial-gradient(ellipse 50% 42% at 94% 68%, rgba(176,118,255,.09), transparent 60%),
-    linear-gradient(180deg,#2A1E12 0%,#251A2A 40%,#000000 100%);
+    linear-gradient(180deg,#2A1E12 0%,#2A1E12 16%,#251A2A 50%,#000000 100%);
 }
 .appendix::before{
   content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
@@ -915,7 +915,7 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
 
   
 
-  <section class="appendix" id="appendix" style="--sep:#D89B5A">
+  <section class="appendix" id="appendix" style="--sep:#E8C060">
     <div class="sep" aria-hidden="true"></div>
     <div class="wrap">
       <div class="ap-head">
