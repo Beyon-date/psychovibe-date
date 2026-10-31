@@ -585,6 +585,26 @@ footer{background:linear-gradient(180deg,#0F2755 0,#0C0A0E clamp(120px,15vw,200p
 .ap-empty{margin:clamp(20px,3vw,34px) 0 0;color:rgba(255,255,255,.28);
   font-size:14px;letter-spacing:.16em;font-family:var(--mono);
   border-left:1px dashed rgba(255,255,255,.18);padding-left:14px}
+
+/* ================= 附记排版：诗行结构 ================= */
+.ap-body p{margin:0 0 clamp(18px,2.6vw,26px);line-height:2.0;color:rgba(255,255,255,.88)}
+.ap-body p.ap-lead{
+  font-size:clamp(21px,3vw,35px);line-height:1.52;font-weight:900;
+  color:#FFFFFF;letter-spacing:-.015em;margin:clamp(34px,5vw,54px) 0 clamp(26px,4vw,40px);
+}
+.ap-body p.ap-lead:first-child{margin-top:0}
+.ap-list{
+  display:flex;flex-direction:column;gap:clamp(8px,1.2vw,12px);
+  margin:clamp(26px,4vw,42px) 0 clamp(16px,2.4vw,24px);
+  padding-left:clamp(14px,2vw,20px);
+  border-left:2px solid rgba(216,155,90,.4);
+}
+.ap-list span{
+  font-size:clamp(15px,1.75vw,19px);line-height:1.65;
+  color:rgba(255,255,255,.82);letter-spacing:.01em;
+}
+.ap-listend{margin-top:0;color:#D89B5A;font-weight:800;font-size:clamp(15px,1.8vw,20px)}
+.ap-body blockquote.big{margin:clamp(48px,7vw,84px) auto}
 </style>
 </head>
 <body>
@@ -834,21 +854,36 @@ footer{background:linear-gradient(180deg,#0F2755 0,#0C0A0E clamp(120px,15vw,200p
       </div>
 
       <div class="ap-body">
-        <p>清晨的雾，盛夏的蝉鸣。<br>可二次元最亮眼的，从来不是这样的风光。</p>
-        <p>钢琴、排球、自行车、乐队——现实里明明都有的东西，进了二次元，又绽放出另一种颜色。</p>
+        <p class="ap-lead">清晨雾起，盛夏蝉鸣<br>可二次元最亮眼的<br>从来不是这样的风光</p>
 
-        <p>那里有永不毕业的青春。<br>有治愈天使的心跳，有属于真爱的蓝，有海对岸的自由。<br>有挚友逝去的痛，有面具下的温柔，有四月弹奏的谎言，有熟悉却陌生的爱人。<br>有不完美、却依然饱满的一切。</p>
+        <p>钢琴、排球、自行车、乐队<br>现实里明明都有的东西，进了二次元，又绽放出另一种颜色</p>
 
-        <p>二次元里有我未曾拥有的人生。</p>
-        <p>它不真实，捉摸不透，却又满满地装在心底。像把美好寄存在一个乌托邦里。</p>
-        <p>透过那道光隙，望见了路。</p>
-        <p>当我向前追逐阳光，回头看见绿荫下那颗曾经炙热灼烧的心——一隅安宁，足矣。</p>
+        <div class="ap-list">
+          <span>永不毕业的青春</span>
+          <span>治愈天使的心跳</span>
+          <span>属于真爱的蓝</span>
+          <span>海对岸的自由</span>
+          <span>挚友逝去的痛</span>
+          <span>面具下的温柔</span>
+          <span>四月弹奏的谎言</span>
+          <span>熟悉却陌生的爱人</span>
+        </div>
+        <p class="ap-listend">——不完美，却依然饱满</p>
+
+        <p class="ap-lead">二次元里有我未曾拥有的人生</p>
+
+        <p>它不真实，捉摸不透<br>却又满满地装在心底<br>像把美好寄存在一个乌托邦里</p>
+
+        <p>透过那道光隙，望见了路</p>
+
+        <p>当我向前追逐阳光<br>回头看见绿荫下那颗炙热灼烧的心<br>一隅安宁，足矣</p>
 
         <blockquote class="big">人生就是永无止境的徒劳。<br>不过正是因为徒劳没有意义，<br>当下的每一个瞬间，才是我们值得珍惜的财富。</blockquote>
 
-        <p>现实当然不可能像二次元那么完美。</p>
-        <p>可也正因为它不完美，那些一闪而过的时刻，才格外有分量。</p>
+        <p>现实当然不可能像二次元那么完美</p>
+        <p>可也正因为它不完美<br>那些一闪而过的时刻，才格外有分量</p>
       </div>
+      
       
     </div>
   </section>
