@@ -328,6 +328,36 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   .figbox.in .stamp{animation:none}
   .figbox.reveal > img{transform:none;transition:none}
 }
+
+/* ================= 精修层 05：明暗节奏与可读性 ================= */
+body{font-size:clamp(16.5px,1.15vw,18px)}
+.ch-body p{color:#14110E;line-height:1.9;letter-spacing:.004em}
+.lede{color:#39322A}
+.note{color:#241F19;background:rgba(255,255,255,.66)}
+
+/* —— 深色章节 —— */
+.chapter.dark{background:var(--tint);color:#EFE7DA}
+.chapter.dark .tagline{color:rgba(239,231,218,.52)}
+.chapter.dark .tagline .tag{border-color:rgba(239,231,218,.32)}
+.chapter.dark .num{color:var(--accent)}
+.chapter.dark .ch-head h2{color:#F7F2E8}
+.chapter.dark .ch-head .sub{color:rgba(239,231,218,.5)}
+.chapter.dark .ch-body p{color:rgba(247,242,232,.91)}
+.chapter.dark blockquote{color:#FFF;border-left-color:var(--accent)}
+.chapter.dark blockquote::after{opacity:.3}
+.chapter.dark .note{background:rgba(255,255,255,.055);border-color:rgba(239,231,218,.18);color:rgba(239,231,218,.84)}
+.chapter.dark .note b{color:var(--accent)}
+.chapter.dark .figbox img{border-color:rgba(239,231,218,.2);box-shadow:0 40px 80px -36px rgba(0,0,0,.88)}
+.chapter.dark .figbox figcaption{color:rgba(239,231,218,.46)}
+.chapter.dark .stamp{color:var(--accent);border-color:var(--accent);background:rgba(255,255,255,.035)}
+.chapter.dark::after{color:rgba(239,231,218,.32)}
+.chapter.dark .inner::before{background:rgba(239,231,218,.17);opacity:1}
+.chapter.dark::before{opacity:.5}
+
+/* 深色章节：细分隔线与标签边界 */
+.chapter.dark .tagline .rule{background:rgba(239,231,218,.28)}
+.chapter.dark .figbox{--edge:rgba(239,231,218,.2)}
+.chapter.dark .ch-head{margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -403,7 +433,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
   </section>
 
-  <section class="chapter wide ch-exam" id="ch1" style="--accent:#8A6A4F;--tint:#F1EDE3;--fw:640px">
+  <section class="chapter ch-exam" id="ch1" style="--accent:#8A6A4F;--tint:#F2EBDC;--fw:640px">
     <div class="wrap inner">
       <div class="ch-head">
         <div class="tagline"><span class="idx">01</span><span class="tag">Somatic</span><span class="rule"></span><span>躯体化</span></div>
@@ -425,7 +455,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
   </section>
 
-  <section class="chapter flip ch-verdict" id="ch2" style="--accent:#8E3A34;--tint:#F7EFEC;--fw:320px">
+  <section class="chapter dark flip ch-verdict" id="ch2" style="--accent:#F0725F;--tint:#1D1210;--fw:320px">
     <div class="wrap inner">
       <div class="ch-head">
         <div class="tagline"><span class="idx">02</span><span class="tag">Helplessness</span><span class="rule"></span><span>习得性无助</span></div>
@@ -447,7 +477,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
   </section>
 
-  <section class="chapter wide ch-summer" id="ch3" style="--accent:#B07A1E;--tint:#FAF5E4;--fw:640px">
+  <section class="chapter wide ch-summer" id="ch3" style="--accent:#A9711A;--tint:#FAEFC9;--fw:640px">
     <div class="wrap inner">
       <div class="ch-head">
         <div class="tagline"><span class="idx">03</span><span class="tag">Social</span><span class="rule"></span><span>社交孤独</span></div>
@@ -469,7 +499,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
   </section>
 
-  <section class="chapter wide ch-crowd" id="ch4" style="--accent:#17849B;--tint:#EBF5F7;--fw:640px">
+  <section class="chapter dark wide ch-crowd" id="ch4" style="--accent:#4CC8DF;--tint:#10333B;--fw:640px">
     <div class="wrap inner">
       <div class="ch-head">
         <div class="tagline"><span class="idx">04</span><span class="tag">Conformity</span><span class="rule"></span><span>从众</span></div>
@@ -491,7 +521,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
   </section>
 
-  <section class="chapter flip ch-deep" id="ch5" style="--accent:#5B8DEF;--fw:250px">
+  <section class="chapter dark flip" id="ch5" style="--accent:#8AAEFF;--tint:#0A1526;--fw:250px">
     <div class="wrap inner">
       <div class="ch-head">
         <div class="tagline"><span class="idx">05</span><span class="tag">Rumination</span><span class="rule"></span><span>反刍思维</span></div>
@@ -513,7 +543,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
   </section>
 
-  <section class="chapter ch-autumn" id="ch6" style="--accent:#A8621A;--tint:#F8F2E7;--fw:320px">
+  <section class="chapter ch-autumn" id="ch6" style="--accent:#A25C16;--tint:#F3E4CB;--fw:320px">
     <div class="wrap inner">
       <div class="ch-head">
         <div class="tagline"><span class="idx">06</span><span class="tag">Self-concept</span><span class="rule"></span><span>自我确认</span></div>
