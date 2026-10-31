@@ -674,6 +674,17 @@ footer{background:linear-gradient(180deg,#000000 0,#0C0A0E clamp(130px,16vw,200p
 /* 问卷顶部：中性白分隔，不改变纯黑底 */
 .survey .sep::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.22) 26%,rgba(255,255,255,.22) 74%,transparent)}
 .survey .sep::after{box-shadow:0 0 14px rgba(255,255,255,.5)}
+
+/* 问卷顶部分隔：加粗提亮，确保可见 */
+.survey .sep{height:2px}
+.survey .sep::before{height:2px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.62) 24%,
+             rgba(255,255,255,.62) 76%,transparent)}
+.survey .sep::after{width:11px;height:11px;top:-4.5px;
+  background:#FFFFFF;opacity:1;box-shadow:0 0 22px rgba(255,255,255,.7)}
+@media (max-width:900px){
+  .survey .sep::after{width:9px;height:9px;top:-3.5px}
+}
 </style>
 </head>
 <body>
